@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>ZIF_RF_MODEL~READ_DATA</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: ZIF_RF_MODEL~READ_DATA</h2>
+<h3> Description: Redefined: Redefined: Redefined:</h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+**************************************************************************<br />
+*&nbsp;&nbsp;&nbsp;Method&nbsp;attributes.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+Instantiation: Protected<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;METHOD&nbsp;zif_rf_model~read_data.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA&nbsp;lt_data&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gtty_inv_str.&nbsp;"&nbsp;dummy&nbsp;definition&nbsp;-&nbsp;expected&nbsp;table&nbsp;type<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"no&nbsp;parameters&nbsp;are&nbsp;received...&nbsp;dynamic&nbsp;selection&nbsp;logic<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CLEAR&nbsp;et_data.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;get&nbsp;user&nbsp;parameters<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA(ls_user_data)&nbsp;=&nbsp;zcl_rf_user=&gt;get_instance(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;)-&gt;get_user_data(&nbsp;).<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA(lr_inv_stat)&nbsp;=&nbsp;VALUE&nbsp;zcl_rf_constants=&gt;gtyr_inv_stat(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;sign&nbsp;=&nbsp;'I'&nbsp;option&nbsp;=&nbsp;'EQ'&nbsp;low&nbsp;=&nbsp;zcl_rf_constants=&gt;gc_inv_stat_partial&nbsp;)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;sign&nbsp;=&nbsp;'I'&nbsp;option&nbsp;=&nbsp;'EQ'&nbsp;low&nbsp;=&nbsp;zcl_rf_constants=&gt;gc_inv_stat_initial&nbsp;)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;).<br />
+<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;SELECT&nbsp;a~iblnr,&nbsp;a~gjahr,&nbsp;a~zstat,&nbsp;a~xblni,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c~lgpbe,&nbsp;b~matnr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c~labst&nbsp;AS&nbsp;buchm<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,&nbsp;d~meins,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b~zeili,&nbsp;b~xzael&nbsp;AS&nbsp;xzael_bd,&nbsp;a~gidat<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM&nbsp;ikpf&nbsp;AS&nbsp;a<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INNER&nbsp;JOIN&nbsp;iseg&nbsp;AS&nbsp;b<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ON&nbsp;a~iblnr&nbsp;=&nbsp;b~iblnr<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;a~gjahr&nbsp;=&nbsp;b~gjahr<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INNER&nbsp;JOIN&nbsp;mard&nbsp;AS&nbsp;c<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ON&nbsp;c~matnr&nbsp;=&nbsp;b~matnr<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;c~werks&nbsp;=&nbsp;a~werks<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;c~lgort&nbsp;=&nbsp;a~lgort<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INNER&nbsp;JOIN&nbsp;mara&nbsp;AS&nbsp;d<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ON&nbsp;d~matnr&nbsp;=&nbsp;c~matnr<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INTO&nbsp;CORRESPONDING&nbsp;FIELDS&nbsp;OF&nbsp;TABLE&nbsp;@et_data<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE&nbsp;a~werks&nbsp;=&nbsp;@ls_user_data-werks<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;a~lgort&nbsp;=&nbsp;@ls_user_data-lgort<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;a~xblni&nbsp;=&nbsp;@ls_user_data-uname<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;a~zstat&nbsp;IN&nbsp;@lr_inv_stat<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ORDER&nbsp;BY&nbsp;a~gidat,&nbsp;a~iblnr,&nbsp;a~gjahr.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"AND&nbsp;b~xzael&nbsp;=&nbsp;@abap_false.<br />
+<br />
+<br />
+&nbsp;&nbsp;ENDMETHOD.<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 758</td>
+   </tr>
+</table>
+</body>
+</html>

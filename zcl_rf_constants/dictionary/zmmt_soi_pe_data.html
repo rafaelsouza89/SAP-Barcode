@@ -1,0 +1,579 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>Dictionary object- ZMMT_SOI_PE_DATA</title>
+<style type="text/css">
+  th{text-align:left}
+  .cell{
+     font-family:"Courier New", Courier, monospace;
+     color:#000;
+     font-size:12px;
+     background-color:#F2F4F7;
+  }
+  .cell td { border: thin solid #ccc; }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+  <table class="outerTable">
+    <tr>
+      <td><h2>Table: ZMMT_SOI_PE_DATA</h2>
+  <h3>Description: SOI Interface - Parts Export</h3></td>
+    </tr>
+    <tr>
+      <td><!--This is where our main table begins  -->
+<table class="innerTable">
+<tr>
+  <th>Row</th>
+  <th>Field name</th>
+  <th>Position</th>
+  <th>Key</th>
+  <th>Data element</th>
+  <th>Domain</th>
+  <th>Datatype</th>
+  <th>Length</th>
+  <th>Lowercase</th>
+  <th>Domain text</th>
+</tr>
+<tr class="cell">
+  <td> 1</td>
+  <td>MANDT</td>
+  <td>1</td>
+  <td>X</td>
+  <td>MANDT</td>
+  <td>MANDT</td>
+  <td>CLNT</td>
+  <td>3</td>
+  <td>&nbsp;</td>
+  <td>Client</td>
+</tr>
+<tr class="cell">
+  <td> 2</td>
+  <td>PART_NUMBER</td>
+  <td>2</td>
+  <td>X</td>
+  <td>ZMME_PART_NUMBER</td>
+  <td>CHAR35</td>
+  <td>CHAR</td>
+  <td>35</td>
+  <td>&nbsp;</td>
+  <td>Part Number</td>
+</tr>
+<tr class="cell">
+  <td> 3</td>
+  <td>PART_PREFIX</td>
+  <td>3</td>
+  <td>X</td>
+  <td>ZMME_PART_PREFIX</td>
+  <td>CHAR3</td>
+  <td>CHAR</td>
+  <td>3</td>
+  <td>&nbsp;</td>
+  <td>Part Prefix</td>
+</tr>
+<tr class="cell">
+  <td> 4</td>
+  <td>MATNR</td>
+  <td>4</td>
+  <td>&nbsp;</td>
+  <td>MATNR</td>
+  <td>MATNR</td>
+  <td>CHAR</td>
+  <td>40</td>
+  <td>&nbsp;</td>
+  <td>Material Number</td>
+</tr>
+<tr class="cell">
+  <td> 5</td>
+  <td>DESCRIPTION</td>
+  <td>5</td>
+  <td>&nbsp;</td>
+  <td>ZMME_PART_DESC</td>
+  <td>CHAR40</td>
+  <td>CHAR</td>
+  <td>40</td>
+  <td>&nbsp;</td>
+  <td>Part description</td>
+</tr>
+<tr class="cell">
+  <td> 6</td>
+  <td>WHERE_USED_INFO</td>
+  <td>6</td>
+  <td>&nbsp;</td>
+  <td>ZMME_WHERE_USED</td>
+  <td>CHAR80</td>
+  <td>CHAR</td>
+  <td>80</td>
+  <td>&nbsp;</td>
+  <td>Where used list</td>
+</tr>
+<tr class="cell">
+  <td> 7</td>
+  <td>NET_WEIGHT</td>
+  <td>7</td>
+  <td>&nbsp;</td>
+  <td>ZMME_NET_WEIGHT</td>
+  <td>CHAR15</td>
+  <td>CHAR</td>
+  <td>15</td>
+  <td>&nbsp;</td>
+  <td>Net Weight (char)</td>
+</tr>
+<tr class="cell">
+  <td> 8</td>
+  <td>NET_VOLUME</td>
+  <td>8</td>
+  <td>&nbsp;</td>
+  <td>ZMME_NET_VOLUME</td>
+  <td>CHAR20</td>
+  <td>CHAR</td>
+  <td>20</td>
+  <td>&nbsp;</td>
+  <td>Net Volume</td>
+</tr>
+<tr class="cell">
+  <td> 9</td>
+  <td>COUNTRY_OF_ORIGIN</td>
+  <td>9</td>
+  <td>&nbsp;</td>
+  <td>ZMME_COUNTRY_O</td>
+  <td>CHAR4</td>
+  <td>CHAR</td>
+  <td>4</td>
+  <td>&nbsp;</td>
+  <td>Coutry of Origin</td>
+</tr>
+<tr class="cell">
+  <td>10</td>
+  <td>CUSTOMS_CODE</td>
+  <td>10</td>
+  <td>&nbsp;</td>
+  <td>ZMME_CUST_CODE</td>
+  <td>CHAR25</td>
+  <td>CHAR</td>
+  <td>25</td>
+  <td>&nbsp;</td>
+  <td>Customs Code</td>
+</tr>
+<tr class="cell">
+  <td>11</td>
+  <td>DANGEROUS_GOODS_CODE</td>
+  <td>11</td>
+  <td>&nbsp;</td>
+  <td>ZMME_DANG_GOODS</td>
+  <td>CHAR1</td>
+  <td>CHAR</td>
+  <td>1</td>
+  <td>&nbsp;</td>
+  <td>Dangerous Goods Code</td>
+</tr>
+<tr class="cell">
+  <td>12</td>
+  <td>EXCHANGE_CODE</td>
+  <td>12</td>
+  <td>&nbsp;</td>
+  <td>ZMME_EX_CODE</td>
+  <td>CHAR70</td>
+  <td>CHAR</td>
+  <td>70</td>
+  <td>&nbsp;</td>
+  <td>Exchange Code</td>
+</tr>
+<tr class="cell">
+  <td>13</td>
+  <td>MARKETING_CODE</td>
+  <td>13</td>
+  <td>&nbsp;</td>
+  <td>ZMME_MARKT_CODE</td>
+  <td>CHAR10</td>
+  <td>CHAR</td>
+  <td>10</td>
+  <td>&nbsp;</td>
+  <td>Marketing Code</td>
+</tr>
+<tr class="cell">
+  <td>14</td>
+  <td>DISCOUNT_CODE</td>
+  <td>14</td>
+  <td>&nbsp;</td>
+  <td>ZMME_DISCT_CODE</td>
+  <td>CHAR4</td>
+  <td>CHAR</td>
+  <td>4</td>
+  <td>&nbsp;</td>
+  <td>Discount Code</td>
+</tr>
+<tr class="cell">
+  <td>15</td>
+  <td>CONSUMPTION_CODE</td>
+  <td>15</td>
+  <td>&nbsp;</td>
+  <td>ZMME_CONSUM_CODE</td>
+  <td>CHAR1</td>
+  <td>CHAR</td>
+  <td>1</td>
+  <td>&nbsp;</td>
+  <td>Consuption Code</td>
+</tr>
+<tr class="cell">
+  <td>16</td>
+  <td>PRODUCT_LINE_CODE</td>
+  <td>16</td>
+  <td>&nbsp;</td>
+  <td>ZMME_PROD_LINE</td>
+  <td>CHAR4</td>
+  <td>CHAR</td>
+  <td>4</td>
+  <td>&nbsp;</td>
+  <td>Product Line Code</td>
+</tr>
+<tr class="cell">
+  <td>17</td>
+  <td>PARTS_CATEGORY</td>
+  <td>17</td>
+  <td>&nbsp;</td>
+  <td>ZMME_PARTS_CATEG</td>
+  <td>CHAR10</td>
+  <td>CHAR</td>
+  <td>10</td>
+  <td>&nbsp;</td>
+  <td>Parts Category</td>
+</tr>
+<tr class="cell">
+  <td>18</td>
+  <td>SPARE_PART_CODE</td>
+  <td>18</td>
+  <td>&nbsp;</td>
+  <td>ZMME_SPARE_PART</td>
+  <td>CHAR4</td>
+  <td>CHAR</td>
+  <td>4</td>
+  <td>&nbsp;</td>
+  <td>Spare Parts Code</td>
+</tr>
+<tr class="cell">
+  <td>19</td>
+  <td>FUNCTION_GROUP</td>
+  <td>19</td>
+  <td>&nbsp;</td>
+  <td>ZMME_FUNCT_GRP</td>
+  <td>CHAR35</td>
+  <td>CHAR</td>
+  <td>35</td>
+  <td>&nbsp;</td>
+  <td>Function Group</td>
+</tr>
+<tr class="cell">
+  <td>20</td>
+  <td>PRODUCT_CODE</td>
+  <td>20</td>
+  <td>&nbsp;</td>
+  <td>ZMME_PROD_CODE</td>
+  <td>CHAR4</td>
+  <td>CHAR</td>
+  <td>4</td>
+  <td>&nbsp;</td>
+  <td>Product Code</td>
+</tr>
+<tr class="cell">
+  <td>21</td>
+  <td>UOM</td>
+  <td>21</td>
+  <td>&nbsp;</td>
+  <td>ZMME_UOM</td>
+  <td>CHAR4</td>
+  <td>CHAR</td>
+  <td>4</td>
+  <td>&nbsp;</td>
+  <td>UOM</td>
+</tr>
+<tr class="cell">
+  <td>22</td>
+  <td>UOMWEIGHT</td>
+  <td>22</td>
+  <td>&nbsp;</td>
+  <td>ZMME_UOM_WEIGHT</td>
+  <td>CHAR1</td>
+  <td>CHAR</td>
+  <td>1</td>
+  <td>&nbsp;</td>
+  <td>UOM Weight</td>
+</tr>
+<tr class="cell">
+  <td>23</td>
+  <td>UOMVOLUME</td>
+  <td>23</td>
+  <td>&nbsp;</td>
+  <td>ZMME_UOM_VOLUME</td>
+  <td>CHAR2</td>
+  <td>CHAR</td>
+  <td>2</td>
+  <td>&nbsp;</td>
+  <td>UOM Volume</td>
+</tr>
+<tr class="cell">
+  <td>24</td>
+  <td>BULK_PACK</td>
+  <td>24</td>
+  <td>&nbsp;</td>
+  <td>ZMME_BULK_PACK</td>
+  <td>CHAR20</td>
+  <td>CHAR</td>
+  <td>20</td>
+  <td>&nbsp;</td>
+  <td>Bulk Pack</td>
+</tr>
+<tr class="cell">
+  <td>25</td>
+  <td>STOCK_AVAILABLE</td>
+  <td>25</td>
+  <td>&nbsp;</td>
+  <td>ZMME_STOCK_AVLB</td>
+  <td>CHAR15</td>
+  <td>CHAR</td>
+  <td>15</td>
+  <td>&nbsp;</td>
+  <td>Stock available</td>
+</tr>
+<tr class="cell">
+  <td>26</td>
+  <td>WAREHOUSE_CODE</td>
+  <td>26</td>
+  <td>&nbsp;</td>
+  <td>ZMME_WHAREHOUSE</td>
+  <td>CHAR10</td>
+  <td>CHAR</td>
+  <td>10</td>
+  <td>&nbsp;</td>
+  <td>Wharehouse Code</td>
+</tr>
+<tr class="cell">
+  <td>27</td>
+  <td>SALES_BLOCKING</td>
+  <td>27</td>
+  <td>&nbsp;</td>
+  <td>ZMME_SALES_BLOCK</td>
+  <td>CHAR10</td>
+  <td>CHAR</td>
+  <td>10</td>
+  <td>&nbsp;</td>
+  <td>Sales Blocking</td>
+</tr>
+<tr class="cell">
+  <td>28</td>
+  <td>SUPERSESSION_STATUS</td>
+  <td>28</td>
+  <td>&nbsp;</td>
+  <td>ZMME_SUPERSESSION</td>
+  <td>ZMME_SUPERSESSION</td>
+  <td>CHAR</td>
+  <td>5</td>
+  <td>&nbsp;</td>
+  <td>Supersession Status</td>
+</tr>
+<tr class="cell">
+  <td>29</td>
+  <td>CATALOG_IDS</td>
+  <td>29</td>
+  <td>&nbsp;</td>
+  <td>ZMME_CATALOG_ID</td>
+  <td>CHAR255</td>
+  <td>CHAR</td>
+  <td>255</td>
+  <td>&nbsp;</td>
+  <td>Catalog Ids</td>
+</tr>
+<tr class="cell">
+  <td>30</td>
+  <td>STATUS</td>
+  <td>30</td>
+  <td>&nbsp;</td>
+  <td>ZMME_SOI_PE_STATUS</td>
+  <td>ZMMD_SOI_PE_STATUS</td>
+  <td>CHAR</td>
+  <td>1</td>
+  <td>&nbsp;</td>
+  <td>Parts Export Status</td>
+</tr>
+<tr class="cell">
+  <td>31</td>
+  <td>RESPECTIVE_REMAN</td>
+  <td>31</td>
+  <td>&nbsp;</td>
+  <td>ZMME_RESPECTIVE_REMAN_C</td>
+  <td>CHAR18</td>
+  <td>CHAR</td>
+  <td>18</td>
+  <td>&nbsp;</td>
+  <td>Respective Reman</td>
+</tr>
+<tr class="cell">
+  <td>32</td>
+  <td>CREATION_DATE</td>
+  <td>32</td>
+  <td>&nbsp;</td>
+  <td>DATS</td>
+  <td>DATS</td>
+  <td>DATS</td>
+  <td>8</td>
+  <td>&nbsp;</td>
+  <td>Field of type DATS</td>
+</tr>
+<tr class="cell">
+  <td>33</td>
+  <td>KONDM</td>
+  <td>33</td>
+  <td>&nbsp;</td>
+  <td>KONDM</td>
+  <td>KONDM</td>
+  <td>CHAR</td>
+  <td>2</td>
+  <td>&nbsp;</td>
+  <td>Material Price Group</td>
+</tr>
+<tr class="cell">
+  <td>34</td>
+  <td>UZEIT</td>
+  <td>34</td>
+  <td>&nbsp;</td>
+  <td>SYST_UZEIT</td>
+  <td>SYTIME</td>
+  <td>TIMS</td>
+  <td>6</td>
+  <td>&nbsp;</td>
+  <td>ABAP System Field: Current Time of Application Server</td>
+</tr>
+<tr class="cell">
+  <td>35</td>
+  <td>UNAME</td>
+  <td>35</td>
+  <td>&nbsp;</td>
+  <td>SYST_UNAME</td>
+  <td>SYCHAR12</td>
+  <td>CHAR</td>
+  <td>12</td>
+  <td>&nbsp;</td>
+  <td>ABAP System Field: Name of Current User</td>
+</tr>
+      </table>
+     </td>
+   </tr>
+<br/>
+  <table class="outerTable">
+    <tr>
+      <td><h2>Fixed Domain Values </h2>
+    </tr>
+    <tr>
+      <td><!--This is where our main table begins  -->
+<table class="innerTable">
+<tr>
+  <th>Domain Name</th>
+  <th>Value Low</th>
+  <th>Value High</th>
+  <th>Text</th>
+</tr>
+<tr class="cell">
+  <td>ZMME_SUPERSESSION</td>
+  <td>S</td>
+  <td>&nbsp;</td>
+  <td>Single</td>
+</tr>
+<tr class="cell">
+  <td>ZMME_SUPERSESSION</td>
+  <td>M</td>
+  <td>&nbsp;</td>
+  <td>Multiple</td>
+</tr>
+<tr class="cell">
+  <td>ZMME_SUPERSESSION</td>
+  <td>V</td>
+  <td>&nbsp;</td>
+  <td>Variable</td>
+</tr>
+<tr class="cell">
+  <td>ZMME_SUPERSESSION</td>
+  <td>0</td>
+  <td>&nbsp;</td>
+  <td>No longer available</td>
+</tr>
+<tr class="cell">
+  <td>ZMME_SUPERSESSION</td>
+  <td>N</td>
+  <td>&nbsp;</td>
+  <td>Part without supersession</td>
+</tr>
+<tr class="cell">
+  <td>ZMME_SUPERSESSION</td>
+  <td>9</td>
+  <td>&nbsp;</td>
+  <td>Part with supersession (missing info)</td>
+</tr>
+<tr class="cell">
+  <td>ZMMD_SOI_PE_STATUS</td>
+  <td>0</td>
+  <td>&nbsp;</td>
+  <td>Ready to creation</td>
+</tr>
+<tr class="cell">
+  <td>ZMMD_SOI_PE_STATUS</td>
+  <td>1</td>
+  <td>&nbsp;</td>
+  <td>Integrated/Created</td>
+</tr>
+<tr class="cell">
+  <td>ZMMD_SOI_PE_STATUS</td>
+  <td>2</td>
+  <td>&nbsp;</td>
+  <td>Not Relevant</td>
+</tr>
+<tr class="cell">
+  <td>ZMMD_SOI_PE_STATUS</td>
+  <td>4</td>
+  <td>&nbsp;</td>
+  <td>Supersession Record</td>
+</tr>
+<tr class="cell">
+  <td>ZMMD_SOI_PE_STATUS</td>
+  <td>3</td>
+  <td>&nbsp;</td>
+  <td>Create Manually</td>
+</tr>
+      </table>
+     </td>
+   </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 758</td>
+   </tr>
+</table>
+</body>
+</html>

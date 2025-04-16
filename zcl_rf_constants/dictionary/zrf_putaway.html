@@ -1,0 +1,471 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>Dictionary object- ZRF_PUTAWAY</title>
+<style type="text/css">
+  th{text-align:left}
+  .cell{
+     font-family:"Courier New", Courier, monospace;
+     color:#000;
+     font-size:12px;
+     background-color:#F2F4F7;
+  }
+  .cell td { border: thin solid #ccc; }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+  <table class="outerTable">
+    <tr>
+      <td><h2>Table: ZRF_PUTAWAY</h2>
+  <h3>Description: </h3></td>
+    </tr>
+    <tr>
+      <td><!--This is where our main table begins  -->
+<table class="innerTable">
+<tr>
+  <th>Row</th>
+  <th>Field name</th>
+  <th>Position</th>
+  <th>Key</th>
+  <th>Data element</th>
+  <th>Domain</th>
+  <th>Datatype</th>
+  <th>Length</th>
+  <th>Lowercase</th>
+  <th>Domain text</th>
+</tr>
+<tr class="cell">
+  <td> 1</td>
+  <td>MANDT</td>
+  <td>1</td>
+  <td>X</td>
+  <td>MANDT</td>
+  <td>MANDT</td>
+  <td>CLNT</td>
+  <td>3</td>
+  <td>&nbsp;</td>
+  <td>Client</td>
+</tr>
+<tr class="cell">
+  <td> 2</td>
+  <td>ID</td>
+  <td>2</td>
+  <td>X</td>
+  <td>GUID_16</td>
+  <td>SYSUUID</td>
+  <td>RAW</td>
+  <td>16</td>
+  <td>&nbsp;</td>
+  <td>GUID in 'RAW' format</td>
+</tr>
+<tr class="cell">
+  <td> 3</td>
+  <td>CART_ID</td>
+  <td>3</td>
+  <td>&nbsp;</td>
+  <td>ZRF_CARTID</td>
+  <td>ZRF_CARTID</td>
+  <td>CHAR</td>
+  <td>20</td>
+  <td>&nbsp;</td>
+  <td>Cart ID</td>
+</tr>
+<tr class="cell">
+  <td> 4</td>
+  <td>TYPE</td>
+  <td>4</td>
+  <td>&nbsp;</td>
+  <td>ZRF_PUTAWAY_TYPE</td>
+  <td>ZRF_PUTAWAY_TYPE</td>
+  <td>CHAR</td>
+  <td>1</td>
+  <td>&nbsp;</td>
+  <td>Type</td>
+</tr>
+<tr class="cell">
+  <td> 5</td>
+  <td>LGNUM</td>
+  <td>5</td>
+  <td>&nbsp;</td>
+  <td>LGNUM</td>
+  <td>LGNUM</td>
+  <td>CHAR</td>
+  <td>3</td>
+  <td>&nbsp;</td>
+  <td>Warehouse Number / Warehouse Complex</td>
+</tr>
+<tr class="cell">
+  <td> 6</td>
+  <td>MATNR</td>
+  <td>6</td>
+  <td>&nbsp;</td>
+  <td>MATNR</td>
+  <td>MATNR</td>
+  <td>CHAR</td>
+  <td>40</td>
+  <td>&nbsp;</td>
+  <td>Material Number</td>
+</tr>
+<tr class="cell">
+  <td> 7</td>
+  <td>MENGE</td>
+  <td>7</td>
+  <td>&nbsp;</td>
+  <td>MENGE_D</td>
+  <td>MENG13</td>
+  <td>QUAN</td>
+  <td>13</td>
+  <td>&nbsp;</td>
+  <td>Quantity</td>
+</tr>
+<tr class="cell">
+  <td> 8</td>
+  <td>MEINS</td>
+  <td>8</td>
+  <td>&nbsp;</td>
+  <td>MEINS</td>
+  <td>MEINS</td>
+  <td>UNIT</td>
+  <td>3</td>
+  <td>X</td>
+  <td>Base Unit of Measure</td>
+</tr>
+<tr class="cell">
+  <td> 9</td>
+  <td>EXIDV</td>
+  <td>9</td>
+  <td>&nbsp;</td>
+  <td>EXIDV</td>
+  <td>EXIDV</td>
+  <td>CHAR</td>
+  <td>20</td>
+  <td>&nbsp;</td>
+  <td>External Handling Unit Identification</td>
+</tr>
+<tr class="cell">
+  <td>10</td>
+  <td>BACKORDER</td>
+  <td>10</td>
+  <td>&nbsp;</td>
+  <td>VBELN</td>
+  <td>VBELN</td>
+  <td>CHAR</td>
+  <td>10</td>
+  <td>&nbsp;</td>
+  <td>Sales and Distribution Document Number</td>
+</tr>
+<tr class="cell">
+  <td>11</td>
+  <td>INB_DELIV</td>
+  <td>11</td>
+  <td>&nbsp;</td>
+  <td>VBELN_VLAV</td>
+  <td>VBELN</td>
+  <td>CHAR</td>
+  <td>10</td>
+  <td>&nbsp;</td>
+  <td>Inbound delivery</td>
+</tr>
+<tr class="cell">
+  <td>12</td>
+  <td>INB_DELIV_ITEM</td>
+  <td>12</td>
+  <td>&nbsp;</td>
+  <td>POSNR</td>
+  <td>POSNR</td>
+  <td>NUMC</td>
+  <td>6</td>
+  <td>&nbsp;</td>
+  <td>Item number of the SD document</td>
+</tr>
+<tr class="cell">
+  <td>13</td>
+  <td>LGPBE</td>
+  <td>13</td>
+  <td>&nbsp;</td>
+  <td>LGPBE</td>
+  <td>CHAR10</td>
+  <td>CHAR</td>
+  <td>10</td>
+  <td>&nbsp;</td>
+  <td>Storage Bin</td>
+</tr>
+<tr class="cell">
+  <td>14</td>
+  <td>PUTAWAY_TIM</td>
+  <td>14</td>
+  <td>&nbsp;</td>
+  <td>TIMESTAMP</td>
+  <td>TZNTSTMPS</td>
+  <td>DEC</td>
+  <td>15</td>
+  <td>&nbsp;</td>
+  <td>UTC Time Stamp in Short Form (YYYYMMDDhhmmss)</td>
+</tr>
+<tr class="cell">
+  <td>15</td>
+  <td>PUTAWAY_USR</td>
+  <td>15</td>
+  <td>&nbsp;</td>
+  <td>UNAME</td>
+  <td>UNAME</td>
+  <td>CHAR</td>
+  <td>12</td>
+  <td>&nbsp;</td>
+  <td>User Name</td>
+</tr>
+<tr class="cell">
+  <td>16</td>
+  <td>ZONLO</td>
+  <td>16</td>
+  <td>&nbsp;</td>
+  <td>SYST_ZONLO</td>
+  <td>SYCHAR06</td>
+  <td>CHAR</td>
+  <td>6</td>
+  <td>&nbsp;</td>
+  <td>ABAP System Field: Time Zone of Current User</td>
+</tr>
+<tr class="cell">
+  <td>17</td>
+  <td>STATUS</td>
+  <td>17</td>
+  <td>&nbsp;</td>
+  <td>ZRF_PUTAWAY_STAT</td>
+  <td>ZRF_INST_STATUS</td>
+  <td>CHAR</td>
+  <td>1</td>
+  <td>&nbsp;</td>
+  <td>Status</td>
+</tr>
+<tr class="cell">
+  <td>18</td>
+  <td>MBLNR</td>
+  <td>18</td>
+  <td>&nbsp;</td>
+  <td>MBLNR</td>
+  <td>BELNR</td>
+  <td>CHAR</td>
+  <td>10</td>
+  <td>&nbsp;</td>
+  <td>Number of Material Document</td>
+</tr>
+<tr class="cell">
+  <td>19</td>
+  <td>MJAHR</td>
+  <td>19</td>
+  <td>&nbsp;</td>
+  <td>MJAHR</td>
+  <td>GJAHR</td>
+  <td>NUMC</td>
+  <td>4</td>
+  <td>&nbsp;</td>
+  <td>Material Document Year</td>
+</tr>
+<tr class="cell">
+  <td>20</td>
+  <td>RELATED_PUTAWAY</td>
+  <td>20</td>
+  <td>&nbsp;</td>
+  <td>GUID_16</td>
+  <td>SYSUUID</td>
+  <td>RAW</td>
+  <td>16</td>
+  <td>&nbsp;</td>
+  <td>GUID in 'RAW' format</td>
+</tr>
+<tr class="cell">
+  <td>21</td>
+  <td>MENGE_FRM_BLK</td>
+  <td>21</td>
+  <td>&nbsp;</td>
+  <td>MENGE_D</td>
+  <td>MENG13</td>
+  <td>QUAN</td>
+  <td>13</td>
+  <td>&nbsp;</td>
+  <td>Quantity</td>
+</tr>
+<tr class="cell">
+  <td>22</td>
+  <td>.INCLUDE</td>
+  <td>22</td>
+  <td>&nbsp;</td>
+  <td>ZRF_CNTRL_STR</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>0</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
+<tr class="cell">
+  <td>23</td>
+  <td>CRETIM</td>
+  <td>23</td>
+  <td>&nbsp;</td>
+  <td>TIMESTAMP</td>
+  <td>TZNTSTMPS</td>
+  <td>DEC</td>
+  <td>15</td>
+  <td>&nbsp;</td>
+  <td>UTC Time Stamp in Short Form (YYYYMMDDhhmmss)</td>
+</tr>
+<tr class="cell">
+  <td>24</td>
+  <td>CREZONLO</td>
+  <td>24</td>
+  <td>&nbsp;</td>
+  <td>SYST_ZONLO</td>
+  <td>SYCHAR06</td>
+  <td>CHAR</td>
+  <td>6</td>
+  <td>&nbsp;</td>
+  <td>ABAP System Field: Time Zone of Current User</td>
+</tr>
+<tr class="cell">
+  <td>25</td>
+  <td>CREUSR</td>
+  <td>25</td>
+  <td>&nbsp;</td>
+  <td>UNAME</td>
+  <td>UNAME</td>
+  <td>CHAR</td>
+  <td>12</td>
+  <td>&nbsp;</td>
+  <td>User Name</td>
+</tr>
+<tr class="cell">
+  <td>26</td>
+  <td>CHGTIM</td>
+  <td>26</td>
+  <td>&nbsp;</td>
+  <td>TIMESTAMP</td>
+  <td>TZNTSTMPS</td>
+  <td>DEC</td>
+  <td>15</td>
+  <td>&nbsp;</td>
+  <td>UTC Time Stamp in Short Form (YYYYMMDDhhmmss)</td>
+</tr>
+<tr class="cell">
+  <td>27</td>
+  <td>CHGZONLO</td>
+  <td>27</td>
+  <td>&nbsp;</td>
+  <td>SYST_ZONLO</td>
+  <td>SYCHAR06</td>
+  <td>CHAR</td>
+  <td>6</td>
+  <td>&nbsp;</td>
+  <td>ABAP System Field: Time Zone of Current User</td>
+</tr>
+<tr class="cell">
+  <td>28</td>
+  <td>CHGUSR</td>
+  <td>28</td>
+  <td>&nbsp;</td>
+  <td>UNAME</td>
+  <td>UNAME</td>
+  <td>CHAR</td>
+  <td>12</td>
+  <td>&nbsp;</td>
+  <td>User Name</td>
+</tr>
+      </table>
+     </td>
+   </tr>
+<br/>
+  <table class="outerTable">
+    <tr>
+      <td><h2>Fixed Domain Values </h2>
+    </tr>
+    <tr>
+      <td><!--This is where our main table begins  -->
+<table class="innerTable">
+<tr>
+  <th>Domain Name</th>
+  <th>Value Low</th>
+  <th>Value High</th>
+  <th>Text</th>
+</tr>
+<tr class="cell">
+  <td>ZRF_PUTAWAY_TYPE</td>
+  <td>S</td>
+  <td>&nbsp;</td>
+  <td>Stock</td>
+</tr>
+<tr class="cell">
+  <td>ZRF_PUTAWAY_TYPE</td>
+  <td>B</td>
+  <td>&nbsp;</td>
+  <td>Backorder</td>
+</tr>
+<tr class="cell">
+  <td>ZRF_PUTAWAY_TYPE</td>
+  <td>U</td>
+  <td>&nbsp;</td>
+  <td>Undefined Backorder</td>
+</tr>
+<tr class="cell">
+  <td>ZRF_PUTAWAY_TYPE</td>
+  <td>X</td>
+  <td>&nbsp;</td>
+  <td>Blocked Stock</td>
+</tr>
+<tr class="cell">
+  <td>ZRF_INST_STATUS</td>
+  <td>1</td>
+  <td>&nbsp;</td>
+  <td>Created</td>
+</tr>
+<tr class="cell">
+  <td>ZRF_INST_STATUS</td>
+  <td>2</td>
+  <td>&nbsp;</td>
+  <td>Complete</td>
+</tr>
+<tr class="cell">
+  <td>ZRF_INST_STATUS</td>
+  <td>3</td>
+  <td>&nbsp;</td>
+  <td>Canceled</td>
+</tr>
+      </table>
+     </td>
+   </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 758</td>
+   </tr>
+</table>
+</body>
+</html>

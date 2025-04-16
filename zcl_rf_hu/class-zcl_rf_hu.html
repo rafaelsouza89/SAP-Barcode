@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>ZCL_RF_HU</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for class: ZCL_RF_HU</h2>
+<h3> Description: HU class</h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Class attributes.                                                    *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+Instantiation: Protected<br />
+Message class: <br />
+State: Implemented<br />
+Final Indicator: X<br />
+R/3 Release: 740<br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Public section of class.                                             *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+CLASS zcl_rf_hu DEFINITION<br />
+&nbsp;&nbsp;PUBLIC<br />
+&nbsp;&nbsp;FINAL<br />
+&nbsp;&nbsp;CREATE&nbsp;PROTECTED&nbsp;.<br />
+<br />
+&nbsp;&nbsp;PUBLIC&nbsp;SECTION.<br />
+<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/unlock.html">unlock</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(rv_unlock)&nbsp;TYPE&nbsp;boolean&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/is_locked_by_user.html">is_locked_by_user</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_uname&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;sy-uname&nbsp;DEFAULT&nbsp;sy-uname<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(rv_locked)&nbsp;TYPE&nbsp;boolean&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/get_instance.html">get_instance</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_exidv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;vekp-exidv<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_check_lgnum&nbsp;TYPE&nbsp;boolean&nbsp;DEFAULT&nbsp;abap_true<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(rr_ref)&nbsp;&nbsp;&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;zcl_rf_hu<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAISING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zcx_rf_exception&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/init_cont.html">init_cont</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_exidv&nbsp;TYPE&nbsp;vekp-exidv&nbsp;OPTIONAL&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/get_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returning&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(rs_data)&nbsp;type&nbsp;zcl_rf_constants=&gt;gty_hu&nbsp;..html">get_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(rs_data)&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gty_hu&nbsp;.</a><br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/init_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;importing&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!iv_reload&nbsp;type&nbsp;boolean&nbsp;default&nbsp;abap_true&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;raising&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zcx_rf_exception&nbsp;..html">init_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!iv_reload&nbsp;TYPE&nbsp;boolean&nbsp;DEFAULT&nbsp;abap_true&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAISING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zcx_rf_exception&nbsp;.</a><br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/check_assignment.html">check_assignment</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!iv_assignment_type&nbsp;TYPE&nbsp;vpobj&nbsp;DEFAULT&nbsp;zcl_rf_constants=&gt;gc_vpobj_inb_del&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAISING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zcx_rf_exception&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/is_ready_for_gr.html">is_ready_for_gr</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAISING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zcx_rf_exception&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/has_material.html">has_material</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_matnr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;mara-matnr<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(rv_exists)&nbsp;TYPE&nbsp;boolean&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/get_backorder_type.html">get_backorder_type</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(rv_bo_type)&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gty_backorder_type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAISING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zcx_rf_exception&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/lock.html">lock</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_check_own_user&nbsp;TYPE&nbsp;boolean&nbsp;DEFAULT&nbsp;abap_true<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(rv_lock)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;boolean&nbsp;.<br />
+&nbsp;&nbsp;METHODS:&nbsp;<a&nbsp;href="public_methods/query_by_ref_objs.html">query_by_ref_objs</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING&nbsp;iv_vpobj&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;vekp-vpobj&nbsp;OPTIONAL<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_vpobjkey&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;vekp-vpobjkey<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING&nbsp;VALUE(rt_vekp)&nbsp;TYPE&nbsp;vekpvb_tab.<br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Private section of class.                                            *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;PRIVATE&nbsp;SECTION.<br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Protected section of class.                                          *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;PROTECTED&nbsp;SECTION.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CLASS-DATA:&nbsp;gt_cont&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gtty_hu_cont.<br />
+&nbsp;&nbsp;METHODS:&nbsp;<a&nbsp;href="protected_methods/constructor&nbsp;importing&nbsp;iv_exidv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type&nbsp;vekp-exidv.html">constructor&nbsp;IMPORTING&nbsp;iv_exidv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;vekp-exidv</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_check_lgnum&nbsp;TYPE&nbsp;boolean<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAISING&nbsp;&nbsp;&nbsp;zcx_rf_exception.<br />
+<br />
+&nbsp;&nbsp;METHODS:&nbsp;<a&nbsp;href="protected_methods/fetch_data&nbsp;importing&nbsp;iv_exidv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type&nbsp;vekp-exidv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_check_lgnum&nbsp;type&nbsp;boolean&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;raising&nbsp;&nbsp;&nbsp;zcx_rf_exception,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get_data_internal&nbsp;returning&nbsp;value(rs_data)&nbsp;type&nbsp;zcl_rf_constants=&gt;gty_hu_full..html">fetch_data&nbsp;IMPORTING&nbsp;iv_exidv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;vekp-exidv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_check_lgnum&nbsp;TYPE&nbsp;boolean&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAISING&nbsp;&nbsp;&nbsp;zcx_rf_exception,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get_data_internal&nbsp;RETURNING&nbsp;VALUE(rs_data)&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gty_hu_full.</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA:&nbsp;gs_data&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gty_hu_full.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/add_to_cont&nbsp;importing&nbsp;ir_ref&nbsp;type&nbsp;ref&nbsp;to&nbsp;zcl_rf_hu..html">add_to_cont&nbsp;IMPORTING&nbsp;ir_ref&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;zcl_rf_hu.</a><br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Types section of class.                                              *<br />
+**************************************************************************<br />
+*"* dummy include to reduce generation dependencies between<br />
+*"* class ZCL_RF_HU and it's users.<br />
+*"* touched if any type reference has been changed<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 758</td>
+   </tr>
+</table>
+</body>
+</html>

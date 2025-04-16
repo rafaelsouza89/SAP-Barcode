@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>ZCL_RF_CONTRL_ZRF004</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for class: ZCL_RF_CONTRL_ZRF004</h2>
+<h3> Description: Controller for ZRF004</h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Class attributes.                                                    *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+Instantiation: Public<br />
+Message class: <br />
+State: Implemented<br />
+Final Indicator: <br />
+R/3 Release: 740<br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Public section of class.                                             *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+CLASS zcl_rf_contrl_zrf004 DEFINITION<br />
+&nbsp;&nbsp;PUBLIC<br />
+&nbsp;&nbsp;INHERITING&nbsp;FROM&nbsp;zcl_rf_controller<br />
+&nbsp;&nbsp;CREATE&nbsp;PUBLIC&nbsp;.<br />
+<br />
+&nbsp;&nbsp;PUBLIC&nbsp;SECTION.<br />
+<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/get_bin_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;importing&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!iv_iblnr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type&nbsp;ikpf-iblnr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!iv_gjahr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type&nbsp;ikpf-gjahr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!iv_lgpbe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type&nbsp;mard-lgpbe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!iv_uncounted_only&nbsp;type&nbsp;boolean&nbsp;default&nbsp;abap_false&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returning&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(rs_bin_data)&nbsp;type&nbsp;zcl_rf_constants=&gt;gty_inv_bin_str&nbsp;..html">get_bin_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!iv_iblnr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;ikpf-iblnr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!iv_gjahr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;ikpf-gjahr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!iv_lgpbe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;mard-lgpbe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!iv_uncounted_only&nbsp;TYPE&nbsp;boolean&nbsp;DEFAULT&nbsp;abap_false&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(rs_bin_data)&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gty_inv_bin_str&nbsp;.</a><br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/get_iseg_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;importing&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!iv_iblnr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type&nbsp;ikpf-iblnr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!iv_gjahr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type&nbsp;ikpf-gjahr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!iv_lgpbe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type&nbsp;mard-lgpbe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!iv_matnr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type&nbsp;mara-matnr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returning&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(rs_iseg)&nbsp;type&nbsp;iseg&nbsp;..html">get_iseg_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!iv_iblnr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;ikpf-iblnr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!iv_gjahr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;ikpf-gjahr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!iv_lgpbe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;mard-lgpbe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!iv_matnr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;mara-matnr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(rs_iseg)&nbsp;TYPE&nbsp;iseg&nbsp;.</a><br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/move_model_to_next_bin.html">move_model_to_next_bin</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(rv_succ)&nbsp;TYPE&nbsp;boolean&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/constructor.html">constructor</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is_cfg&nbsp;TYPE&nbsp;zrf_tcode_cfg&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/close_bin.html">close_bin</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_iblnr&nbsp;TYPE&nbsp;ikpf-iblnr<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_gjahr&nbsp;TYPE&nbsp;ikpf-gjahr<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_lgpbe&nbsp;TYPE&nbsp;mard-lgpbe<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_gidat&nbsp;type&nbsp;ikpf-gidat&nbsp;DEFAULT&nbsp;sy-datum<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAISING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zcx_rf_exception&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/get_material_list.html">get_material_list</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_iblnr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;ikpf-iblnr<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_gjahr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;ikpf-gjahr<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_lgpbe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;mard-lgpbe<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_uncounted_only&nbsp;TYPE&nbsp;boolean&nbsp;DEFAULT&nbsp;abap_true<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(rt_mat_list)&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gtty_mat_list&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/get_model_counted_idx.html">get_model_counted_idx</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_iblnr&nbsp;&nbsp;&nbsp;TYPE&nbsp;ikpf-iblnr<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_gjahr&nbsp;&nbsp;&nbsp;TYPE&nbsp;ikpf-gjahr<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_lgpbe&nbsp;&nbsp;&nbsp;TYPE&nbsp;mard-lgpbe<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ev_current&nbsp;TYPE&nbsp;i<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ev_total&nbsp;&nbsp;&nbsp;TYPE&nbsp;i&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/is_recount.html">is_recount</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_iblnr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;ikpf-iblnr<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_gjahr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;ikpf-gjahr<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(rv_recount)&nbsp;TYPE&nbsp;boolean&nbsp;.<br />
+<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/zif_rf_controller~dequeue.html">zif_rf_controller~dequeue</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REDEFINITION&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/zif_rf_controller~enqueue.html">zif_rf_controller~enqueue</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REDEFINITION&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/zif_rf_controller~execute.html">zif_rf_controller~execute</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REDEFINITION&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/zif_rf_controller~get_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;redefinition&nbsp;..html">zif_rf_controller~get_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REDEFINITION&nbsp;.</a><br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/zif_rf_controller~invalidate_model_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;redefinition&nbsp;..html">zif_rf_controller~invalidate_model_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REDEFINITION&nbsp;.</a><br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/zif_rf_controller~nav_frm_msg.html">zif_rf_controller~nav_frm_msg</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REDEFINITION&nbsp;.<br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Private section of class.                                            *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;PRIVATE&nbsp;SECTION.<br />
+&nbsp;&nbsp;METHODS:&nbsp;<a&nbsp;href="private_methods/update_model_data_succ&nbsp;importing&nbsp;ir_data&nbsp;&nbsp;&nbsp;type&nbsp;ref&nbsp;to&nbsp;data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_commit&nbsp;type&nbsp;boolean,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;init_bin_data..html">update_model_data_succ&nbsp;IMPORTING&nbsp;ir_data&nbsp;&nbsp;&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_commit&nbsp;TYPE&nbsp;boolean,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;init_bin_data.</a><br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Protected section of class.                                          *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;PROTECTED&nbsp;SECTION.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA&nbsp;gt_bin_data&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gtty_inv_bin_str&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA&nbsp;gs_curr_bin_idx&nbsp;TYPE&nbsp;i&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA&nbsp;gt_full_data&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gtty_inv_str&nbsp;.<br />
+<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/build_bin_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;importing&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!it_data&nbsp;type&nbsp;zcl_rf_constants=&gt;gtty_inv_str&nbsp;..html">build_bin_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!it_data&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gtty_inv_str&nbsp;.</a><br />
+<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/check_mandatory_model_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;redefinition&nbsp;..html">check_mandatory_model_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REDEFINITION&nbsp;.</a><br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/init_model_data_ref&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;redefinition&nbsp;..html">init_model_data_ref&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REDEFINITION&nbsp;.</a><br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Types section of class.                                              *<br />
+**************************************************************************<br />
+*"* dummy include to reduce generation dependencies between<br />
+*"* class ZCL_RF_CONTRL_ZRF004 and it's users.<br />
+*"* touched if any type reference has been changed<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 758</td>
+   </tr>
+</table>
+</body>
+</html>

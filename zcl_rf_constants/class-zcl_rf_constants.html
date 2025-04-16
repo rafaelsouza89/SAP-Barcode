@@ -1,0 +1,853 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>ZCL_RF_CONSTANTS</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for class: ZCL_RF_CONSTANTS</h2>
+<h3> Description: Constants</h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Class attributes.                                                    *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+Instantiation: Private<br />
+Message class: <br />
+State: Implemented<br />
+Final Indicator: X<br />
+R/3 Release: 740<br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Public section of class.                                             *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+CLASS zcl_rf_constants DEFINITION   PUBLIC   FINAL   CREATE PRIVATE .<br />
+<br />
+&nbsp;&nbsp;PUBLIC&nbsp;SECTION.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPE-POOLS&nbsp;icon&nbsp;.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtr_mblnr&nbsp;TYPE&nbsp;RANGE&nbsp;OF&nbsp;mkpf-mblnr&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtr_mjahr&nbsp;TYPE&nbsp;RANGE&nbsp;OF&nbsp;mkpf-mjahr&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_sernr_pick,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vbeln&nbsp;TYPE&nbsp;likp-vbeln,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;posnr&nbsp;TYPE&nbsp;lips-posnr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sernr&nbsp;TYPE&nbsp;objk-sernr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_sernr_pick&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_sernr_pick&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;gty_sernr_pick&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_soi_info,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;backorder&nbsp;TYPE&nbsp;vbap-vbeln,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;posnr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;vbap-posnr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matnr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;mara-matnr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ihrez_e&nbsp;&nbsp;&nbsp;TYPE&nbsp;vbkd-ihrez_e,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_soi_info&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_soi_info&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;gty_soi_info&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_del_wh,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vbeln&nbsp;&nbsp;&nbsp;TYPE&nbsp;likp-vbeln,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wh_pick&nbsp;TYPE&nbsp;boolean,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_del_wh&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_sernr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sernr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;zrf_hu_sernr-sernr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;used_in_del&nbsp;TYPE&nbsp;boolean,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_sernr&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_sernr&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;gty_sernr&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_deliv_4_pick,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it_header&nbsp;TYPE&nbsp;bapidlvhdr_t,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it_item&nbsp;&nbsp;&nbsp;TYPE&nbsp;bapidlvitem_t,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_deliv_4_pick&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_service_order,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aufnr&nbsp;TYPE&nbsp;vbak-aufnr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bstkd&nbsp;TYPE&nbsp;vbkd-bstkd,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text&nbsp;&nbsp;TYPE&nbsp;string,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_service_order&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_pick_qty_q,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vbeln&nbsp;&nbsp;TYPE&nbsp;lips-vbeln,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;posnr&nbsp;&nbsp;TYPE&nbsp;lips-posnr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matnr&nbsp;&nbsp;TYPE&nbsp;lips-matnr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lfimg&nbsp;&nbsp;TYPE&nbsp;lips-lfimg,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;picked&nbsp;TYPE&nbsp;lips-lfimg,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vrkme&nbsp;&nbsp;TYPE&nbsp;lips-vrkme,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_pick_qty_q&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_pick_qty_q&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;gty_pick_qty_q&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_outbdel_sernr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vbeln&nbsp;TYPE&nbsp;lips-vbeln,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;posnr&nbsp;TYPE&nbsp;lips-posnr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sernr&nbsp;TYPE&nbsp;lips-sernr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_outbdel_sernr&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_outbdel_sernr&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;gty_outbdel_sernr&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_deliv_list,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;TYPE&nbsp;index_i,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vsart&nbsp;TYPE&nbsp;likp-vsart,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sdabw&nbsp;TYPE&nbsp;likp-sdabw,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count&nbsp;TYPE&nbsp;zrf_count,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_deliv_list&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_deliv_list&nbsp;TYPE&nbsp;TABLE&nbsp;OF&nbsp;gty_deliv_list&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_del_head_ref_doc.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INCLUDE&nbsp;TYPE&nbsp;bapidlvhdr.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:&nbsp;ref_doc&nbsp;TYPE&nbsp;lips-vgbel,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_del_head_ref_doc&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_del_head_ref_doc&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;gty_del_head_ref_doc&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_deliv_list_d.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INCLUDE&nbsp;TYPE&nbsp;gty_deliv_list.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:&nbsp;it_data&nbsp;TYPE&nbsp;gtty_del_head_ref_doc,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_deliv_list_d&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_deliv_list_d&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;gty_deliv_list_d&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gty_cont_type&nbsp;TYPE&nbsp;c&nbsp;LENGTH&nbsp;10&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gty_cont_id&nbsp;&nbsp;&nbsp;TYPE&nbsp;c&nbsp;LENGTH&nbsp;80&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_container_type,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cont_type&nbsp;TYPE&nbsp;gty_cont_type,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;gty_cont_id,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dref&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;object,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_container_type&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_container_type_id,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cont_type&nbsp;TYPE&nbsp;gty_cont_type,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;gty_cont_id,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_container_type_id&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_container_type&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;gty_container_type&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_container_type_id&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;gty_container_type_id&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_pick_qty_fields,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outbound_qty&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;lips-lfimg,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;prev_picked_qty&nbsp;TYPE&nbsp;lips-lfimg,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;putaway_qty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;lips-lfimg,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pick_qty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;lips-lfimg,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_pick_qty_fields&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_pick_qty_lips.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INCLUDE&nbsp;TYPE&nbsp;bapidlvitem.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INCLUDE&nbsp;TYPE&nbsp;gty_pick_qty_fields.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_pick_qty_lips&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_pick_qty_lips&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;gty_pick_qty_lips&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_pick_qty,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vbeln&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;likp-vbeln,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matnr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;mara-matnr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cart_id&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;zrf_putaway-cart_id.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INCLUDE&nbsp;TYPE&nbsp;gty_pick_qty_fields.<br />
+   </div>
+   <div class="codeComment">
+*               outbound_qty    TYPE lips-lfimg,<br />
+*               prev_picked_qty TYPE lips-lfimg,<br />
+*               putaway_qty     TYPE lips-lfimg,<br />
+*               pick_qty        TYPE lips-lfimg,<br />
+*               meins           TYPE mara-meins,<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:&nbsp;meins&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;mara-meins,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it_lips&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;gtty_pick_qty_lips,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it_sernr&nbsp;&nbsp;&nbsp;TYPE&nbsp;gtty_sernr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ls_lagp&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;lagp,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it_putaway&nbsp;TYPE&nbsp;zrf_putaway_tab,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_pick_qty&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_pick_qty&nbsp;TYPE&nbsp;TABLE&nbsp;OF&nbsp;gty_pick_qty&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES&nbsp;gty_inst_type&nbsp;TYPE&nbsp;char20&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_inst_putaway_compare,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id&nbsp;TYPE&nbsp;zrf_putaway-id,<br />
+   </div>
+   <div class="codeComment">
+*             type           TYPE zrf_putaway-type,<br />
+*             lgnum          TYPE zrf_putaway-lgnum,<br />
+*             matnr          TYPE zrf_putaway-matnr,<br />
+*             menge          TYPE zrf_putaway-menge,<br />
+*             meins          TYPE zrf_putaway-meins,<br />
+*             exidv          TYPE zrf_putaway-exidv,<br />
+*             backorder      TYPE zrf_putaway-backorder,<br />
+*             inb_deliv      TYPE zrf_putaway_drec-doc_number,<br />
+*             inb_deliv_item TYPE zrf_putaway_drec-doc_item,<br />
+*             lgpbe          TYPE zrf_putaway-lgpbe,<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_inst_putaway_compare&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES&nbsp;gty_aisle&nbsp;TYPE&nbsp;lagp-lgpla&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_putaway_exec.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INCLUDE&nbsp;TYPE&nbsp;zrf_putaway.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:&nbsp;lgber&nbsp;TYPE&nbsp;lagp-lgber,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lgtyp&nbsp;TYPE&nbsp;lagp-lgtyp,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lgpla&nbsp;TYPE&nbsp;lagp-lgpla,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sorlp&nbsp;TYPE&nbsp;lagp-sorlp,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lptyp&nbsp;TYPE&nbsp;lagp-lptyp,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aisle&nbsp;TYPE&nbsp;gty_aisle,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_putaway_exec&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_putaway_exec&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;gty_putaway_exec&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtr_matnr&nbsp;TYPE&nbsp;RANGE&nbsp;OF&nbsp;mara-matnr&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtr_vbeln&nbsp;TYPE&nbsp;RANGE&nbsp;OF&nbsp;vbak-vbeln&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_instruction,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id&nbsp;&nbsp;&nbsp;TYPE&nbsp;zrf_putaway-id,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dref&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;zcl_rf_instructions,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_instruction&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_instruction&nbsp;TYPE&nbsp;SORTED&nbsp;TABLE&nbsp;OF&nbsp;gty_instruction&nbsp;WITH&nbsp;UNIQUE&nbsp;KEY&nbsp;id&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_inst_model,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exidv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;vekp-exidv,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matnr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;mara-matnr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instruction&nbsp;TYPE&nbsp;gty_instruction,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_inst_model&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_inst_model&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;gty_inst_model&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_mat_list,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matnr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;mara-matnr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maktx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;makt-maktx,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;spras&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;makt-spras,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menge&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;mard-labst,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sernr_tab&nbsp;TYPE&nbsp;gtty_sernr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_mat_list&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_mat_list&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;gty_mat_list&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_hu_item&nbsp;TYPE&nbsp;TABLE&nbsp;OF&nbsp;bapihuitem&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_hu,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;huheader&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;&nbsp;bapihuheader,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;huitem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;gtty_hu_item,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;huhistory&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;TABLE&nbsp;OF&nbsp;bapihuhistory&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;highestlevel&nbsp;TYPE&nbsp;TABLE&nbsp;OF&nbsp;bapihuinternal&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cwm_huitem&nbsp;&nbsp;&nbsp;TYPE&nbsp;TABLE&nbsp;OF&nbsp;/cwm/bapihuitem&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_hu&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_hu_full,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exidv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;vekp-exidv,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;full_data&nbsp;TYPE&nbsp;gty_hu,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_hu_full&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_hu&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;gty_hu&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_hu_cont,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exidv&nbsp;TYPE&nbsp;vekp-exidv,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dref&nbsp;&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;zcl_rf_hu,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_hu_cont&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_hu_cont&nbsp;TYPE&nbsp;SORTED&nbsp;TABLE&nbsp;OF&nbsp;gty_hu_cont&nbsp;WITH&nbsp;UNIQUE&nbsp;KEY&nbsp;exidv&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_po,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ebeln&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;ekko-ebeln,<br />
+   </div>
+   <div class="codeComment">
+* BEG - BAPI ADJUSTMENT - Diogo Freitas (08.10.2024 11:14:40) {<br />
+*        po_header              TYPE bapiekkol,<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;po_header&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;bapimepoheader,<br />
+   </div>
+   <div class="codeComment">
+*        po_items               TYPE TABLE OF bapiekpo WITH DEFAULT KEY,<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;po_items&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;TABLE&nbsp;OF&nbsp;bapimepoitem&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY,<br />
+   </div>
+   <div class="codeComment">
+*        po_item_schedules      TYPE TABLE OF  bapieket WITH DEFAULT KEY,<br />
+* END - BAPI ADJUSTMENT - Diogo Freitas (08.10.2024 11:14:40) }<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;po_item_schedules&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;TABLE&nbsp;OF&nbsp;&nbsp;bapimeposchedule&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;po_item_confirmations&nbsp;&nbsp;TYPE&nbsp;TABLE&nbsp;OF&nbsp;&nbsp;bapiekes&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;po_item_history&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;TABLE&nbsp;OF&nbsp;&nbsp;bapiekbe&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;po_item_history_totals&nbsp;TYPE&nbsp;TABLE&nbsp;OF&nbsp;bapiekbes&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_po&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_po_cont,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ebeln&nbsp;TYPE&nbsp;ekko-ebeln,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dref&nbsp;&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;zcl_rf_po,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_po_cont&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_po_cont&nbsp;TYPE&nbsp;SORTED&nbsp;TABLE&nbsp;OF&nbsp;gty_po_cont&nbsp;WITH&nbsp;UNIQUE&nbsp;KEY&nbsp;ebeln&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_del,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;delitem&nbsp;TYPE&nbsp;bapidlvitem,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;po_data&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gty_po,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_del&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_inb_serno&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;bapidlvitmserno&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_inb,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vbeln&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;likp-vbeln,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;delivery_header&nbsp;TYPE&nbsp;bapidlvhdr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it_delitem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;TABLE&nbsp;OF&nbsp;gty_del&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it_head_status&nbsp;&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;bapidlvhdrsts&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it_item_status&nbsp;&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;bapidlvitemsts&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it_partners&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;bapidlvpartners&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it_flow&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;bapidocflow&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it_trade_hdr&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;bapiforeigntradehdr&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it_trade_item&nbsp;&nbsp;&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;bapiforeigntradeitem&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it_hu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;bapidlvhandlingunithdr&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it_hu_received&nbsp;&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;bapidlvhandlingunithdr&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it_serno&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;gtty_inb_serno,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_inb&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_inb_cont,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vbeln&nbsp;TYPE&nbsp;likp-vbeln,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dref&nbsp;&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;zcl_rf_inbound,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_inb_cont&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_inb_cont&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;SORTED&nbsp;TABLE&nbsp;OF&nbsp;gty_inb_cont&nbsp;WITH&nbsp;UNIQUE&nbsp;KEY&nbsp;vbeln&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gty_backorder_type&nbsp;TYPE&nbsp;c&nbsp;LENGTH&nbsp;1&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_hu_comm,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exidv&nbsp;TYPE&nbsp;vekp-exidv,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matnr&nbsp;TYPE&nbsp;vepo-matnr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_hu_comm&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_bc_str,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lgnum&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lgnum,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;obj_type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zrf_obj_type,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;num_obj_type&nbsp;TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zrf_num_obj_type,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_bc_str&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_matnr_data,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mara_str&nbsp;TYPE&nbsp;mara,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;makt_str&nbsp;TYPE&nbsp;makt,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;marc_t&nbsp;&nbsp;&nbsp;TYPE&nbsp;marc_tab,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mard_t&nbsp;&nbsp;&nbsp;TYPE&nbsp;mard_tab,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_matnr_data&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gty_validation_id&nbsp;TYPE&nbsp;c&nbsp;LENGTH&nbsp;4&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_validation_str,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;validation_id&nbsp;TYPE&nbsp;gty_validation_id,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;active&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;boolean,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_validation_str&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_validation_str&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;gty_validation_str&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_iseg.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INCLUDE&nbsp;TYPE&nbsp;iseg.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:&nbsp;xzael_bd&nbsp;TYPE&nbsp;boolean,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_iseg&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_iseg&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;gty_iseg&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_inv_bin_str,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gidat&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;ikpf-gidat,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iblnr&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;ikpf-iblnr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gjahr&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;ikpf-gjahr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lgpbe&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;mard-lgpbe,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iseg_tab&nbsp;TYPE&nbsp;gtty_iseg,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_inv_bin_str&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_inv_bin_str&nbsp;TYPE&nbsp;SORTED&nbsp;TABLE&nbsp;OF&nbsp;gty_inv_bin_str&nbsp;WITH&nbsp;UNIQUE&nbsp;KEY&nbsp;gidat&nbsp;iblnr&nbsp;gjahr&nbsp;lgpbe&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_inv_str,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;werks&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;werks_d,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lgort&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;lgort_d,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iblnr&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;ikpf-iblnr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gjahr&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;ikpf-gjahr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gidat&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;ikpf-gidat,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zstat&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;ikpf-zstat,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xblni&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;ikpf-xblni,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lgpbe&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;mard-lgpbe,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zeili&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;iseg-zeili,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matnr&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;iseg-matnr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;buchm&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;iseg-buchm,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;meins&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;iseg-meins,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xzael_bd&nbsp;TYPE&nbsp;iseg-xzael,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_inv_str&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_inv_str&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;gty_inv_str&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gty_partnr_ext&nbsp;TYPE&nbsp;c&nbsp;LENGTH&nbsp;38&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_bc_str&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;gty_bc_str&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gty_model_operation&nbsp;TYPE&nbsp;c&nbsp;LENGTH&nbsp;1&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gty_idx_set&nbsp;&nbsp;&nbsp;TYPE&nbsp;c&nbsp;LENGTH&nbsp;1&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtyr_inv_stat&nbsp;TYPE&nbsp;RANGE&nbsp;OF&nbsp;ikpf-zstat&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_model_buffer,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;operation_type&nbsp;TYPE&nbsp;gty_model_operation,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data_tab&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;data,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_model_buffer&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_model_buffer&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;gty_model_buffer&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_user,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lgnum&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;zrf_t320-lgnum,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;werks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;zrf_t320-werks,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lgort&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;zrf_t320-lgort,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uname&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;zrf_lgnum_user-uname,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;curr_printer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;zrf_lgnum_user-curr_printer,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;curr_printer_name&nbsp;TYPE&nbsp;tsp03d-name,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vstel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;likp-vstel,&nbsp;"RDM&nbsp;-&nbsp;20200129&nbsp;-&nbsp;RF_RL<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_user&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_user&nbsp;&nbsp;&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;gty_user&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES&nbsp;gty_data_id&nbsp;TYPE&nbsp;char20&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_nav_data,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data_id&nbsp;&nbsp;TYPE&nbsp;gty_data_id,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data_ref&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;data,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_nav_data&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_nav_data&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;gty_nav_data&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_view,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ir_ref&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;zif_rf_view,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rf_tcode_cfg&nbsp;TYPE&nbsp;zrf_tcode_cfg,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_view&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_controller,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ir_ref&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;zif_rf_controller,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rf_tcode_cfg&nbsp;TYPE&nbsp;zrf_tcode_cfg,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_controller&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_model,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ir_ref&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;zif_rf_model,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rf_tcode_cfg&nbsp;TYPE&nbsp;zrf_tcode_cfg,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_model&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_screen_text,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pclear_text&nbsp;TYPE&nbsp;string,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pback_text&nbsp;&nbsp;TYPE&nbsp;string,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pnext_text&nbsp;&nbsp;TYPE&nbsp;string,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pmlgf_text&nbsp;&nbsp;TYPE&nbsp;string,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;popt1_text&nbsp;&nbsp;TYPE&nbsp;string,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;string,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nok&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;string,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pmlf6_text&nbsp;&nbsp;TYPE&nbsp;string,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_screen_text&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_nav,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source_controller&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;zif_rf_controller,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"source_view&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;zif_rf_view,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;destination_controller&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;zif_rf_controller,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"destination_view&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;zif_rf_view,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_nav&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtyr_contr&nbsp;TYPE&nbsp;RANGE&nbsp;OF&nbsp;gty_nav-source_controller&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtyr_matnr&nbsp;TYPE&nbsp;RANGE&nbsp;OF&nbsp;mara-matnr&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtyr_lgpbe&nbsp;TYPE&nbsp;RANGE&nbsp;OF&nbsp;mard-lgpbe&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gty_nav_check&nbsp;TYPE&nbsp;c&nbsp;LENGTH&nbsp;1&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_nav&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;gty_nav&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_screen_vars,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menuopt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;rlmob-menopt,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matnr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;mara-matnr,&nbsp;"&nbsp;matnr&nbsp;code<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lgpbe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;mard-lgpbe,&nbsp;"&nbsp;storage&nbsp;bin<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lgpbe_inp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;c&nbsp;LENGTH&nbsp;12,&nbsp;"&nbsp;storage&nbsp;bin&nbsp;/&nbsp;input<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;genchar18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;c&nbsp;LENGTH&nbsp;18,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;genchar18_2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;c&nbsp;LENGTH&nbsp;40,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;genchar18_3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;c&nbsp;LENGTH&nbsp;40,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;genchar18_4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;c&nbsp;LENGTH&nbsp;40,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msgv1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;c&nbsp;LENGTH&nbsp;20,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msgv2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;c&nbsp;LENGTH&nbsp;20,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msgv3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;c&nbsp;LENGTH&nbsp;20,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msgv4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;c&nbsp;LENGTH&nbsp;20,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msgv5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;c&nbsp;LENGTH&nbsp;20,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;werks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;marc-werks,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lgort&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;mard-lgort,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maktx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;makt-maktx,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;marketing_code&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;zmmt_soi_pe_data-marketing_code,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parts_category&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;zmmt_soi_pe_data-parts_category,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;product_code&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;zmmt_soi_pe_data-product_code,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;supersession_code&nbsp;TYPE&nbsp;zmmt_soi_pe_data-supersession_status,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dg_indicator&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;zmmt_soi_pe_data-dangerous_goods_code,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dismm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;marc-dismm,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zzfreq_class_wrk&nbsp;&nbsp;TYPE&nbsp;marc-zzfreq_class_wrk,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zzfreq_class&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;marc-zzfreq_class,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vpsta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;mara-vpsta,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mtart&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;mara-mtart,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mtbez&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;t134t-mtbez,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;speme&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;mard-speme,&nbsp;"&nbsp;blocked&nbsp;stock&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;labst&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;mard-labst,&nbsp;"&nbsp;free&nbsp;stock&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;meins&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;mara-meins,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;meins2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;mara-meins,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;spras&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;sy-langu,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alv_tab&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;data,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iblnr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;ikpf-iblnr,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gjahr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;ikpf-gjahr,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label_qty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;i,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;curr_printer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;zrf_lgnum_user-curr_printer,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;curr_printer_long&nbsp;TYPE&nbsp;rspolname,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new_printer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;c&nbsp;LENGTH&nbsp;6,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matnr_lbl_print&nbsp;&nbsp;&nbsp;TYPE&nbsp;mara-matnr,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maktx_lbl_print&nbsp;&nbsp;&nbsp;TYPE&nbsp;makt-maktx,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mtbez_spras&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;sy-langu,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;emnfr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;lfa1-emnfr,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exidv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;vekp-exidv,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;labst2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;mard-labst,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cart_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;zrf_carts-cart_id,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cart_id_inp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;zrf_carts-cart_id,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;floor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;lagp-lgber,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lgtyp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;lagp-lgtyp,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aisle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gty_aisle,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matnr2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;mara-matnr,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lgpbe2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;mard-lgpbe,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;labstn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;p&nbsp;LENGTH&nbsp;8&nbsp;DECIMALS&nbsp;2,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vbeln_vl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;likp-vbeln,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ship_stat_icon&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;icon-id,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alv_cont&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;cl_gui_custom_container,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alv_ref&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;cl_salv_table,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;din_label&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;c&nbsp;LENGTH&nbsp;10,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sernr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;gernr,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vbeln_so&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;vbak-vbeln,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inv_giDat&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;ikpf-gidat,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_screen_vars&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_screen_vars&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;gty_screen_vars&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_view&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;gty_view&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_controller&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;gty_controller&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_model&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;gty_model&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_items,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;dzeile,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;material&nbsp;&nbsp;TYPE&nbsp;matnr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;batch&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;charg_d,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;entry_qnt&nbsp;TYPE&nbsp;erfmg,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;entry_uom&nbsp;TYPE&nbsp;meins,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;doc_inv&nbsp;&nbsp;&nbsp;TYPE&nbsp;iblnr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;year&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;gjahr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;buchm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;buchm,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gidat&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;ikpf-gidat,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_items&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_items&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;gty_items&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES&nbsp;gty_backorder&nbsp;TYPE&nbsp;vbak-vbeln&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES&nbsp;gty_putaway_type&nbsp;TYPE&nbsp;zrf_putaway-type&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_backorder_map,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ebeln&nbsp;TYPE&nbsp;ekko-ebeln,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vbeln&nbsp;TYPE&nbsp;vbak-vbeln,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;posnr&nbsp;TYPE&nbsp;vbap-posnr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matnr&nbsp;TYPE&nbsp;mara-matnr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_backorder_map&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_backorder_map&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;gty_backorder_map&nbsp;WITH&nbsp;DEFAULT&nbsp;KEY&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEGIN&nbsp;OF&nbsp;gty_lagp,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lgpbe&nbsp;&nbsp;&nbsp;TYPE&nbsp;mard-lgpbe,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ls_lagp&nbsp;TYPE&nbsp;lagp,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;gty_lagp&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPES:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtty_lagp&nbsp;TYPE&nbsp;STANDARD&nbsp;TABLE&nbsp;OF&nbsp;gty_lagp&nbsp;WITH&nbsp;KEY&nbsp;lgpbe&nbsp;.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_max_mat_labels&nbsp;TYPE&nbsp;i&nbsp;VALUE&nbsp;20&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_meins_st&nbsp;TYPE&nbsp;mara-meins&nbsp;VALUE&nbsp;'ST'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_serv_order_tdid&nbsp;TYPE&nbsp;stxh-tdid&nbsp;VALUE&nbsp;'ZSHE'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_serv_order_tdobject&nbsp;TYPE&nbsp;stxh-tdobject&nbsp;VALUE&nbsp;'VBBK'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_vbtyp_return&nbsp;TYPE&nbsp;likp-vbtyp&nbsp;VALUE&nbsp;'T'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_dummy_rel_id&nbsp;TYPE&nbsp;zrf_putaway-id&nbsp;VALUE&nbsp;'00155D14660E1EEA81E26A4C03D9EDE0'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_prirep&nbsp;TYPE&nbsp;rvari_vnam&nbsp;VALUE&nbsp;'ZRF_ORDER_TYPE_PRIREP'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_bwart_344&nbsp;TYPE&nbsp;mseg-bwart&nbsp;VALUE&nbsp;'344'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_auart_zsd&nbsp;TYPE&nbsp;vbak-auart&nbsp;VALUE&nbsp;'ZSD'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_param_zvekp&nbsp;TYPE&nbsp;swc_elem&nbsp;VALUE&nbsp;'ZVEKP'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_param_zvepo&nbsp;TYPE&nbsp;swc_elem&nbsp;VALUE&nbsp;'ZVEPO'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_param_id_no_pop_vv1&nbsp;TYPE&nbsp;char10&nbsp;VALUE&nbsp;'ZNOPOPVV1'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_param_id_autosernr&nbsp;TYPE&nbsp;char10&nbsp;VALUE&nbsp;'ZAUTOSERNR'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_vekp_status_open&nbsp;TYPE&nbsp;vekp-status&nbsp;VALUE&nbsp;'0010'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_parvw_we&nbsp;TYPE&nbsp;vbpa-parvw&nbsp;VALUE&nbsp;'WE'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_parvw_ag&nbsp;TYPE&nbsp;vbpa-parvw&nbsp;VALUE&nbsp;'AG'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_obj_type_kna1&nbsp;TYPE&nbsp;bapi4001_1-objtype&nbsp;VALUE&nbsp;'KNA1'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gc_alv_cont_name&nbsp;TYPE&nbsp;c&nbsp;LENGTH&nbsp;10&nbsp;VALUE&nbsp;'ALV_CONT'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_icon_sst_ok&nbsp;TYPE&nbsp;icon-id&nbsp;VALUE&nbsp;icon_checked&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_icon_sst_nok&nbsp;TYPE&nbsp;icon-id&nbsp;VALUE&nbsp;icon_incomplete&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_cont_type_so&nbsp;TYPE&nbsp;gty_cont_type&nbsp;VALUE&nbsp;'SALESORDER'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_cont_type_irev&nbsp;TYPE&nbsp;gty_cont_type&nbsp;VALUE&nbsp;'INST_REV_VL09'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_cont_type_hu_sernr&nbsp;TYPE&nbsp;gty_cont_type&nbsp;VALUE&nbsp;'HU_SERNR'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_cont_type_odel&nbsp;TYPE&nbsp;gty_cont_type&nbsp;VALUE&nbsp;'OUTBDEL'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_lgtyp_033&nbsp;TYPE&nbsp;lagp-lgtyp&nbsp;VALUE&nbsp;'033'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_lgtyp_032&nbsp;TYPE&nbsp;lagp-lgtyp&nbsp;VALUE&nbsp;'032'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_lgtyp_031&nbsp;TYPE&nbsp;lagp-lgtyp&nbsp;VALUE&nbsp;'031'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_rf_vv2_mem_id&nbsp;TYPE&nbsp;char6&nbsp;VALUE&nbsp;'ZRFVV2'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_rf_vv2_exec_mid&nbsp;TYPE&nbsp;char7&nbsp;VALUE&nbsp;'ZRFVV2E'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_rf_irv_mem_id&nbsp;TYPE&nbsp;char6&nbsp;VALUE&nbsp;'ZRFIRV'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_print_ftype_mat&nbsp;TYPE&nbsp;zrf_form_type&nbsp;VALUE&nbsp;'M'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_print_ftype_bin&nbsp;TYPE&nbsp;zrf_form_type&nbsp;VALUE&nbsp;'B'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_print_ftype_bpal&nbsp;TYPE&nbsp;zrf_form_type&nbsp;VALUE&nbsp;'P'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_print_ftype_gen&nbsp;TYPE&nbsp;zrf_form_type&nbsp;VALUE&nbsp;'G'&nbsp;##NO_TEXT.<br />
+include structure <a href ="gc_zpl_no_cutter type char4 value '^mmt' ##no_text/dictionary-gc_zpl_no_cutter type char4 value '^mmt' ##no_text.html">gc_zpl_no_cutter TYPE char4 VALUE '^MMT' ##NO_TEXT</a>.<br />
+include structure <a href ="gc_zpl_cutter type char4 value '^mmc' ##no_text/dictionary-gc_zpl_cutter type char4 value '^mmc' ##no_text.html">gc_zpl_cutter TYPE char4 VALUE '^MMC' ##NO_TEXT</a>.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_print_cutt_no&nbsp;TYPE&nbsp;zrf_cutter&nbsp;VALUE&nbsp;'X'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_print_cutt_enda&nbsp;TYPE&nbsp;zrf_cutter&nbsp;VALUE&nbsp;'F'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_print_cutt_end1&nbsp;TYPE&nbsp;zrf_cutter&nbsp;VALUE&nbsp;'E'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_print_tech_smart&nbsp;TYPE&nbsp;zrf_printer-form_tech&nbsp;VALUE&nbsp;'S'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_print_tech_script&nbsp;TYPE&nbsp;zrf_printer-form_tech&nbsp;VALUE&nbsp;'C'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_vbtyp_h&nbsp;TYPE&nbsp;vbbe-vbtyp&nbsp;VALUE&nbsp;'H'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_vbtyp_c&nbsp;TYPE&nbsp;vbbe-vbtyp&nbsp;VALUE&nbsp;'C'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_spebe_init&nbsp;TYPE&nbsp;tvls-spebe&nbsp;VALUE&nbsp;'&nbsp;'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_lifsk_init&nbsp;TYPE&nbsp;vbak-lifsk&nbsp;VALUE&nbsp;'&nbsp;'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_gm_mvt_344&nbsp;TYPE&nbsp;mseg-bwart&nbsp;VALUE&nbsp;'344'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_gm_mvt_343&nbsp;TYPE&nbsp;mseg-bwart&nbsp;VALUE&nbsp;'343'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_gm_mvt_161&nbsp;TYPE&nbsp;mseg-bwart&nbsp;VALUE&nbsp;'161'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_gm_code_04&nbsp;TYPE&nbsp;bapi2017_gm_code&nbsp;VALUE&nbsp;'04'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_gr_stats_c&nbsp;TYPE&nbsp;vbup-wbsta&nbsp;VALUE&nbsp;'C'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_cart_type_free&nbsp;TYPE&nbsp;zrf_carts-cart_type&nbsp;VALUE&nbsp;'F'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_cart_type_bo&nbsp;TYPE&nbsp;zrf_carts-cart_type&nbsp;VALUE&nbsp;'O'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_cart_type_blocked&nbsp;TYPE&nbsp;zrf_carts-cart_type&nbsp;VALUE&nbsp;'B'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_cart_type_normal&nbsp;TYPE&nbsp;zrf_carts-cart_type&nbsp;VALUE&nbsp;'N'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_cart_type_dynamic&nbsp;TYPE&nbsp;zrf_carts-cart_type&nbsp;VALUE&nbsp;'D'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_inst_stat_created&nbsp;TYPE&nbsp;zrf_putaway-status&nbsp;VALUE&nbsp;'1'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_inst_stat_completed&nbsp;TYPE&nbsp;zrf_putaway-status&nbsp;VALUE&nbsp;'2'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_inst_stat_cancelled&nbsp;TYPE&nbsp;zrf_putaway-status&nbsp;VALUE&nbsp;'3'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_paway_type_block&nbsp;TYPE&nbsp;gty_putaway_type&nbsp;VALUE&nbsp;'X'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_paway_type_stock&nbsp;TYPE&nbsp;gty_putaway_type&nbsp;VALUE&nbsp;'S'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_paway_type_backorder&nbsp;TYPE&nbsp;gty_putaway_type&nbsp;VALUE&nbsp;'B'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_paway_type_undefined_bo&nbsp;TYPE&nbsp;gty_putaway_type&nbsp;VALUE&nbsp;'U'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_inst_putaway&nbsp;TYPE&nbsp;gty_inst_type&nbsp;VALUE&nbsp;'PUTAWAY'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_bo_type_undefined&nbsp;TYPE&nbsp;gty_backorder_type&nbsp;VALUE&nbsp;'U'&nbsp;##NO_TEXT.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;UNDEFINED<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_bo_type_single&nbsp;TYPE&nbsp;gty_backorder_type&nbsp;VALUE&nbsp;'S'&nbsp;##NO_TEXT.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;HU&nbsp;contains&nbsp;parts&nbsp;for&nbsp;single&nbsp;BO<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_bo_type_none&nbsp;TYPE&nbsp;gty_backorder_type&nbsp;VALUE&nbsp;'N'&nbsp;##NO_TEXT.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;HU&nbsp;contains&nbsp;parts&nbsp;for&nbsp;stock&nbsp;only<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_bo_type_multiple&nbsp;TYPE&nbsp;gty_backorder_type&nbsp;VALUE&nbsp;'M'&nbsp;##NO_TEXT.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;HU&nbsp;contains&nbsp;parts&nbsp;for&nbsp;multiple&nbsp;BO<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_bo_type_mix&nbsp;TYPE&nbsp;gty_backorder_type&nbsp;VALUE&nbsp;'X'&nbsp;##NO_TEXT.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;HU&nbsp;contains&nbsp;parts&nbsp;for&nbsp;BO&nbsp;and&nbsp;stock<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_backorder_field&nbsp;TYPE&nbsp;dd03l-fieldname&nbsp;VALUE&nbsp;'REF_1'&nbsp;##NO_TEXT.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;EKKO-IHREZ&nbsp;-&gt;&nbsp;will&nbsp;be&nbsp;changed&nbsp;to&nbsp;ZBACKORDER<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_backorder_unassigned&nbsp;TYPE&nbsp;gty_backorder&nbsp;VALUE&nbsp;'UNASSIGNED'&nbsp;##NO_TEXT.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_vgtyp_po&nbsp;TYPE&nbsp;lips-vgtyp&nbsp;VALUE&nbsp;'V'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_bewtp_outb_del&nbsp;TYPE&nbsp;ekbe-bewtp&nbsp;VALUE&nbsp;'L'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_vgtyp_so&nbsp;TYPE&nbsp;lips-vgtyp&nbsp;VALUE&nbsp;'C'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_vbtyp_outb_del&nbsp;TYPE&nbsp;likp-vbtyp&nbsp;VALUE&nbsp;'J'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_vbtyp_inb_del&nbsp;TYPE&nbsp;likp-vbtyp&nbsp;VALUE&nbsp;'7'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_vbuk_stat_not_rel&nbsp;TYPE&nbsp;vbuk-kostk&nbsp;VALUE&nbsp;''&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_vbuk_stat_not_started&nbsp;TYPE&nbsp;vbuk-kostk&nbsp;VALUE&nbsp;'A'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_vbuk_stat_partial&nbsp;TYPE&nbsp;vbuk-kostk&nbsp;VALUE&nbsp;'B'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_vbuk_stat_complete&nbsp;TYPE&nbsp;vbuk-kostk&nbsp;VALUE&nbsp;'C'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_vpobj_we&nbsp;TYPE&nbsp;vpobj&nbsp;VALUE&nbsp;'WE'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_vpobj_ms&nbsp;TYPE&nbsp;vpobj&nbsp;VALUE&nbsp;'MS'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_vpobj_inb_del&nbsp;TYPE&nbsp;vpobj&nbsp;VALUE&nbsp;'03'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_vpobj_rec&nbsp;TYPE&nbsp;vpobj&nbsp;VALUE&nbsp;'12'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_default_printer&nbsp;TYPE&nbsp;zrf_lgnum_user-curr_printer&nbsp;VALUE&nbsp;'LOCL'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_valid_gen_error&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gty_validation_id&nbsp;VALUE&nbsp;'ZZZZ'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_valid_qty_error&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gty_validation_id&nbsp;VALUE&nbsp;'ZQTY'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_valid_clsb_error&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gty_validation_id&nbsp;VALUE&nbsp;'ZCLS'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_valid_not_un_mat&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gty_validation_id&nbsp;VALUE&nbsp;'Z2MT'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_valid_not_eq_mat&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gty_validation_id&nbsp;VALUE&nbsp;'ZDMT'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_inv_stat_partial&nbsp;TYPE&nbsp;ikpf-zstat&nbsp;VALUE&nbsp;'A'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_inv_stat_initial&nbsp;TYPE&nbsp;ikpf-zstat&nbsp;VALUE&nbsp;'&nbsp;'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_alv_container_name&nbsp;TYPE&nbsp;char20&nbsp;VALUE&nbsp;'ALV_CONTAINER'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_start_tcode_sd2&nbsp;TYPE&nbsp;sy-tcode&nbsp;VALUE&nbsp;'ZRF_LM01_SD2'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_start_tcode&nbsp;TYPE&nbsp;sy-tcode&nbsp;VALUE&nbsp;'ZRF_LM01'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_nav_check_source&nbsp;TYPE&nbsp;gty_nav_check&nbsp;VALUE&nbsp;'S'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_nav_check_destination&nbsp;TYPE&nbsp;gty_nav_check&nbsp;VALUE&nbsp;'D'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_nav_check_all&nbsp;TYPE&nbsp;gty_nav_check&nbsp;VALUE&nbsp;'A'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_data_id_message&nbsp;TYPE&nbsp;gty_data_id&nbsp;VALUE&nbsp;'MESSAGE'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_data_id_mesg_nback&nbsp;TYPE&nbsp;gty_data_id&nbsp;VALUE&nbsp;'MESSAGE_NBACK'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_data_id_msg_okcode&nbsp;TYPE&nbsp;gty_data_id&nbsp;VALUE&nbsp;'MESSAGE_OKCODE'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_data_id_material&nbsp;TYPE&nbsp;gty_data_id&nbsp;VALUE&nbsp;'MATERIAL'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_data_id_cart_id&nbsp;TYPE&nbsp;gty_data_id&nbsp;VALUE&nbsp;'CART_ID'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_data_id_mat_list&nbsp;TYPE&nbsp;gty_data_id&nbsp;VALUE&nbsp;'MATERIAL_LIST'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_data_id_del_list&nbsp;TYPE&nbsp;gty_data_id&nbsp;VALUE&nbsp;'DELIVERY_LIST'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_data_id_del_wh&nbsp;TYPE&nbsp;gty_data_id&nbsp;VALUE&nbsp;'DELIVERY_WHPICK'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_data_id_bin&nbsp;TYPE&nbsp;gty_data_id&nbsp;VALUE&nbsp;'BIN'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_view_class_pref&nbsp;TYPE&nbsp;string&nbsp;VALUE&nbsp;'ZCL_RF_VIEW_'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_model_operation_ins&nbsp;TYPE&nbsp;gty_model_operation&nbsp;VALUE&nbsp;'I'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_model_operation_upd&nbsp;TYPE&nbsp;gty_model_operation&nbsp;VALUE&nbsp;'U'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_model_operation_del&nbsp;TYPE&nbsp;gty_model_operation&nbsp;VALUE&nbsp;'D'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_idx_set_up&nbsp;TYPE&nbsp;gty_idx_set&nbsp;VALUE&nbsp;'1'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_idx_set_down&nbsp;TYPE&nbsp;gty_idx_set&nbsp;VALUE&nbsp;'2'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_idx_set_none&nbsp;TYPE&nbsp;gty_idx_set&nbsp;VALUE&nbsp;'3'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gc_tcode_pref&nbsp;&nbsp;&nbsp;TYPE&nbsp;c&nbsp;LENGTH&nbsp;3&nbsp;VALUE&nbsp;'ZRF'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_tcode_init&nbsp;TYPE&nbsp;tcode&nbsp;VALUE&nbsp;'ZRF_LM01'&nbsp;##NO_TEXT.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Selection&nbsp;field&nbsp;for&nbsp;Material/Bin&nbsp;query<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_tcode_zrf001&nbsp;TYPE&nbsp;tcode&nbsp;VALUE&nbsp;'ZRF001'&nbsp;##NO_TEXT.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Selection&nbsp;field&nbsp;for&nbsp;Material/Bin&nbsp;query<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_tcode_zrf002&nbsp;TYPE&nbsp;tcode&nbsp;VALUE&nbsp;'ZRF002V'&nbsp;##NO_TEXT.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Message&nbsp;screen<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_tcode_zrf003&nbsp;TYPE&nbsp;tcode&nbsp;VALUE&nbsp;'ZRF003V'&nbsp;##NO_TEXT.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Material/Bin&nbsp;query&nbsp;result<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_tcode_zrf004&nbsp;TYPE&nbsp;tcode&nbsp;VALUE&nbsp;'ZRF004'&nbsp;##NO_TEXT.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Inventory<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_tcode_zrf005v&nbsp;TYPE&nbsp;tcode&nbsp;VALUE&nbsp;'ZRF005V'&nbsp;##NO_TEXT.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Material&nbsp;print<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_tcode_zrf006v&nbsp;TYPE&nbsp;tcode&nbsp;VALUE&nbsp;'ZRF006V'&nbsp;##NO_TEXT.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Printer&nbsp;selection<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_tcode_zrf007&nbsp;TYPE&nbsp;tcode&nbsp;VALUE&nbsp;'ZRF007'&nbsp;##NO_TEXT.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Printer&nbsp;selection<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_tcode_zrf008v&nbsp;TYPE&nbsp;tcode&nbsp;VALUE&nbsp;'ZRF008V'&nbsp;##NO_TEXT.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Printer&nbsp;selection<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_tcode_zrf009&nbsp;TYPE&nbsp;tcode&nbsp;VALUE&nbsp;'ZRF009'&nbsp;##NO_TEXT.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Printer&nbsp;selection<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_tcode_zrf010v&nbsp;TYPE&nbsp;tcode&nbsp;VALUE&nbsp;'ZRF010V'&nbsp;##NO_TEXT.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Printer&nbsp;selection<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_tcode_zrf012v&nbsp;TYPE&nbsp;tcode&nbsp;VALUE&nbsp;'ZRF012V'&nbsp;##NO_TEXT.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Printer&nbsp;selection<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_tcode_zrf013_tsd2&nbsp;TYPE&nbsp;tcode&nbsp;VALUE&nbsp;'ZRF013_TSD2'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_tcode_zrf013&nbsp;TYPE&nbsp;tcode&nbsp;VALUE&nbsp;'ZRF013'&nbsp;##NO_TEXT.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Printer&nbsp;selection<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_tcode_zrf014v&nbsp;TYPE&nbsp;tcode&nbsp;VALUE&nbsp;'ZRF014V'&nbsp;##NO_TEXT.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Printer&nbsp;selection<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_screen_name_ok&nbsp;TYPE&nbsp;screen-name&nbsp;VALUE&nbsp;'RLMOB_TEXT-OK'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_screen_name_nok&nbsp;TYPE&nbsp;screen-name&nbsp;VALUE&nbsp;'RLMOB_TEXT-NOK'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_screen_name_f2&nbsp;TYPE&nbsp;screen-name&nbsp;VALUE&nbsp;'RLMOB_TEXT-PCLEAR_TEXT'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_screen_name_f3&nbsp;TYPE&nbsp;screen-name&nbsp;VALUE&nbsp;'RLMOB_TEXT-PBACK_TEXT'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_screen_name_f4&nbsp;TYPE&nbsp;screen-name&nbsp;VALUE&nbsp;'RLMOB_TEXT-PNEXT_TEXT'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_screen_name_f8&nbsp;TYPE&nbsp;screen-name&nbsp;VALUE&nbsp;'RLMOB_TEXT-PMLGF_TEXT'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_screen_name_f6&nbsp;TYPE&nbsp;screen-name&nbsp;VALUE&nbsp;'RLMOB_TEXT-POPT1_TEXT'.&nbsp;"#EC&nbsp;NOTEXT<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_screen_name_f6&nbsp;TYPE&nbsp;screen-name&nbsp;VALUE&nbsp;'RLMOB_TEXT-PMLF6_TEXT'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_screen_name_opt&nbsp;TYPE&nbsp;screen-name&nbsp;VALUE&nbsp;'RLMOB-MENOPT'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_screen_name_but1&nbsp;TYPE&nbsp;screen-name&nbsp;VALUE&nbsp;'GS_SCREEN_DATA-BUT1'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_screen_name_but2&nbsp;TYPE&nbsp;screen-name&nbsp;VALUE&nbsp;'GS_SCREEN_DATA-BUT2'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_screen_name_but3&nbsp;TYPE&nbsp;screen-name&nbsp;VALUE&nbsp;'GS_SCREEN_DATA-BUT3'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_screen_name_but4&nbsp;TYPE&nbsp;screen-name&nbsp;VALUE&nbsp;'GS_SCREEN_DATA-BUT4'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_screen_name_but5&nbsp;TYPE&nbsp;screen-name&nbsp;VALUE&nbsp;'GS_SCREEN_DATA-BUT5'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_screen_name_but6&nbsp;TYPE&nbsp;screen-name&nbsp;VALUE&nbsp;'GS_SCREEN_DATA-BUT6'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_okcode_back&nbsp;TYPE&nbsp;sy-ucomm&nbsp;VALUE&nbsp;'BACK'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_okcode_ok&nbsp;TYPE&nbsp;sy-ucomm&nbsp;VALUE&nbsp;'ZOK'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_okcode_f6&nbsp;TYPE&nbsp;sy-ucomm&nbsp;VALUE&nbsp;'ZF6'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_okcode_nok&nbsp;TYPE&nbsp;sy-ucomm&nbsp;VALUE&nbsp;'ZNOK'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_okcode_clr&nbsp;TYPE&nbsp;sy-ucomm&nbsp;VALUE&nbsp;'CLR'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_okcode_opt1&nbsp;TYPE&nbsp;sy-ucomm&nbsp;VALUE&nbsp;'OPT1'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_okcode_next&nbsp;TYPE&nbsp;sy-ucomm&nbsp;VALUE&nbsp;'NEXT'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_okcode_exec&nbsp;TYPE&nbsp;sy-ucomm&nbsp;VALUE&nbsp;'I'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_okcode_bt1&nbsp;TYPE&nbsp;sy-ucomm&nbsp;VALUE&nbsp;'ZBT1'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_okcode_bt2&nbsp;TYPE&nbsp;sy-ucomm&nbsp;VALUE&nbsp;'ZBT2'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_okcode_bt3&nbsp;TYPE&nbsp;sy-ucomm&nbsp;VALUE&nbsp;'ZBT3'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_okcode_bt4&nbsp;TYPE&nbsp;sy-ucomm&nbsp;VALUE&nbsp;'ZBT4'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_okcode_bt5&nbsp;TYPE&nbsp;sy-ucomm&nbsp;VALUE&nbsp;'ZBT5'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_okcode_bt6&nbsp;TYPE&nbsp;sy-ucomm&nbsp;VALUE&nbsp;'ZBT6'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_msgid&nbsp;TYPE&nbsp;sy-msgid&nbsp;VALUE&nbsp;'ZRF_MSG'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CLASS-DATA:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gt_text&nbsp;TYPE&nbsp;TABLE&nbsp;OF&nbsp;textpool&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_screen_active&nbsp;TYPE&nbsp;screen-invisible&nbsp;VALUE&nbsp;'1'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_screen_inactive&nbsp;TYPE&nbsp;screen-invisible&nbsp;VALUE&nbsp;'0'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_controller_class_pref&nbsp;TYPE&nbsp;string&nbsp;VALUE&nbsp;'ZCL_RF_CONTRL_'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_model_class_pref&nbsp;TYPE&nbsp;string&nbsp;VALUE&nbsp;'ZCL_RF_MODEL_'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_bc_obj_type_mat&nbsp;TYPE&nbsp;zrf_obj_type&nbsp;VALUE&nbsp;'MATERIAL'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_bc_obj_type_caseid&nbsp;TYPE&nbsp;zrf_obj_type&nbsp;VALUE&nbsp;'CASEID'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_bc_obj_type_bin&nbsp;TYPE&nbsp;zrf_obj_type&nbsp;VALUE&nbsp;'BIN'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_bc_obj_type_serial&nbsp;TYPE&nbsp;zrf_obj_type&nbsp;VALUE&nbsp;'SN'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_bc_obj_type_printer&nbsp;TYPE&nbsp;zrf_obj_type&nbsp;VALUE&nbsp;'PRINTER'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_bc_obj_type_user&nbsp;TYPE&nbsp;zrf_obj_type&nbsp;VALUE&nbsp;'USER'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_bc_obj_type_password&nbsp;TYPE&nbsp;zrf_obj_type&nbsp;VALUE&nbsp;'PASSWORD'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_bc_obj_type_cart&nbsp;TYPE&nbsp;zrf_obj_type&nbsp;VALUE&nbsp;'CART'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_rf_vv1_mem_id&nbsp;TYPE&nbsp;char6&nbsp;VALUE&nbsp;'ZRFVV1'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_inst_putaway_sernr&nbsp;TYPE&nbsp;gty_inst_type&nbsp;VALUE&nbsp;'PUTAWAY_SERNR'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_inst_putaway_matnr&nbsp;TYPE&nbsp;gty_inst_type&nbsp;VALUE&nbsp;'PUTAWAY_MATNR'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_prirep_schema&nbsp;TYPE&nbsp;rvari_vnam&nbsp;VALUE&nbsp;'ZRF_PR_SCHEMA_PRIREP'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_ask&nbsp;TYPE&nbsp;char1&nbsp;VALUE&nbsp;'A'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_yes&nbsp;TYPE&nbsp;char1&nbsp;VALUE&nbsp;'Y'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_no&nbsp;TYPE&nbsp;char1&nbsp;VALUE&nbsp;'N'&nbsp;##NO_TEXT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS&nbsp;gc_dev_cfg_memid&nbsp;TYPE&nbsp;char6&nbsp;VALUE&nbsp;'ZDCFGM'&nbsp;##NO_TEXT.<br />
+<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/get_tvarvc.html">get_tvarvc</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;tvarvc-name<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(rt_data)&nbsp;TYPE&nbsp;tvarvc_t&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/build_range_4_tvarvc.html">build_range_4_tvarvc</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!it_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;tvarvc_t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHANGING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!cr_data_type&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;data&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/get_text.html">get_text</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_key&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;textpool-key<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(rv_text)&nbsp;TYPE&nbsp;textpool-entry&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/get_tcode.html">get_tcode</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_tcode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;tcode<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(rv_tcode)&nbsp;TYPE&nbsp;tcode&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/handle_ctrl_strct.html">handle_ctrl_strct</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_uname&nbsp;TYPE&nbsp;sy-uname&nbsp;DEFAULT&nbsp;sy-uname<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHANGING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!cs_data&nbsp;&nbsp;TYPE&nbsp;zrf_cntrl_str&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/get_tstamp.html">get_tstamp</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_zonlo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;sy-zonlo&nbsp;DEFAULT&nbsp;sy-zonlo<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(rv_stamp)&nbsp;TYPE&nbsp;timestamp&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/set_device_cfg.html">set_device_cfg</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is_dev_cfg&nbsp;TYPE&nbsp;zrf_device_cfg&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/get_device_cfg.html">get_device_cfg</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(rs_device_cfg)&nbsp;TYPE&nbsp;zrf_device_cfg&nbsp;.<br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Private section of class.                                            *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+private section.<br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Protected section of class.                                          *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+protected section.<br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Types section of class.                                              *<br />
+**************************************************************************<br />
+*"* dummy include to reduce generation dependencies between<br />
+*"* class ZCL_RF_CONSTANTS and it's users.<br />
+*"* touched if any type reference has been changed<br />
+<br />
+*Text elements<br />
+*----------------------------------------------------------<br />
+* 001 F8 Exec<br />
+* 002 F2 Clr<br />
+* 003 F3 Back<br />
+* 004 F4 Nxt<br />
+* 005 F8 LOff<br />
+* 006 Material/Bin<br />
+* 007 of<br />
+* 008 materials<br />
+* 009 F2 Prev<br />
+* 010 F2 ClsBi<br />
+* 011 F4 Prnt<br />
+* 012 F8 Prnt<br />
+* 013 New printer<br />
+* 014 F6 SetPrnt<br />
+* 015 putaway instructions<br />
+* 016 Put<br />
+* 017 for Backorder<br />
+* 018 in cart<br />
+* 019 for unknown BO<br />
+* 020 for warehouse<br />
+* 021 F2 Close<br />
+* 022 Part<br />
+* 023 WrhsPick<br />
+* 024 ShippAreaPick<br />
+* 025 Bin<br />
+* 026 CartId<br />
+* 027 Serial Nr<br />
+* 028 F4 List<br />
+* 029 F2 Skip<br />
+* 030 F4 Print<br />
+* 031 Idx<br />
+* 032 Cnt<br />
+* 033 F6 Info<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 758</td>
+   </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>ZCL_RF_INBOUND</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for class: ZCL_RF_INBOUND</h2>
+<h3> Description: RF - Class for inbound deliveries</h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Class attributes.                                                    *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+Instantiation: Protected<br />
+Message class: <br />
+State: Implemented<br />
+Final Indicator: X<br />
+R/3 Release: 740<br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Public section of class.                                             *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+class ZCL_RF_INBOUND definition<br />
+&nbsp;&nbsp;public<br />
+&nbsp;&nbsp;final<br />
+&nbsp;&nbsp;create&nbsp;protected&nbsp;.<br />
+<br />
+public section.<br />
+<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/get_available_sernrs.html">GET_AVAILABLE_SERNRS</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_EXC_EXIDV&nbsp;type&nbsp;EXIDV&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RT_SERNR)&nbsp;type&nbsp;ZCL_RF_CONSTANTS=&gt;GTTY_INB_SERNO&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/get_instance.html">GET_INSTANCE</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_VBELN&nbsp;type&nbsp;LIKP-VBELN<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_NO_HU_ERROR&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_FALSE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RR_REF)&nbsp;type&nbsp;ref&nbsp;to&nbsp;ZCL_RF_INBOUND<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/init&nbsp;..html">INIT&nbsp;.</a><br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/get_data.html">GET_DATA</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RS_DATA)&nbsp;type&nbsp;ZCL_RF_CONSTANTS=&gt;GTY_INB&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/post_goods_receipt.html">POST_GOODS_RECEIPT</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IT_PUTAWAY_INST&nbsp;type&nbsp;ZCL_RF_CONSTANTS=&gt;GTTY_INST_MODEL<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/create.html">CREATE</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IT_DATA&nbsp;type&nbsp;SHP_KOMDLGN_T<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IS_VBFS&nbsp;type&nbsp;VBFS&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_SERNR_PACK&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_TRUE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IT_VERKO&nbsp;type&nbsp;TAB_VERKO&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IT_VERPO&nbsp;type&nbsp;TAB_VERPO&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IT_GN_PARTNER&nbsp;type&nbsp;PARTNER_GN_T&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_COMMIT&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_TRUE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RR_INSTANCE)&nbsp;type&nbsp;ref&nbsp;to&nbsp;ZCL_RF_INBOUND<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/is_return.html">IS_RETURN</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_VBELN&nbsp;type&nbsp;LIKP-VBELN<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RV_RETURN)&nbsp;type&nbsp;BOOLEAN&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/create_old.html">CREATE_OLD</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IT_DATA&nbsp;type&nbsp;SHP_KOMDLGN_T<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IS_VBFS&nbsp;type&nbsp;VBFS&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_SERNR_PACK&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_TRUE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IT_VERKO&nbsp;type&nbsp;TAB_VERKO&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IT_VERPO&nbsp;type&nbsp;TAB_VERPO&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_COMMIT&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_TRUE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RR_INSTANCE)&nbsp;type&nbsp;ref&nbsp;to&nbsp;ZCL_RF_INBOUND<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Private section of class.                                            *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;PRIVATE&nbsp;SECTION.<br />
+<br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Protected section of class.                                          *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;PROTECTED&nbsp;SECTION.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CLASS-DATA&nbsp;gt_cont&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gtty_inb_cont&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA&nbsp;gs_data&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gty_inb&nbsp;.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPE-POOLS&nbsp;abap&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/change_4_creation_itf.html">change_4_creation_itf</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it_verko&nbsp;&nbsp;TYPE&nbsp;tab_verko<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it_verpo&nbsp;&nbsp;TYPE&nbsp;tab_verpo<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_commit&nbsp;TYPE&nbsp;boolean&nbsp;DEFAULT&nbsp;abap_true<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAISING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zcx_rf_exception&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/validate_post_gr.html">validate_post_gr</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!it_putaway_inst&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gtty_inst_model&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(rt_putaway_inst)&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gtty_inst_model&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAISING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zcx_rf_exception&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/constructor.html">constructor</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_vbeln&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;likp-vbeln<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_no_hu_error&nbsp;TYPE&nbsp;boolean&nbsp;DEFAULT&nbsp;abap_false<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAISING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zcx_rf_exception&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/fetch_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;importing&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!iv_vbeln&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type&nbsp;likp-vbeln&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!iv_no_hu_error&nbsp;type&nbsp;boolean&nbsp;default&nbsp;abap_false&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;raising&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zcx_rf_exception&nbsp;..html">fetch_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!iv_vbeln&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;likp-vbeln&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!iv_no_hu_error&nbsp;TYPE&nbsp;boolean&nbsp;DEFAULT&nbsp;abap_false&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAISING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zcx_rf_exception&nbsp;.</a><br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/add_to_cont.html">add_to_cont</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ir_ref&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;zcl_rf_inbound&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/split_items_4_creation.html">split_items_4_creation</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!it_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;shp_komdlgn_t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(rt_lips)&nbsp;TYPE&nbsp;shp_komdlgn_t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAISING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zcx_rf_exception&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/split_items_4_creation_old.html">split_items_4_creation_old</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!it_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;shp_komdlgn_t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(rt_lips)&nbsp;TYPE&nbsp;tab_lips&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAISING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zcx_rf_exception&nbsp;.<br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Types section of class.                                              *<br />
+**************************************************************************<br />
+*"* dummy include to reduce generation dependencies between<br />
+*"* class ZCL_RF_INBOUND and it's users.<br />
+*"* touched if any type reference has been changed<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 758</td>
+   </tr>
+</table>
+</body>
+</html>

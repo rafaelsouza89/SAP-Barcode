@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>SCREEN_DATA_PBO</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: SCREEN_DATA_PBO</h2>
+<h3> Description: Redefined:</h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+**************************************************************************<br />
+*&nbsp;&nbsp;&nbsp;Method&nbsp;attributes.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+Instantiation: Protected<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;METHOD&nbsp;screen_data_pbo.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA:&nbsp;lt_data&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gtty_screen_vars,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ls_data&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gty_screen_vars.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS:&nbsp;lc_field_leng&nbsp;TYPE&nbsp;i&nbsp;VALUE&nbsp;19.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA(lr_controller)&nbsp;=&nbsp;zcl_rf_controller=&gt;zif_rf_controller~factory(&nbsp;iv_tcode&nbsp;=&nbsp;me-&gt;gs_cfg-tcode&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;access&nbsp;controller&nbsp;to&nbsp;fetch&nbsp;screen&nbsp;data<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA(lt_nav_data)&nbsp;=&nbsp;lr_controller-&gt;get_nav_data(&nbsp;).<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;lines(&nbsp;lt_nav_data&nbsp;)&nbsp;=&nbsp;0<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR&nbsp;(&nbsp;NOT&nbsp;line_exists(&nbsp;lt_nav_data[&nbsp;data_id&nbsp;=&nbsp;zcl_rf_constants=&gt;gc_data_id_material&nbsp;]&nbsp;)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;NOT&nbsp;line_exists(&nbsp;lt_nav_data[&nbsp;data_id&nbsp;=&nbsp;zcl_rf_constants=&gt;gc_data_id_bin&nbsp;]&nbsp;)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAISE&nbsp;EXCEPTION&nbsp;TYPE&nbsp;zcx_rf_exception<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textid&nbsp;=&nbsp;VALUE&nbsp;#(&nbsp;msgid&nbsp;=&nbsp;zcl_rf_constants=&gt;gc_msgid&nbsp;msgno&nbsp;=&nbsp;'002'&nbsp;attr1&nbsp;=&nbsp;me-&gt;gs_cfg-tcode&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;now&nbsp;fetch&nbsp;all&nbsp;the&nbsp;data&nbsp;needed&nbsp;from&nbsp;the&nbsp;model<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;lr_controller-&gt;get_data(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ir_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;REF&nbsp;#(&nbsp;lt_nav_data[&nbsp;1&nbsp;]&nbsp;)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_idx_set&nbsp;=&nbsp;me-&gt;get_direction(&nbsp;)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;et_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;lt_data<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;es_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;ls_data<br />
+&nbsp;&nbsp;&nbsp;&nbsp;).<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ASSIGN&nbsp;me-&gt;gr_screen_vars-&gt;*&nbsp;TO&nbsp;FIELD-SYMBOL(&lt;fs_screen&gt;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;fs_screen&gt;-lgpbe&nbsp;=&nbsp;ls_data-lgpbe.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;fs_screen&gt;-matnr&nbsp;=&nbsp;ls_data-matnr.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;fs_screen&gt;-maktx&nbsp;=&nbsp;ls_data-maktx.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;fs_screen&gt;-dg_indicator&nbsp;=&nbsp;ls_data-dg_indicator.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;fs_screen&gt;-labst&nbsp;=&nbsp;ls_data-labst.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;fs_screen&gt;-speme&nbsp;=&nbsp;ls_data-speme.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;fs_screen&gt;-mtart&nbsp;=&nbsp;ls_data-mtart.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;fs_screen&gt;-meins&nbsp;=&nbsp;ls_data-meins.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;fs_screen&gt;-meins2&nbsp;=&nbsp;ls_data-meins2.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;fs_screen&gt;-mtbez&nbsp;=&nbsp;ls_data-mtbez.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CLEAR&nbsp;&lt;fs_screen&gt;-genchar18.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;me-&gt;gv_multiple&nbsp;=&nbsp;abap_false.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CHECK&nbsp;lines(&nbsp;lt_data&nbsp;)&nbsp;&gt;&nbsp;1.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;fs_screen&gt;-genchar18&nbsp;=<br />
+&nbsp;&nbsp;&nbsp;&nbsp;|{&nbsp;CAST&nbsp;zcl_rf_controller(&nbsp;lr_controller&nbsp;)-&gt;get_model_index(&nbsp;)&nbsp;}&nbsp;{&nbsp;zcl_rf_constants=&gt;get_text(&nbsp;iv_key&nbsp;=&nbsp;'007'&nbsp;)&nbsp;}&nbsp;{&nbsp;lines(&nbsp;lt_data&nbsp;)&nbsp;}&nbsp;{&nbsp;zcl_rf_constants=&gt;get_text(&nbsp;iv_key&nbsp;=&nbsp;'008'&nbsp;)&nbsp;}|.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;me-&gt;gv_multiple&nbsp;=&nbsp;abap_true.<br />
+&nbsp;&nbsp;ENDMETHOD.<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 758</td>
+   </tr>
+</table>
+</body>
+</html>

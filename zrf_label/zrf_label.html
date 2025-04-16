@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>ZRF_LABEL</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: ZRF_LABEL</h2>
+<h3> Description: Report: Label SAPscript</h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;Report&nbsp;&nbsp;ZRF_LABEL<br />
+*&<br />
+*&---------------------------------------------------------------------*<br />
+*&<br />
+*&<br />
+*&---------------------------------------------------------------------*<br />
+<br />
+   </div>
+   <div class="code">
+REPORT zrf_label.<br />
+<br />
+TABLES: lagp, zrf_lgnum_prefx.<br />
+<br />
+FORM get_barcode TABLES in_tab STRUCTURE itcsy<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;out_tab&nbsp;STRUCTURE&nbsp;itcsy.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;DATA&nbsp;ls_input&nbsp;TYPE&nbsp;itcsy.<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;DATA&nbsp;ls_output&nbsp;TYPE&nbsp;itcsy.<br />
+&nbsp;&nbsp;DATA&nbsp;lv_lgpla&nbsp;TYPE&nbsp;lagp-lgpla.<br />
+&nbsp;&nbsp;DATA:&nbsp;lv_result&nbsp;TYPE&nbsp;zrf_bc.<br />
+<br />
+&nbsp;&nbsp;DATA:&nbsp;l_obj_ref&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;zcl_rf_bc.<br />
+<br />
+&nbsp;&nbsp;READ&nbsp;TABLE&nbsp;in_tab&nbsp;INTO&nbsp;DATA(ls_input)&nbsp;WITH&nbsp;KEY&nbsp;name&nbsp;=&nbsp;'LAGP-LGPLA'.<br />
+&nbsp;&nbsp;IF&nbsp;sy-subrc&nbsp;=&nbsp;0.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;lv_lgpla&nbsp;=&nbsp;ls_input-value.<br />
+<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;READ&nbsp;TABLE&nbsp;in_tab&nbsp;INTO&nbsp;ls_input&nbsp;WITH&nbsp;KEY&nbsp;name&nbsp;=&nbsp;'LAGP-LGNUM'.<br />
+&nbsp;&nbsp;IF&nbsp;sy-subrc&nbsp;=&nbsp;0.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA(lv_lgnum)&nbsp;=&nbsp;ls_input-value.<br />
+<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;CREATE&nbsp;OBJECT&nbsp;l_obj_ref.<br />
+<br />
+&nbsp;&nbsp;CALL&nbsp;METHOD&nbsp;l_obj_ref-&gt;encode<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_lgnum&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;CONV&nbsp;#(&nbsp;lv_lgnum&nbsp;)&nbsp;&nbsp;&nbsp;"&nbsp;Warehouse&nbsp;Number&nbsp;/&nbsp;Warehouse&nbsp;Complex<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_obj_type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'BIN'&nbsp;"&nbsp;Object&nbsp;Type<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_num_obj_type&nbsp;=&nbsp;CONV&nbsp;#(&nbsp;lv_lgpla&nbsp;)&nbsp;&nbsp;"&nbsp;Character&nbsp;Field&nbsp;Length&nbsp;=&nbsp;10<br />
+&nbsp;&nbsp;&nbsp;&nbsp;RECEIVING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rv_barcode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;lv_result.&nbsp;&nbsp;"&nbsp;Character&nbsp;Field&nbsp;Length&nbsp;=&nbsp;10<br />
+<br />
+&nbsp;&nbsp;READ&nbsp;TABLE&nbsp;out_tab&nbsp;INTO&nbsp;ls_output&nbsp;INDEX&nbsp;1.<br />
+<br />
+&nbsp;&nbsp;ls_output-value&nbsp;=&nbsp;lv_result.<br />
+<br />
+<br />
+&nbsp;&nbsp;MODIFY&nbsp;out_tab&nbsp;FROM&nbsp;ls_output&nbsp;INDEX&nbsp;1.<br />
+<br />
+ENDFORM.<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 758</td>
+   </tr>
+</table>
+</body>
+</html>

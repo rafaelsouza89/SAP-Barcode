@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>SCREEN_DATA_PBO</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: SCREEN_DATA_PBO</h2>
+<h3> Description: Redefined:</h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+**************************************************************************<br />
+*&nbsp;&nbsp;&nbsp;Method&nbsp;attributes.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+Instantiation: Protected<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;METHOD&nbsp;screen_data_pbo.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONSTANTS:&nbsp;lc_field_leng&nbsp;TYPE&nbsp;i&nbsp;VALUE&nbsp;19.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;access&nbsp;controller&nbsp;to&nbsp;fetch&nbsp;screen&nbsp;data<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA(lt_nav_data)&nbsp;=&nbsp;zcl_rf_controller=&gt;zif_rf_controller~factory(&nbsp;iv_tcode&nbsp;=&nbsp;me-&gt;gs_cfg-tcode&nbsp;)-&gt;get_nav_data(&nbsp;).<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;lines(&nbsp;lt_nav_data&nbsp;)&nbsp;=&nbsp;0<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR&nbsp;NOT&nbsp;line_exists(&nbsp;lt_nav_data[&nbsp;data_id&nbsp;=&nbsp;zcl_rf_constants=&gt;gc_data_id_message&nbsp;]&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAISE&nbsp;EXCEPTION&nbsp;TYPE&nbsp;zcx_rf_exception<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textid&nbsp;=&nbsp;VALUE&nbsp;#(&nbsp;msgid&nbsp;=&nbsp;zcl_rf_constants=&gt;gc_msgid&nbsp;msgno&nbsp;=&nbsp;'002'&nbsp;attr1&nbsp;=&nbsp;me-&gt;gs_cfg-tcode&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;specific&nbsp;screen&nbsp;needs&nbsp;message<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA(ls_nav_data)&nbsp;=&nbsp;lt_nav_data[&nbsp;data_id&nbsp;=&nbsp;zcl_rf_constants=&gt;gc_data_id_message&nbsp;].<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ASSIGN&nbsp;ls_nav_data-data_ref-&gt;*&nbsp;TO&nbsp;FIELD-SYMBOL(&lt;fs_msg&gt;).<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;now&nbsp;check&nbsp;if&nbsp;value&nbsp;is&nbsp;bound<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;&lt;fs_msg&gt;&nbsp;IS&nbsp;NOT&nbsp;ASSIGNED&nbsp;OR&nbsp;&lt;fs_msg&gt;&nbsp;IS&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAISE&nbsp;EXCEPTION&nbsp;TYPE&nbsp;zcx_rf_exception<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textid&nbsp;=&nbsp;VALUE&nbsp;#(&nbsp;msgid&nbsp;=&nbsp;zcl_rf_constants=&gt;gc_msgid&nbsp;msgno&nbsp;=&nbsp;'002'&nbsp;attr1&nbsp;=&nbsp;me-&gt;gs_cfg-tcode&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;now&nbsp;pass&nbsp;values<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ASSIGN&nbsp;me-&gt;gr_screen_vars-&gt;*&nbsp;TO&nbsp;FIELD-SYMBOL(&lt;fs_screen&gt;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;SPLIT&nbsp;&lt;fs_msg&gt;&nbsp;AT&nbsp;space&nbsp;INTO&nbsp;TABLE&nbsp;DATA(lt_msg).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ASSIGN&nbsp;&lt;fs_screen&gt;-msgv1&nbsp;TO&nbsp;FIELD-SYMBOL(&lt;fs_val&gt;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA(lv_i)&nbsp;=&nbsp;1.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;LOOP&nbsp;AT&nbsp;lt_msg&nbsp;INTO&nbsp;DATA(ls_msg).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;strlen(&nbsp;&lt;fs_val&gt;&nbsp;)&nbsp;+&nbsp;strlen(&nbsp;ls_msg&nbsp;)&nbsp;&gt;&nbsp;lc_field_leng.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ADD&nbsp;1&nbsp;TO&nbsp;lv_i.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;get&nbsp;next<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ASSIGN&nbsp;COMPONENT&nbsp;'MSGV'&nbsp;&&&nbsp;lv_i&nbsp;OF&nbsp;STRUCTURE&nbsp;&lt;fs_screen&gt;&nbsp;TO&nbsp;&lt;fs_val&gt;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;&lt;fs_val&gt;&nbsp;IS&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;fs_val&gt;&nbsp;=&nbsp;ls_msg.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CONCATENATE&nbsp;&lt;fs_val&gt;&nbsp;ls_msg&nbsp;INTO&nbsp;&lt;fs_val&gt;&nbsp;SEPARATED&nbsp;BY&nbsp;space.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDLOOP.<br />
+<br />
+<br />
+<br />
+<br />
+&nbsp;&nbsp;ENDMETHOD.<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 758</td>
+   </tr>
+</table>
+</body>
+</html>

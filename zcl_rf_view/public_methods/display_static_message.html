@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>DISPLAY_STATIC_MESSAGE</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: DISPLAY_STATIC_MESSAGE</h2>
+<h3> Description: </h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+**************************************************************************<br />
+*&nbsp;&nbsp;&nbsp;Method&nbsp;attributes.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+Instantiation: Public<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;METHOD&nbsp;display_static_message.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;static&nbsp;message&nbsp;-&gt;&nbsp;just&nbsp;call&nbsp;view&nbsp;for&nbsp;message<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA(lr_dest)&nbsp;=<br />
+&nbsp;&nbsp;&nbsp;&nbsp;zcl_rf_controller=&gt;zif_rf_controller~factory(&nbsp;iv_tcode&nbsp;=&nbsp;zcl_rf_constants=&gt;gc_tcode_zrf002&nbsp;).<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;lr_dest-&gt;set_nav_data(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_data_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;zcl_rf_constants=&gt;gc_data_id_message<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ir_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;REF&nbsp;#(&nbsp;iv_msg&nbsp;)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_init_data_nav&nbsp;=&nbsp;abap_true<br />
+&nbsp;&nbsp;&nbsp;&nbsp;).<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;zcl_rf_nav=&gt;get_instance(&nbsp;)-&gt;set_tcode(&nbsp;zcl_rf_constants=&gt;gc_tcode_zrf002&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;zcl_rf_nav=&gt;get_instance(&nbsp;)-&gt;set_do_nav(&nbsp;abap_true&nbsp;).<br />
+<br />
+<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;me-&gt;set_conf_msg(&nbsp;iv_conf_msg&nbsp;=&nbsp;iv_conf_msg&nbsp;).<br />
+*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;DATA(lr_cont)&nbsp;=<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;zcl_rf_controller=&gt;zif_rf_controller~factory(&nbsp;iv_tcode&nbsp;=<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;"zcl_rf_constants=&gt;gc_tcode_zrf001<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;zcl_rf_nav=&gt;get_instance(&nbsp;)-&gt;get_tcode(&nbsp;)<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;).<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;DATA(lr_dest)&nbsp;=<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;zcl_rf_controller=&gt;zif_rf_controller~factory(&nbsp;iv_tcode&nbsp;=&nbsp;zcl_rf_constants=&gt;gc_tcode_zrf002&nbsp;).<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;"DATA(lv_msg)&nbsp;=&nbsp;lr_exc-&gt;if_message~get_text(&nbsp;).<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;lr_dest-&gt;set_nav_data(<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_data_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;zcl_rf_constants=&gt;gc_data_id_message<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ir_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;REF&nbsp;#(&nbsp;iv_msg&nbsp;)<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_init_data_nav&nbsp;=&nbsp;abap_true<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;).<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;avoid&nbsp;&nbsp;model&nbsp;navigation<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;me-&gt;set_direction(&nbsp;iv_direction&nbsp;=&nbsp;zcl_rf_constants=&gt;gc_idx_set_none&nbsp;).<br />
+*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;ask&nbsp;for&nbsp;pbo&nbsp;init<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;me-&gt;set_pbo_init(&nbsp;iv_init&nbsp;=&nbsp;iv_source_pbo_init&nbsp;).<br />
+*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;lr_cont-&gt;navigate(<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_dest_tcode&nbsp;=&nbsp;zcl_rf_constants=&gt;gc_tcode_zrf002<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_back&nbsp;=&nbsp;abap_false<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;).<br />
+<br />
+<br />
+<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;ENDMETHOD.<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 758</td>
+   </tr>
+</table>
+</body>
+</html>

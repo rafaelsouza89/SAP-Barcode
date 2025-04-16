@@ -1,0 +1,399 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>ZCL_RF_INST_PUTAWAY</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for class: ZCL_RF_INST_PUTAWAY</h2>
+<h3> Description: RF - Putaway instructions</h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Class attributes.                                                    *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+Instantiation: Public<br />
+Message class: <br />
+State: Implemented<br />
+Final Indicator: <br />
+R/3 Release: 740<br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Public section of class.                                             *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+class ZCL_RF_INST_PUTAWAY definition<br />
+&nbsp;&nbsp;public<br />
+&nbsp;&nbsp;inheriting&nbsp;from&nbsp;ZCL_RF_INSTRUCTIONS<br />
+&nbsp;&nbsp;create&nbsp;public&nbsp;.<br />
+<br />
+public section.<br />
+<br />
+&nbsp;&nbsp;type-pools&nbsp;ABAP&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/update_lgpbe.html">UPDATE_LGPBE</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_MATNR&nbsp;type&nbsp;MARA-MATNR<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_LGPBE&nbsp;type&nbsp;MARD-LGPBE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_COMMIT&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_TRUE&nbsp;.<br />
+&nbsp;&nbsp;class&nbsp;ZCL_RF_CONSTANTS&nbsp;definition&nbsp;load&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/update_after_soconf.html">UPDATE_AFTER_SOCONF</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IT_ORIG_VBBE&nbsp;type&nbsp;VBBE_T<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IT_FINAL_VBBE&nbsp;type&nbsp;VBBE_T<br />
+&nbsp;&nbsp;&nbsp;&nbsp;changing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CT_INST&nbsp;type&nbsp;ZCL_RF_CONSTANTS=&gt;GTTY_INST_MODEL<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/query_open_instr.html">QUERY_OPEN_INSTR</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_MATNR&nbsp;type&nbsp;MARA-MATNR&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_EXIDV&nbsp;type&nbsp;VEKP-EXIDV&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_VBELN&nbsp;type&nbsp;ZRF_PUTAWAY-BACKORDER&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_TRANSIENT&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_TRUE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_WITH_CART_ONLY&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_TRUE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_CARTID&nbsp;type&nbsp;ZRF_PUTAWAY-CART_ID&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_ONLY_OPEN_EXIDV&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_FALSE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_INB_DELIB&nbsp;type&nbsp;ZRF_PUTAWAY-INB_DELIV&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_LGPBE&nbsp;type&nbsp;ZRF_PUTAWAY-LGPBE&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_LGNUM&nbsp;type&nbsp;ZRF_PUTAWAY-LGNUM&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RT_INSTR)&nbsp;type&nbsp;ZRF_PUTAWAY_TAB&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/create_for_huitem.html">CREATE_FOR_HUITEM</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_EXIDV&nbsp;type&nbsp;VEKP-EXIDV<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_MATNR&nbsp;type&nbsp;MARA-MATNR<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_QTY&nbsp;type&nbsp;ZRF_PUTAWAY-MENGE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_MEINS&nbsp;type&nbsp;ZRF_PUTAWAY-MEINS<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_LGNUM&nbsp;type&nbsp;T300-LGNUM<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_CHECK_IN_CONT&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_TRUE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_BLOCKED_STOCK&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_FALSE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RT_INST)&nbsp;type&nbsp;ZCL_RF_CONSTANTS=&gt;GTTY_INSTRUCTION<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/query_blocked_instr.html">QUERY_BLOCKED_INSTR</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_LGNUM&nbsp;type&nbsp;T300-LGNUM<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_MATNR&nbsp;type&nbsp;MARA-MATNR&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_EXIDV&nbsp;type&nbsp;VEKP-EXIDV&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_TRANSIENT&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_TRUE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_RELATED&nbsp;type&nbsp;ZRF_PUTAWAY-RELATED_PUTAWAY&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_DUMMY_ALSO&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_FALSE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IR_MBLNR&nbsp;type&nbsp;ZCL_RF_CONSTANTS=&gt;GTR_MBLNR&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IR_MJAHR&nbsp;type&nbsp;ZCL_RF_CONSTANTS=&gt;GTR_MJAHR&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RT_INSTR)&nbsp;type&nbsp;ZRF_PUTAWAY_TAB<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/check_all_instr_for_hu.html">CHECK_ALL_INSTR_FOR_HU</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_EXIDV&nbsp;type&nbsp;VEKP-EXIDV<br />
+&nbsp;&nbsp;&nbsp;&nbsp;exporting<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ET_INST&nbsp;type&nbsp;ZRF_PUTAWAY_TAB<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EV_ALL_CREATED&nbsp;type&nbsp;BOOLEAN&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/constructor.html">CONSTRUCTOR</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IS_DATA&nbsp;type&nbsp;ANY&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_NEW&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_FALSE&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/has_cart.html">HAS_CART</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RV_HAS_CART)&nbsp;type&nbsp;BOOLEAN&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/get_data_putaway.html">GET_DATA_PUTAWAY</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RS_PUTAWAY)&nbsp;type&nbsp;ZRF_PUTAWAY&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/update_related.html">UPDATE_RELATED</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_RELATED&nbsp;type&nbsp;ZRF_PUTAWAY-RELATED_PUTAWAY<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_SAVE&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_TRUE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_COMMIT&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_FALSE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/handle_picking.html">HANDLE_PICKING</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IS_PICK&nbsp;type&nbsp;ZCL_RF_CONSTANTS=&gt;GTY_PICK_QTY<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_COMMIT&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_TRUE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RT_INSTR)&nbsp;type&nbsp;ZRF_PUTAWAY_TAB<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/add_to_cart.html">ADD_TO_CART</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_LGNUM&nbsp;type&nbsp;ZRF_CARTS-LGNUM<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_CARTID&nbsp;type&nbsp;ZRF_CARTS-CART_ID<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/rev_block_stock.html">REV_BLOCK_STOCK</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_COMMIT&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_TRUE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/block_stock.html">BLOCK_STOCK</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_COMMIT&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_TRUE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_HEAD_TEXT&nbsp;type&nbsp;BKTXT&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_ITEM_TEXT&nbsp;type&nbsp;SGTXT&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_NO_HU_ERROR&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_FALSE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/merge_putaways.html">MERGE_PUTAWAYS</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_EXIDV&nbsp;type&nbsp;VEKP-EXIDV<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RT_INVALID_INST)&nbsp;type&nbsp;ZCL_RF_CONSTANTS=&gt;GTTY_INSTRUCTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/create_missing_mat_putaway.html">CREATE_MISSING_MAT_PUTAWAY</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_EXIDV&nbsp;type&nbsp;VEKP-EXIDV<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_CHECK_ONLY&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_FALSE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RT_INST)&nbsp;type&nbsp;ZCL_RF_CONSTANTS=&gt;GTTY_INSTRUCTION<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/invalidate_not_received.html">INVALIDATE_NOT_RECEIVED</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/set_backorder.html">SET_BACKORDER</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_BACKORDER&nbsp;type&nbsp;VBAK-VBELN<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_QTY&nbsp;type&nbsp;ZRF_PUTAWAY-MENGE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_COMMIT&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_TRUE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RT_INST)&nbsp;type&nbsp;ZCL_RF_CONSTANTS=&gt;GTTY_INSTRUCTION<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/handle_block_assignment.html">HANDLE_BLOCK_ASSIGNMENT</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IR_ASSIGNED_PUTAWAY&nbsp;type&nbsp;ref&nbsp;to&nbsp;ZCL_RF_INST_PUTAWAY<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_SAVE_SPLITS&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_TRUE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_TOTAL_BLOCK&nbsp;type&nbsp;LABST&nbsp;default&nbsp;0<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_CURRENT_STOCK&nbsp;type&nbsp;LABST<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RT_INST)&nbsp;type&nbsp;ZCL_RF_CONSTANTS=&gt;GTTY_INSTRUCTION<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/find_sub_bloq_for_related.html">FIND_SUB_BLOQ_FOR_RELATED</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RT_INSTR)&nbsp;type&nbsp;ZCL_RF_CONSTANTS=&gt;GTTY_INSTRUCTION<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/cancel.html">CANCEL</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_COMMIT&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_FALSE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RV_CANCELLED)&nbsp;type&nbsp;BOOLEAN<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/complete.html">COMPLETE</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_COMMIT&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_FALSE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RV_COMPLETED)&nbsp;type&nbsp;BOOLEAN<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/complete_putaway.html">COMPLETE_PUTAWAY</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_COMMIT&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_FALSE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RV_COMPLETED)&nbsp;type&nbsp;BOOLEAN<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/update_menge_frm_blk.html">UPDATE_MENGE_FRM_BLK</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_MENGE_FRM_BLK&nbsp;type&nbsp;ZRF_PUTAWAY-MENGE_FRM_BLK<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_COMMIT&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_FALSE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RV_UPDATED)&nbsp;type&nbsp;BOOLEAN<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/load_in_cont.html">LOAD_IN_CONT</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_LGNUM&nbsp;type&nbsp;LGNUM<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_MATNR&nbsp;type&nbsp;MATNR&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_EXIDV&nbsp;type&nbsp;EXIDV<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IR_MODEL&nbsp;type&nbsp;ref&nbsp;to&nbsp;ZIF_RF_MODEL&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_RELATED&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_TRUE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RT_INST)&nbsp;type&nbsp;ZCL_RF_CONSTANTS=&gt;GTTY_INSTRUCTION<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/handle_delivery_cancel.html">HANDLE_DELIVERY_CANCEL</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_VBELN&nbsp;type&nbsp;VBELN_VL<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_COMMIT&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_FALSE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/update_outb_delivery.html">UPDATE_OUTB_DELIVERY</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_BACKORDER&nbsp;type&nbsp;ZRF_PUTAWAY-BACKORDER&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/query_closed_instr.html">QUERY_CLOSED_INSTR</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_MATNR&nbsp;type&nbsp;MARA-MATNR&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_EXIDV&nbsp;type&nbsp;VEKP-EXIDV&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_VBELN&nbsp;type&nbsp;ZRF_PUTAWAY-BACKORDER&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_TRANSIENT&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_TRUE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_WITH_CART_ONLY&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_TRUE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_CARTID&nbsp;type&nbsp;ZRF_PUTAWAY-CART_ID&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_ONLY_OPEN_EXIDV&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_FALSE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_INB_DELIB&nbsp;type&nbsp;ZRF_PUTAWAY-INB_DELIV&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_LGPBE&nbsp;type&nbsp;ZRF_PUTAWAY-LGPBE&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_LGNUM&nbsp;type&nbsp;ZRF_PUTAWAY-LGNUM&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RT_INSTR)&nbsp;type&nbsp;ZRF_PUTAWAY_TAB&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/is_transient.html">IS_TRANSIENT</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RV_IS_TRANSIENT)&nbsp;type&nbsp;BOOLEAN&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/split_blocks.html">SPLIT_BLOCKS</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IT_NEW_INST&nbsp;type&nbsp;ZCL_RF_CONSTANTS=&gt;GTTY_INSTRUCTION<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/get_mat_doc_info.html">GET_MAT_DOC_INFO</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;exporting<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ES_MKPF&nbsp;type&nbsp;MKPF<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ET_MSEG&nbsp;type&nbsp;TY_T_MSEG&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/close_for_matdoc.html">CLOSE_FOR_MATDOC</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IT_MKPF&nbsp;type&nbsp;TY_T_MKPF<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_COMMIT&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_TRUE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_LGNUM&nbsp;type&nbsp;LGNUM<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/close_for_matnr.html">CLOSE_FOR_MATNR</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IR_MATNR&nbsp;type&nbsp;RANGES_MATNR<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_COMMIT&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_TRUE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_LGNUM&nbsp;type&nbsp;LGNUM<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/add_qty.html">ADD_QTY</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;redefinition&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/find_related_in_cont.html">FIND_RELATED_IN_CONT</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;redefinition&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/save.html">SAVE</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;redefinition&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/split.html">SPLIT</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;redefinition&nbsp;.<br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Private section of class.                                            *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;PRIVATE&nbsp;SECTION.<br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Protected section of class.                                          *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;PROTECTED&nbsp;SECTION.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CLASS-DATA&nbsp;gt_mseg_split&nbsp;TYPE&nbsp;ty_t_mseg&nbsp;.<br />
+<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/init_mseg_split&nbsp;..html">init_mseg_split&nbsp;.</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPE-POOLS&nbsp;abap&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/set_mseg_split.html">set_mseg_split</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_init&nbsp;TYPE&nbsp;boolean&nbsp;DEFAULT&nbsp;abap_false<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it_mseg&nbsp;TYPE&nbsp;ty_t_mseg&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/get_mseg_split.html">get_mseg_split</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(rt_mseg)&nbsp;TYPE&nbsp;ty_t_mseg&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/update_cart.html">update_cart</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!is_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;zrf_putaway&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(rv_changed)&nbsp;TYPE&nbsp;boolean&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAISING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zcx_rf_exception&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/get_remain_qty.html">get_remain_qty</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_matnr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;mara-matnr<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_exidv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;vekp-exidv<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_orig_qty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;zrf_putaway-menge<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_meins&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;zrf_putaway-meins<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(rv_remain)&nbsp;TYPE&nbsp;zrf_putaway-menge&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/update_block_info.html">update_block_info</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_menge_frm_blk&nbsp;&nbsp;&nbsp;TYPE&nbsp;menge_d&nbsp;OPTIONAL<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_add&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;boolean&nbsp;DEFAULT&nbsp;abap_true<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_related_putaway&nbsp;TYPE&nbsp;guid_16&nbsp;OPTIONAL<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAISING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zcx_rf_exception&nbsp;.<br />
+<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/init_dref.html">init_dref</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REDEFINITION&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/set_inst_type.html">set_inst_type</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REDEFINITION&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/_update.html">_update</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REDEFINITION&nbsp;.<br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Types section of class.                                              *<br />
+**************************************************************************<br />
+*"* dummy include to reduce generation dependencies between<br />
+*"* class ZCL_RF_INST_PUTAWAY and it's users.<br />
+*"* touched if any type reference has been changed<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 758</td>
+   </tr>
+</table>
+</body>
+</html>

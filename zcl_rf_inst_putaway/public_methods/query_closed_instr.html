@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>QUERY_CLOSED_INSTR</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: QUERY_CLOSED_INSTR</h2>
+<h3> Description: </h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+**************************************************************************<br />
+*&nbsp;&nbsp;&nbsp;Method&nbsp;attributes.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+Instantiation: Public<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;METHOD&nbsp;query_closed_instr.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;FIELD-SYMBOLS:&nbsp;&lt;fs&gt;&nbsp;TYPE&nbsp;zrf_putaway.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA:&nbsp;lr_exidv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;RANGE&nbsp;OF&nbsp;vekp-exidv,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lr_cart_id&nbsp;&nbsp;&nbsp;TYPE&nbsp;RANGE&nbsp;OF&nbsp;zrf_putaway-cart_id,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lr_vbeln&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;RANGE&nbsp;OF&nbsp;zrf_putaway-backorder,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lr_matnr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;RANGE&nbsp;OF&nbsp;mara-matnr,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lr_inb_deliv&nbsp;TYPE&nbsp;RANGE&nbsp;OF&nbsp;zrf_putaway-inb_deliv,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lr_lgpbe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;RANGE&nbsp;OF&nbsp;zrf_putaway-lgpbe,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lt_vekp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;TABLE&nbsp;OF&nbsp;vekp.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"RDM&nbsp;-&nbsp;20200129&nbsp;-&nbsp;RF_RL&nbsp;-&nbsp;BEG<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA:&nbsp;lr_lgnum&nbsp;&nbsp;TYPE&nbsp;RANGE&nbsp;OF&nbsp;zrf_putaway-lgnum.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"RDM&nbsp;-&nbsp;20200129&nbsp;-&nbsp;RF_RL&nbsp;-&nbsp;END<br />
+<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;iv_exidv&nbsp;IS&nbsp;SUPPLIED.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lr_exidv&nbsp;=&nbsp;VALUE&nbsp;#(&nbsp;(&nbsp;sign&nbsp;=&nbsp;'I'&nbsp;option&nbsp;=&nbsp;'EQ'&nbsp;low&nbsp;=&nbsp;iv_exidv&nbsp;)&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;iv_matnr&nbsp;IS&nbsp;SUPPLIED.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lr_matnr&nbsp;=&nbsp;VALUE&nbsp;#(&nbsp;(&nbsp;sign&nbsp;=&nbsp;'I'&nbsp;option&nbsp;=&nbsp;'EQ'&nbsp;low&nbsp;=&nbsp;iv_matnr&nbsp;)&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;iv_cartid&nbsp;IS&nbsp;SUPPLIED.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;APPEND&nbsp;VALUE&nbsp;#(&nbsp;sign&nbsp;=&nbsp;'I'&nbsp;option&nbsp;=&nbsp;'EQ'&nbsp;low&nbsp;=&nbsp;iv_cartid&nbsp;)&nbsp;TO&nbsp;lr_cart_id.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ELSE.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;iv_with_cart_only&nbsp;=&nbsp;abap_true.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lr_cart_id&nbsp;=&nbsp;VALUE&nbsp;#(&nbsp;(&nbsp;sign&nbsp;=&nbsp;'E'&nbsp;option&nbsp;=&nbsp;'EQ'&nbsp;)&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;iv_vbeln&nbsp;IS&nbsp;SUPPLIED.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lr_vbeln&nbsp;=&nbsp;VALUE&nbsp;#(&nbsp;(&nbsp;sign&nbsp;=&nbsp;'I'&nbsp;option&nbsp;=&nbsp;'EQ'&nbsp;low&nbsp;=&nbsp;iv_vbeln&nbsp;)&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;iv_inb_delib&nbsp;IS&nbsp;SUPPLIED&nbsp;AND&nbsp;iv_inb_delib&nbsp;IS&nbsp;NOT&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lr_inb_deliv&nbsp;=&nbsp;VALUE&nbsp;#(&nbsp;(&nbsp;sign&nbsp;=&nbsp;'I'&nbsp;option&nbsp;=&nbsp;'EQ'&nbsp;low&nbsp;=&nbsp;iv_inb_delib&nbsp;)&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;iv_lgpbe&nbsp;IS&nbsp;SUPPLIED.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lr_lgpbe&nbsp;=&nbsp;VALUE&nbsp;#(&nbsp;(&nbsp;sign&nbsp;=&nbsp;'I'&nbsp;option&nbsp;=&nbsp;'EQ'&nbsp;low&nbsp;=&nbsp;iv_lgpbe&nbsp;)&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"RDM&nbsp;-&nbsp;20200129&nbsp;-&nbsp;RF_RL&nbsp;-&nbsp;BEG<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;iv_lgnum&nbsp;IS&nbsp;SUPPLIED.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lr_lgnum&nbsp;=&nbsp;VALUE&nbsp;#(&nbsp;(&nbsp;sign&nbsp;=&nbsp;'I'&nbsp;option&nbsp;=&nbsp;'EQ'&nbsp;low&nbsp;=&nbsp;iv_lgnum&nbsp;)&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"RDM&nbsp;-&nbsp;20200129&nbsp;-&nbsp;RF_RL&nbsp;-&nbsp;END<br />
+<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CLEAR&nbsp;rt_instr.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;SELECT&nbsp;*&nbsp;FROM&nbsp;zrf_putaway<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INTO&nbsp;CORRESPONDING&nbsp;FIELDS&nbsp;OF&nbsp;TABLE&nbsp;rt_instr<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE&nbsp;matnr&nbsp;IN&nbsp;lr_matnr&nbsp;AND<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;status&nbsp;=&nbsp;zcl_rf_constants=&gt;gc_inst_stat_completed<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;exidv&nbsp;IN&nbsp;lr_exidv<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;cart_id&nbsp;IN&nbsp;lr_cart_id<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;backorder&nbsp;IN&nbsp;lr_vbeln<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;inb_deliv&nbsp;IN&nbsp;lr_inb_deliv<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;lgpbe&nbsp;IN&nbsp;lr_lgpbe<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;lgnum&nbsp;IN&nbsp;lr_lgnum.&nbsp;""RDM&nbsp;-&nbsp;20200129&nbsp;-&nbsp;RF_RL<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CHECK&nbsp;iv_transient&nbsp;=&nbsp;abap_true.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA(lt_cont)&nbsp;=&nbsp;zcl_rf_instructions=&gt;get_transient(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;LOOP&nbsp;AT&nbsp;lt_cont&nbsp;INTO&nbsp;DATA(ls_cont).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DATA(lr_ref)&nbsp;=&nbsp;ls_cont-dref-&gt;get_data(&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHECK&nbsp;lr_ref&nbsp;IS&nbsp;BOUND.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ASSIGN&nbsp;lr_ref-&gt;*&nbsp;TO&nbsp;&lt;fs&gt;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHECK&nbsp;&lt;fs&gt;-status&nbsp;=&nbsp;zcl_rf_constants=&gt;gc_inst_stat_completed<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;&lt;fs&gt;-matnr&nbsp;IN&nbsp;lr_matnr<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;&lt;fs&gt;-exidv&nbsp;IN&nbsp;lr_exidv<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;&lt;fs&gt;-backorder&nbsp;IN&nbsp;lr_vbeln<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;&lt;fs&gt;-lgpbe&nbsp;IN&nbsp;lr_lgpbe<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;&lt;fs&gt;-inb_deliv&nbsp;IN&nbsp;lr_inb_deliv<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;&lt;fs&gt;-cart_id&nbsp;IN&nbsp;lr_cart_id<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;&lt;fs&gt;-lgnum&nbsp;IN&nbsp;lr_lgnum.&nbsp;"RDM&nbsp;-&nbsp;20200129&nbsp;-&nbsp;RF_RL<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHECK&nbsp;NOT&nbsp;line_exists(&nbsp;rt_instr[&nbsp;id&nbsp;=&nbsp;&lt;fs&gt;-id&nbsp;]&nbsp;).<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;iv_with_cart_only&nbsp;=&nbsp;abap_true.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHECK&nbsp;CAST&nbsp;zcl_rf_inst_putaway(&nbsp;ls_cont-dref&nbsp;)-&gt;has_cart(&nbsp;)&nbsp;=&nbsp;iv_with_cart_only.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;APPEND&nbsp;&lt;fs&gt;&nbsp;TO&nbsp;rt_instr.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDLOOP.<br />
+<br />
+<br />
+<br />
+&nbsp;&nbsp;ENDMETHOD.<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 758</td>
+   </tr>
+</table>
+</body>
+</html>

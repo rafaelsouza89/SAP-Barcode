@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>ZRF_ONCOMMIT_ROUTINES</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: ZRF_ONCOMMIT_ROUTINES</h2>
+<h3> Description: </h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;Pool&nbsp;subrotinas&nbsp;&nbsp;&nbsp;ZRF_ONCOMMIT_ROUTINES<br />
+*&<br />
+*&---------------------------------------------------------------------*<br />
+*&<br />
+*&<br />
+*&---------------------------------------------------------------------*<br />
+<br />
+   </div>
+   <div class="code">
+PROGRAM zrf_oncommit_routines.<br />
+<br />
+FORM f_rev_block_stock_4_inst_oc.<br />
+&nbsp;&nbsp;DATA&nbsp;lt_cont_id&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gtty_container_type_id.<br />
+&nbsp;&nbsp;DATA&nbsp;ls_putaway&nbsp;TYPE&nbsp;zrf_putaway.<br />
+&nbsp;&nbsp;"&nbsp;&nbsp;call&nbsp;function<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;DATA(lv_i)&nbsp;=&nbsp;0.<br />
+*&nbsp;&nbsp;DO.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;lv_i&nbsp;&lt;&gt;&nbsp;0.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXIT.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+*&nbsp;&nbsp;ENDDO.<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;IMPORT&nbsp;it_cont&nbsp;=&nbsp;lt_cont_id[]&nbsp;FROM&nbsp;MEMORY&nbsp;ID&nbsp;zcl_rf_constants=&gt;gc_rf_irv_mem_id.<br />
+&nbsp;&nbsp;CHECK&nbsp;lines(&nbsp;lt_cont_id&nbsp;)&nbsp;&gt;&nbsp;0.<br />
+&nbsp;&nbsp;DATA(ls_cont_id)&nbsp;=&nbsp;lt_cont_id[&nbsp;1&nbsp;].<br />
+&nbsp;&nbsp;DELETE&nbsp;lt_cont_id&nbsp;INDEX&nbsp;1.<br />
+&nbsp;&nbsp;IF&nbsp;lines(&nbsp;lt_cont_id&nbsp;)&nbsp;&gt;&nbsp;0.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXPORT&nbsp;it_cont&nbsp;=&nbsp;lt_cont_id[]&nbsp;TO&nbsp;MEMORY&nbsp;ID&nbsp;zcl_rf_constants=&gt;gc_rf_irv_mem_id.<br />
+&nbsp;&nbsp;ELSE.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;FREE&nbsp;MEMORY&nbsp;ID&nbsp;zcl_rf_constants=&gt;gc_rf_irv_mem_id.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+<br />
+&nbsp;&nbsp;"&nbsp;now&nbsp;reverse<br />
+&nbsp;&nbsp;TRY.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT&nbsp;SINGLE&nbsp;*&nbsp;FROM&nbsp;zrf_putaway&nbsp;INTO&nbsp;ls_putaway<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE&nbsp;id&nbsp;=&nbsp;ls_cont_id-id.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DATA(lr_ref)&nbsp;=<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAST&nbsp;zcl_rf_inst_putaway(&nbsp;zcl_rf_instructions=&gt;create(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;ls_putaway<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_inst_type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;zcl_rf_constants=&gt;gc_inst_putaway<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_lock&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;abap_false<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_add_to_cont&nbsp;&nbsp;&nbsp;=&nbsp;abap_false&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;variável&nbsp;booleana&nbsp;(X=verdade,&nbsp;-=falso,&nbsp;espaço=desconhecido)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lr_ref-&gt;rev_block_stock(&nbsp;iv_commit&nbsp;=&nbsp;abap_false&nbsp;).<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lr_ref-&gt;cancel(&nbsp;abap_false&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CATCH&nbsp;zcx_rf_exception.&nbsp;&nbsp;&nbsp;&nbsp;"<br />
+&nbsp;&nbsp;ENDTRY.<br />
+<br />
+ENDFORM.<br />
+<br />
+FORM f_rev_block_stock_4_inst USING ir_ref TYPE REF TO zcl_rf_instructions<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_commit&nbsp;TYPE&nbsp;boolean.<br />
+<br />
+&nbsp;&nbsp;RETURN.<br />
+<br />
+&nbsp;&nbsp;zcl_rf_container=&gt;add_2_cont(&nbsp;is_data&nbsp;=&nbsp;VALUE&nbsp;zcl_rf_constants=&gt;gty_container_type(<br />
+&nbsp;&nbsp;&nbsp;id&nbsp;=&nbsp;ir_ref-&gt;get_id(&nbsp;)&nbsp;dref&nbsp;=&nbsp;ir_ref&nbsp;cont_type&nbsp;=&nbsp;&nbsp;zcl_rf_constants=&gt;gc_cont_type_irev<br />
+&nbsp;&nbsp;)&nbsp;).<br />
+&nbsp;&nbsp;DATA(lt_cont)&nbsp;=&nbsp;zcl_rf_container=&gt;get_cont_entries(&nbsp;iv_type&nbsp;=&nbsp;zcl_rf_constants=&gt;gc_cont_type_irev&nbsp;).<br />
+&nbsp;&nbsp;DATA(lt_cont_id)&nbsp;=<br />
+&nbsp;&nbsp;CORRESPONDING&nbsp;zcl_rf_constants=&gt;gtty_container_type_id(&nbsp;lt_cont&nbsp;)<br />
+&nbsp;&nbsp;&nbsp;.<br />
+<br />
+&nbsp;&nbsp;EXPORT&nbsp;it_cont&nbsp;=&nbsp;lt_cont_id[]&nbsp;TO&nbsp;MEMORY&nbsp;ID&nbsp;zcl_rf_constants=&gt;gc_rf_irv_mem_id.<br />
+<br />
+&nbsp;&nbsp;PERFORM&nbsp;f_rev_block_stock_4_inst_oc<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ON&nbsp;COMMIT.<br />
+<br />
+<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;CHECK&nbsp;ir_ref&nbsp;IS&nbsp;BOUND.<br />
+*&nbsp;&nbsp;CAST&nbsp;zcl_rf_inst_putaway(&nbsp;ir_ref&nbsp;)-&gt;rev_block_stock(&nbsp;iv_commit&nbsp;=&nbsp;iv_commit&nbsp;).<br />
+<br />
+   </div>
+   <div class="code">
+ENDFORM.<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 758</td>
+   </tr>
+</table>
+</body>
+</html>

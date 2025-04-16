@@ -1,0 +1,303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>ZRF_RLBINPRI</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: ZRF_RLBINPRI</h2>
+<h3> Description: Print Bar Code Labels for Verification Control in Warehouse</h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="code">
+REPORT zrf_rlbinpri.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*.....print&nbsp;report&nbsp;for&nbsp;barcode&nbsp;labels...............................<br />
+<br />
+<br />
+<br />
+   </div>
+   <div class="code">
+TABLES:     lagp, itcpo.<br />
+SELECTION-SCREEN  BEGIN OF BLOCK yyy WITH FRAME TITLE text-099.<br />
+PARAMETERS:       p_ldest LIKE itcpo-tddest DEFAULT 'Q879'.<br />
+PARAMETERS:       p_formu LIKE t329f-formu DEFAULT 'LVSBINPRINT'.<br />
+PARAMETERS:       p_print LIKE rldru-druck  DEFAULT 'X'.<br />
+SELECTION-SCREEN END OF BLOCK yyy.<br />
+<br />
+SELECTION-SCREEN  BEGIN OF BLOCK xxx WITH FRAME TITLE text-100.<br />
+PARAMETERS:       p_tddel LIKE itcpo-tddelete DEFAULT 'X'.<br />
+PARAMETERS:       p_tdimm LIKE itcpo-tdimmed DEFAULT 'X'.<br />
+PARAMETERS:       p_datas LIKE itcpo-tddataset DEFAULT 'BinPri'.<br />
+PARAMETERS:       p_copis LIKE  itcpo-tdcopies DEFAULT '1'.<br />
+PARAMETERS:       p_autor LIKE itcpo-tdautority.<br />
+PARAMETERS: p_sspo AS CHECKBOX DEFAULT abap_false.<br />
+SELECTION-SCREEN END OF BLOCK xxx.<br />
+<br />
+<br />
+<br />
+<br />
+MOVE:<br />
+&nbsp;&nbsp;p_ldest&nbsp;&nbsp;&nbsp;&nbsp;TO&nbsp;&nbsp;itcpo-tddest,<br />
+<br />
+&nbsp;&nbsp;p_tddel&nbsp;&nbsp;&nbsp;&nbsp;TO&nbsp;&nbsp;itcpo-tddelete,<br />
+&nbsp;&nbsp;p_tdimm&nbsp;&nbsp;&nbsp;&nbsp;TO&nbsp;&nbsp;itcpo-tdimmed&nbsp;,<br />
+&nbsp;&nbsp;p_datas&nbsp;&nbsp;&nbsp;&nbsp;TO&nbsp;&nbsp;itcpo-tddataset,<br />
+&nbsp;&nbsp;"p_copis&nbsp;&nbsp;&nbsp;&nbsp;TO&nbsp;&nbsp;itcpo-tdcopies&nbsp;,<br />
+&nbsp;&nbsp;1&nbsp;TO&nbsp;itcpo-tdcopies&nbsp;,<br />
+&nbsp;&nbsp;p_autor&nbsp;&nbsp;&nbsp;&nbsp;TO&nbsp;&nbsp;itcpo-tdautority.<br />
+<br />
+<br />
+itcpo-tdprogram = sy-repid.<br />
+DATA lt_lagp TYPE TABLE OF lagp.<br />
+<br />
+<br />
+GET lagp.<br />
+APPEND lagp TO lt_lagp.<br />
+<br />
+<br />
+END-OF-SELECTION.<br />
+<br />
+&nbsp;&nbsp;"&nbsp;enable&nbsp;zrf_printer<br />
+&nbsp;&nbsp;zcl_zrf_printer_dao=&gt;get_print_info(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_printer&nbsp;&nbsp;&nbsp;=&nbsp;zcl_rf_user=&gt;get_printer_data_short(&nbsp;iv_printer_short&nbsp;=&nbsp;p_ldest&nbsp;)-name<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;&nbsp;&nbsp;iv_werks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_form_type&nbsp;=&nbsp;'B'"zcl_rf_constants=&gt;gc_print_ftype_bin<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;es_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;DATA(ls_print_data)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ev_zpl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;DATA(lv_zpl)<br />
+&nbsp;&nbsp;).<br />
+<br />
+&nbsp;&nbsp;LOOP&nbsp;AT&nbsp;lt_lagp&nbsp;INTO&nbsp;lagp.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA(lv_tabix)&nbsp;=&nbsp;sy-tabix.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;ls_print_data-form_tech&nbsp;=&nbsp;'C'."zcl_rf_constants=&gt;gc_print_tech_script.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DO&nbsp;p_copis&nbsp;TIMES.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DATA(lv_idx)&nbsp;=&nbsp;sy-index.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;(&nbsp;lv_tabix&nbsp;=&nbsp;1&nbsp;AND&nbsp;lv_idx&nbsp;=&nbsp;1&nbsp;)&nbsp;OR&nbsp;p_sspo&nbsp;=&nbsp;abap_false.<br />
+   </div>
+   <div class="codeComment">
+*.......eröffnen&nbsp;formular..............................................<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;NOT&nbsp;p_print&nbsp;IS&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CALL&nbsp;FUNCTION&nbsp;'OPEN_FORM'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;form&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;p_formu<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;device&nbsp;&nbsp;=&nbsp;'PRINTER'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;options&nbsp;=&nbsp;itcpo<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dialog&nbsp;&nbsp;=&nbsp;'&nbsp;'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CALL&nbsp;FUNCTION&nbsp;'OPEN_FORM'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;form&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;p_formu<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;device&nbsp;&nbsp;=&nbsp;'SCREEN'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;options&nbsp;=&nbsp;itcpo.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CALL&nbsp;FUNCTION&nbsp;'WRITE_FORM'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;element&nbsp;=&nbsp;'ITEM_LINE'.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;lv_tabix&nbsp;NE&nbsp;lines(&nbsp;lt_lagp&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CALL&nbsp;FUNCTION&nbsp;'CONTROL_FORM'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command&nbsp;=&nbsp;'NEW-WINDOW'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;p_sspo&nbsp;=&nbsp;abap_false&nbsp;OR&nbsp;(&nbsp;lv_tabix&nbsp;=&nbsp;lines(&nbsp;lt_lagp&nbsp;)&nbsp;AND&nbsp;lv_idx&nbsp;=&nbsp;p_copis&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CALL&nbsp;FUNCTION&nbsp;'CLOSE_FORM'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDDO.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ELSE.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;ls_print_data-cutter&nbsp;=&nbsp;'F'&nbsp;."zcl_rf_constants=&gt;gc_print_cutt_enda.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;lines(&nbsp;lt_lagp&nbsp;)&nbsp;=&nbsp;lv_tabix.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lv_zpl&nbsp;=&nbsp;'^MMC'."zcl_rf_constants=&gt;gc_zpl_cutter.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lv_zpl&nbsp;=&nbsp;'^MMT'."&nbsp;zcl_rf_constants=&gt;gc_zpl_no_cutter.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PERFORM&nbsp;f_print_sform&nbsp;USING&nbsp;lagp-lgpla&nbsp;lagp-lgnum&nbsp;lv_zpl.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;lines(&nbsp;lt_lagp&nbsp;)&nbsp;=&nbsp;lv_tabix.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MESSAGE&nbsp;text-001&nbsp;TYPE&nbsp;'S'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;ENDLOOP.<br />
+<br />
+<br />
+&nbsp;&nbsp;COMMIT&nbsp;WORK.<br />
+<br />
+FORM f_print_sform USING iv_lgpla iv_lgnum iv_zpl.<br />
+&nbsp;&nbsp;DATA:&nbsp;ls_control&nbsp;TYPE&nbsp;ssfctrlop.<br />
+&nbsp;&nbsp;DATA:&nbsp;ls_outoptions&nbsp;TYPE&nbsp;ssfcompop.<br />
+&nbsp;&nbsp;DATA:&nbsp;lv_funcname&nbsp;TYPE&nbsp;rs38l_fnam&nbsp;.<br />
+&nbsp;&nbsp;DATA&nbsp;lv_bc&nbsp;TYPE&nbsp;zrf_bc.<br />
+&nbsp;&nbsp;"ls_control-preview&nbsp;=&nbsp;COND&nbsp;#(&nbsp;WHEN&nbsp;iv_print&nbsp;=&nbsp;abap_true&nbsp;THEN&nbsp;abap_false&nbsp;ELSE&nbsp;abap_true&nbsp;).<br />
+&nbsp;&nbsp;ls_control-no_dialog&nbsp;=&nbsp;abap_true.<br />
+&nbsp;&nbsp;ls_outoptions-tddest&nbsp;=&nbsp;p_ldest.<br />
+&nbsp;&nbsp;ls_outoptions-tdnewid&nbsp;=&nbsp;abap_true.<br />
+&nbsp;&nbsp;ls_outoptions-tdimmed&nbsp;=&nbsp;abap_true.<br />
+&nbsp;&nbsp;ls_outoptions-tdcopies&nbsp;=&nbsp;p_copis.<br />
+<br />
+&nbsp;&nbsp;DATA(lv_formname)&nbsp;=&nbsp;CONV&nbsp;tdsfname(&nbsp;p_formu&nbsp;)."ls_print_data-form_name&nbsp;).<br />
+<br />
+&nbsp;&nbsp;CALL&nbsp;FUNCTION&nbsp;'SSF_FUNCTION_MODULE_NAME'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;formname&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;lv_formname&nbsp;"'ZRF_LABEL_MATNR'<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VARIANT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'&nbsp;'<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DIRECT_CALL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'&nbsp;'<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fm_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;lv_funcname<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXCEPTIONS<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no_form&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;1<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no_function_module&nbsp;=&nbsp;2<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OTHERS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;3.<br />
+&nbsp;&nbsp;IF&nbsp;sy-subrc&nbsp;&lt;&gt;&nbsp;0.<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;Implement&nbsp;suitable&nbsp;error&nbsp;handling&nbsp;here<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;lv_bc&nbsp;=&nbsp;zcl_rf_bc=&gt;encode(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_lgnum&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;iv_lgnum&nbsp;&nbsp;&nbsp;"&nbsp;Warehouse&nbsp;Number&nbsp;/&nbsp;Warehouse&nbsp;Complex<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_obj_type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;zcl_rf_constants=&gt;gc_bc_obj_type_bin&nbsp;&nbsp;&nbsp;"&nbsp;Object&nbsp;Type<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_num_obj_type&nbsp;=&nbsp;CONV&nbsp;#(&nbsp;iv_lgpla&nbsp;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;Character&nbsp;Field&nbsp;Length&nbsp;=&nbsp;10<br />
+&nbsp;&nbsp;).<br />
+<br />
+&nbsp;&nbsp;CALL&nbsp;FUNCTION&nbsp;lv_funcname<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;archive_index&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;archive_index_tab&nbsp;&nbsp;=<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;archive_parameters&nbsp;=<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;control_parameters&nbsp;=&nbsp;ls_control<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MAIL_APPL_OBJ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MAIL_RECIPIENT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MAIL_SENDER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;output_options&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;ls_outoptions<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user_settings&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'&nbsp;'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_lgpla&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;iv_lgpla<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_bc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;lv_bc<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_lzpl_setup&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;lv_zpl<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document_output_info&nbsp;=<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;job_output_info&nbsp;&nbsp;&nbsp;&nbsp;=<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;job_output_options&nbsp;=<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;EXCEPTIONS<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;formatting_error&nbsp;&nbsp;&nbsp;=&nbsp;1<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;internal_error&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;2<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;send_error&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;3<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user_canceled&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;4<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OTHERS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;5.<br />
+&nbsp;&nbsp;IF&nbsp;sy-subrc&nbsp;&lt;&gt;&nbsp;0.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;MESSAGE&nbsp;ID&nbsp;sy-msgid&nbsp;TYPE&nbsp;sy-msgty&nbsp;NUMBER&nbsp;sy-msgno<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WITH&nbsp;sy-msgv1&nbsp;sy-msgv2&nbsp;sy-msgv3&nbsp;sy-msgv4.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+ENDFORM.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*Text&nbsp;elements<br />
+*----------------------------------------------------------<br />
+*&nbsp;001&nbsp;Successfully&nbsp;printed<br />
+*&nbsp;099&nbsp;Print&nbsp;param.<br />
+*&nbsp;100&nbsp;Spool&nbsp;param.<br />
+<br />
+<br />
+*Selection&nbsp;texts<br />
+*----------------------------------------------------------<br />
+*&nbsp;P_AUTOR&nbsp;D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.<br />
+*&nbsp;P_COPIS&nbsp;D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.<br />
+*&nbsp;P_DATAS&nbsp;D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.<br />
+*&nbsp;P_FORMU&nbsp;D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.<br />
+*&nbsp;P_LDEST&nbsp;D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.<br />
+*&nbsp;P_PRINT&nbsp;D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.<br />
+*&nbsp;P_SSPO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Single&nbsp;spool&nbsp;order<br />
+*&nbsp;P_TDDEL&nbsp;D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.<br />
+*&nbsp;P_TDIMM&nbsp;D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 758</td>
+   </tr>
+</table>
+</body>
+</html>

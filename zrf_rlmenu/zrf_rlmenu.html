@@ -1,0 +1,604 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>ZRF_RLMENU</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: ZRF_RLMENU</h2>
+<h3> Description: Dynamic Menu with Screen 888</h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="code">
+REPORT zrf_rlmenu MESSAGE-ID lf.<br />
+   </div>
+   <div class="codeComment">
+************************************************************************<br />
+*&nbsp;&nbsp;Dynamic&nbsp;Menu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*<br />
+************************************************************************<br />
+   </div>
+   <div class="code">
+INCLUDE: rlmobinc, mainmenu.<br />
+include <a href ="zrf_mainmenu.html">zrf_mainmenu</a>.<br />
+<br />
+<br />
+START-OF-SELECTION.<br />
+<br />
+&nbsp;&nbsp;message_lang&nbsp;&nbsp;=&nbsp;sy-langu.<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;AUTHORITY&nbsp;CHECK&nbsp;for&nbsp;TCODE<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;CALL&nbsp;FUNCTION&nbsp;'AUTHORITY_CHECK_TCODE'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tcode&nbsp;&nbsp;=&nbsp;sy-tcode<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXCEPTIONS<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;0<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;not_ok&nbsp;=&nbsp;2<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OTHERS&nbsp;=&nbsp;3.<br />
+&nbsp;&nbsp;IF&nbsp;sy-subrc&nbsp;&lt;&gt;&nbsp;0.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;MESSAGE&nbsp;e172(00)&nbsp;WITH&nbsp;sy-tcode.<br />
+&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;PERFORM&nbsp;zrf_user_own_data.<br />
+<br />
+&nbsp;&nbsp;GET&nbsp;PARAMETER&nbsp;ID&nbsp;'PREV_MENU'&nbsp;FIELD&nbsp;g_prev_mmenu.<br />
+&nbsp;&nbsp;SELECT&nbsp;*&nbsp;FROM&nbsp;t3130a&nbsp;INTO&nbsp;TABLE&nbsp;itb_t3130a<br />
+&nbsp;&nbsp;WHERE&nbsp;lgnum&nbsp;=&nbsp;lrf_wkqu-lgnum.<br />
+"AMT/RDM - 20230111- SD2 - BEG<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;IF&nbsp;g_prev_mmenu&nbsp;IS&nbsp;INITIAL.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;lrf_wkqu-mmenu&nbsp;&nbsp;=&nbsp;'MAIN'.<br />
+*&nbsp;&nbsp;ELSE.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;lrf_wkqu-mmenu&nbsp;&nbsp;=&nbsp;g_prev_mmenu.<br />
+*&nbsp;&nbsp;ENDIF.<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;PERFORM&nbsp;zrf_call_screen_menu.<br />
+"AMT/RDM - 20230111- END<br />
+   </div>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Module&nbsp;&nbsp;DATA_TO_EXIT0888&nbsp;&nbsp;OUTPUT<br />
+*&---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text<br />
+*----------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+MODULE data_to_exit0888 OUTPUT.<br />
+&nbsp;&nbsp;PERFORM&nbsp;find_user_screen(sapllmob)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHANGING&nbsp;scrn_data.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;AFTER&nbsp;LEAVE&nbsp;TO&nbsp;SCREEN&nbsp;0<br />
+<br />
+&nbsp;&nbsp;CALL&nbsp;CUSTOMER-FUNCTION&nbsp;'780'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i_rlmob&nbsp;=&nbsp;rlmob<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i_text1&nbsp;=&nbsp;text1<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i_text2&nbsp;=&nbsp;text2<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i_text3&nbsp;=&nbsp;text3<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i_text4&nbsp;=&nbsp;text4<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i_text5&nbsp;=&nbsp;text5<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i_text6&nbsp;=&nbsp;text6.<br />
+ENDMODULE.                             " DATA_TO_EXIT0888  OUTPUT<br />
+   </div>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Module&nbsp;&nbsp;DATA_FROM_EXIT0888&nbsp;&nbsp;INPUT<br />
+*&---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text<br />
+*----------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+MODULE data_from_exit0888 INPUT.<br />
+&nbsp;&nbsp;CALL&nbsp;CUSTOMER-FUNCTION&nbsp;'790'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;o_rlmob_pclear&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;rlmob-pclear<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;o_rlmob_pback&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;rlmob-pback<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;o_rlmob_pnext&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;rlmob-pnext<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;o_rlmob_pmlgf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;rlmob-pmlgf<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;o_rlmob_menopt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;rlmob-menopt<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TABLES<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;o_verification_errors&nbsp;=&nbsp;verification_errors.<br />
+<br />
+&nbsp;&nbsp;PERFORM&nbsp;verification_errors(sapllmob).<br />
+<br />
+ENDMODULE.                             " DATA_FROM_EXIT0888  INPUT<br />
+   </div>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Module&nbsp;&nbsp;STATUS_MAINMENU&nbsp;&nbsp;OUTPUT<br />
+*&---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text<br />
+*----------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+MODULE status_mainmenu OUTPUT.<br />
+&nbsp;&nbsp;SET&nbsp;PF-STATUS&nbsp;'LMOB_GROUP8'.<br />
+&nbsp;&nbsp;SET&nbsp;TITLEBAR&nbsp;sy-dynnr.<br />
+ENDMODULE.                             " STATUS_MAINMENU  OUTPUT<br />
+   </div>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Module&nbsp;&nbsp;DYNAMIC_MENU_BUTTONS_TEXT&nbsp;&nbsp;OUTPUT<br />
+*&---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text<br />
+*----------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+MODULE dynamic_menu_buttons_text OUTPUT.<br />
+&nbsp;&nbsp;DATA&nbsp;l_prev_menu&nbsp;LIKE&nbsp;t3130a-mmenu.<br />
+&nbsp;&nbsp;DATA&nbsp;previous_mmenu&nbsp;LIKE&nbsp;t3130a-mmenu.<br />
+&nbsp;&nbsp;GET&nbsp;PARAMETER&nbsp;ID&nbsp;'PREV_MENU'&nbsp;FIELD&nbsp;l_prev_menu.<br />
+&nbsp;&nbsp;CLEAR:&nbsp;text1,text2,text3,text4,text5,text6.<br />
+&nbsp;&nbsp;PERFORM&nbsp;zrf_user_own_data.<br />
+   </div>
+   <div class="codeComment">
+*...........If&nbsp;transaction&nbsp;LM01&nbsp;is&nbsp;usee&nbsp;as&nbsp;a&nbsp;stand-alone&nbsp;one...........<br />
+*...........the&nbsp;main&nbsp;menu&nbsp;will&nbsp;be&nbsp;called&nbsp;direcly........................<br />
+***&nbsp;&nbsp;GET&nbsp;PARAMETER&nbsp;ID&nbsp;'PREV_MENU'&nbsp;FIELD&nbsp;L_PREV_MENU.<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;IF&nbsp;lrf_wkqu-mmenu&nbsp;IS&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;lrf_wkqu-mmenu&nbsp;&nbsp;=&nbsp;'MAIN'.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;IF&nbsp;&nbsp;t3130a-pro_typ&nbsp;NE&nbsp;'1'&nbsp;&nbsp;AND&nbsp;pro_typ&nbsp;NE&nbsp;'1'<br />
+&nbsp;&nbsp;AND&nbsp;t3130a-pro_typ&nbsp;NE&nbsp;'2'&nbsp;&nbsp;AND&nbsp;pro_typ&nbsp;NE&nbsp;'2'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;l_prev_menu&nbsp;IS&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu_id&nbsp;=&nbsp;lrf_wkqu-mmenu.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ELSE.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu_id&nbsp;=&nbsp;l_prev_menu.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+<br />
+<br />
+&nbsp;&nbsp;IF&nbsp;&nbsp;t3130a&nbsp;IS&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;previous_mmenu&nbsp;=&nbsp;'MAIN'.<br />
+&nbsp;&nbsp;ELSE&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;previous_mmenu&nbsp;=&nbsp;t3130a-mmenu.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+<br />
+<br />
+&nbsp;&nbsp;DATA:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;modified_text&nbsp;&nbsp;LIKE&nbsp;&nbsp;&nbsp;&nbsp;t3130b-text,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;nextchr(1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;&nbsp;&nbsp;&nbsp;c,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;num_of_lines&nbsp;&nbsp;&nbsp;TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;device_columns&nbsp;TYPE&nbsp;&nbsp;&nbsp;&nbsp;i&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE&nbsp;0,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;text_length&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;&nbsp;&nbsp;&nbsp;i,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;x_position&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;&nbsp;&nbsp;&nbsp;i,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;dot_position&nbsp;&nbsp;&nbsp;TYPE&nbsp;&nbsp;&nbsp;&nbsp;i,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;menu_text&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LIKE&nbsp;&nbsp;&nbsp;&nbsp;t3130b-text,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;menu_sequence&nbsp;&nbsp;LIKE&nbsp;&nbsp;&nbsp;&nbsp;t3130b-sequence.<br />
+&nbsp;&nbsp;DATA&nbsp;t_t3130a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LIKE&nbsp;t3130a&nbsp;OCCURS&nbsp;20&nbsp;WITH&nbsp;HEADER&nbsp;LINE.<br />
+&nbsp;&nbsp;CONSTANTS:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;to_menu_sign(1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;&nbsp;&nbsp;&nbsp;c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE&nbsp;'&gt;',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;to_transaction_sign(1)&nbsp;TYPE&nbsp;&nbsp;&nbsp;&nbsp;c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE&nbsp;'.',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;num_of_dots&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;&nbsp;&nbsp;&nbsp;i&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE&nbsp;3,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;option_on&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;c&nbsp;VALUE&nbsp;'1',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;option_off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;c&nbsp;VALUE&nbsp;'0'.<br />
+&nbsp;&nbsp;FIELD-SYMBOLS:&nbsp;&nbsp;&lt;fieldname&gt;.<br />
+<br />
+   </div>
+   <div class="codeComment">
+***&nbsp;Looking&nbsp;for&nbsp;the&nbsp;screen&nbsp;columns&nbsp;count.<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;CATCH&nbsp;SYSTEM-EXCEPTIONS&nbsp;conversion_errors&nbsp;=&nbsp;01.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;SEARCH&nbsp;xuser-devty&nbsp;FOR&nbsp;'X'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;x_position&nbsp;=&nbsp;sy-fdpos&nbsp;+&nbsp;1.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;MOVE&nbsp;xuser-devty+x_position(2)&nbsp;TO&nbsp;&nbsp;device_columns.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;device_columns&nbsp;=&nbsp;device_columns&nbsp;-&nbsp;2.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CLEAR&nbsp;&nbsp;&nbsp;t_t3130a.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;REFRESH&nbsp;t_t3130a.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;LOOP&nbsp;AT&nbsp;itb_t3130a<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE&nbsp;lgnum&nbsp;=&nbsp;lrf_wkqu-lgnum<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;&nbsp;&nbsp;mmenu&nbsp;=&nbsp;menu_id.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;APPEND&nbsp;itb_t3130a&nbsp;TO&nbsp;t_t3130a.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDLOOP.<br />
+&nbsp;&nbsp;ENDCATCH.<br />
+<br />
+<br />
+&nbsp;&nbsp;DESCRIBE&nbsp;TABLE&nbsp;t_t3130a&nbsp;LINES&nbsp;num_of_lines.<br />
+&nbsp;&nbsp;IF&nbsp;num_of_lines&nbsp;=&nbsp;0.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;message_lang&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;sy-langu.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;message_number&nbsp;=&nbsp;'037'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;message_var1&nbsp;&nbsp;&nbsp;=&nbsp;menu_id.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;PERFORM&nbsp;error_message.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXIT.<br />
+&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;SET&nbsp;PARAMETER&nbsp;ID&nbsp;'PREV_MENU'&nbsp;FIELD&nbsp;menu_id.<br />
+<br />
+<br />
+&nbsp;&nbsp;LOOP&nbsp;AT&nbsp;t_t3130a.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;menu_text&nbsp;=&nbsp;t_t3130a-men_trans.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;menu_sequence&nbsp;&nbsp;=&nbsp;t_t3130a-sequence.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;SELECT&nbsp;*&nbsp;FROM&nbsp;t3130b&nbsp;WHERE&nbsp;spras&nbsp;=&nbsp;sy-langu<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;lgnum&nbsp;=&nbsp;lrf_wkqu-lgnum<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;mmenu&nbsp;=&nbsp;menu_id<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;sequence&nbsp;=&nbsp;menu_sequence.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;sy-subrc&nbsp;=&nbsp;0.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;device_columns&nbsp;GT&nbsp;0&nbsp;AND<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;device_columns&nbsp;LT&nbsp;21&nbsp;AND<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOT&nbsp;t3130b-stext&nbsp;IS&nbsp;INITIAL&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu_text&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;t3130b-stext.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu_text&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;t3130b-text.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MENU_SEQUENCE&nbsp;&nbsp;=&nbsp;T3130B-SEQUENCE.<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDSELECT.<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;SY-SUBRC&nbsp;&lt;&gt;&nbsp;0.<br />
+**...If&nbsp;no&nbsp;enties&nbsp;defined&nbsp;for&nbsp;specific&nbsp;menu&nbsp;ID&nbsp;in&nbsp;curent&nbsp;language.......<br />
+**...&nbsp;any&nbsp;language&nbsp;will&nbsp;be&nbsp;displayed<br />
+**.....................................<br />
+<br />
+***&nbsp;Combining&nbsp;the&nbsp;text&nbsp;with&nbsp;its&nbsp;sequence.<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;CONCATENATE&nbsp;&nbsp;menu_sequence+1(1)&nbsp;'.&nbsp;'&nbsp;menu_text<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INTO&nbsp;modified_text.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;text_length&nbsp;=&nbsp;strlen(&nbsp;modified_text&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;&nbsp;device_columns&nbsp;NE&nbsp;0.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;text_length&nbsp;&nbsp;GT&nbsp;&nbsp;device_columns.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MOVE&nbsp;modified_text+0(device_columns)&nbsp;TO&nbsp;modified_text.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dot_position&nbsp;=&nbsp;device_columns&nbsp;-&nbsp;1.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;t_t3130a-pro_typ&nbsp;=&nbsp;'1'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MOVE&nbsp;to_menu_sign&nbsp;TO&nbsp;modified_text+dot_position(1).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DO&nbsp;num_of_dots&nbsp;TIMES.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MOVE&nbsp;&nbsp;modified_text+dot_position(1)&nbsp;TO&nbsp;nextchr.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;NOT&nbsp;nextchr&nbsp;IS&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXIT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MOVE&nbsp;to_transaction_sign&nbsp;TO&nbsp;modified_text+dot_position(1).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dot_position&nbsp;=&nbsp;dot_position&nbsp;-&nbsp;1.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDDO.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CASE&nbsp;menu_sequence.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHEN&nbsp;1.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text1&nbsp;=&nbsp;&nbsp;modified_text.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHEN&nbsp;2.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text2&nbsp;=&nbsp;&nbsp;modified_text.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHEN&nbsp;3.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text3&nbsp;=&nbsp;&nbsp;modified_text.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHEN&nbsp;4.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text4&nbsp;=&nbsp;&nbsp;modified_text.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHEN&nbsp;5.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text5&nbsp;=&nbsp;&nbsp;modified_text.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHEN&nbsp;OTHERS.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text6&nbsp;=&nbsp;&nbsp;modified_text.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDCASE.<br />
+&nbsp;&nbsp;ENDLOOP.<br />
+<br />
+ENDMODULE.                 " DYNAMIC_MENU_BUTTONS_TEXT  OUTPUT<br />
+   </div>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Module&nbsp;&nbsp;SPECIAL_FIELD_OUTPUT&nbsp;&nbsp;OUTPUT<br />
+*&---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text<br />
+*----------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+MODULE special_field_output OUTPUT.<br />
+&nbsp;&nbsp;LOOP&nbsp;AT&nbsp;SCREEN.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;screen-group3&nbsp;=&nbsp;'005'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ASSIGN&nbsp;&nbsp;(screen-name)&nbsp;TO&nbsp;&lt;fieldname&gt;.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;&lt;fieldname&gt;&nbsp;IS&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;screen-invisible&nbsp;=&nbsp;option_on.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;screen-input&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;option_off.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;screen-invisible&nbsp;=&nbsp;option_off.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MODIFY&nbsp;SCREEN.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;ENDLOOP.<br />
+<br />
+ENDMODULE.                             " SPECIAL_FIELD_OUTPUT  OUTPUT<br />
+   </div>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Module&nbsp;&nbsp;USER_COMMAND_MAINMENU&nbsp;&nbsp;INPUT<br />
+*&---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text<br />
+*----------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+MODULE user_command_mainmenu INPUT.<br />
+<br />
+&nbsp;&nbsp;IF&nbsp;ok_code&nbsp;=&nbsp;fcode_clear.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CLEAR&nbsp;rlmob-menopt.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CLEAR&nbsp;ok_code.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXIT.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;IF&nbsp;ok_code&nbsp;IS&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXIT.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;IF&nbsp;ok_code&nbsp;=&nbsp;fcode_next&nbsp;AND&nbsp;rlmob-menopt&nbsp;IS&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXIT.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;IF&nbsp;ok_code&nbsp;=&nbsp;fcode_back.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CLEAR&nbsp;ok_code.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CLEAR&nbsp;rlmob-menopt.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXIT.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;IF&nbsp;NOT&nbsp;rlmob-menopt&nbsp;IS&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ok_code&nbsp;=&nbsp;rlmob-menopt.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CLEAR&nbsp;rlmob-menopt.<br />
+&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;CLEAR&nbsp;t3130a.<br />
+&nbsp;&nbsp;READ&nbsp;TABLE&nbsp;itb_t3130a&nbsp;INTO&nbsp;t3130a<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WITH&nbsp;KEY&nbsp;mmenu&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;menu_id<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lgnum&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;whs_id<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sequence&nbsp;=&nbsp;ok_code.<br />
+<br />
+&nbsp;&nbsp;IF&nbsp;sy-subrc&nbsp;NE&nbsp;0.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CLEAR&nbsp;rlmob-menopt.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXIT.<br />
+&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;IF&nbsp;t3130a-pro_typ&nbsp;=&nbsp;'1'.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;menu_id&nbsp;=&nbsp;t3130a-men_trans.<br />
+<br />
+<br />
+&nbsp;&nbsp;ELSEIF&nbsp;t3130a-pro_typ&nbsp;=&nbsp;'2'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;PERFORM&nbsp;add_zero_line_to_menu<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TABLES<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t_t3130a<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;previous_mmenu<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'2'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;t3130a-men_trans&nbsp;=&nbsp;con_lm09.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET&nbsp;PARAMETER&nbsp;ID&nbsp;'FIRST_LM09'&nbsp;FIELD&nbsp;''.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET&nbsp;PARAMETER&nbsp;ID&nbsp;'BYDLVRY'&nbsp;&nbsp;&nbsp;&nbsp;FIELD&nbsp;''.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;AUTHORITY&nbsp;CHECK&nbsp;for&nbsp;TCODE<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;CALL&nbsp;FUNCTION&nbsp;'AUTHORITY_CHECK_TCODE'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tcode&nbsp;&nbsp;=&nbsp;t3130a-men_trans<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXCEPTIONS<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;0<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;not_ok&nbsp;=&nbsp;2<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OTHERS&nbsp;=&nbsp;3.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;sy-subrc&nbsp;&lt;&gt;&nbsp;0.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MESSAGE&nbsp;e172(00)&nbsp;WITH&nbsp;t3130a-men_trans.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CALL&nbsp;TRANSACTION&nbsp;sy-tcode.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ELSE.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CALL&nbsp;TRANSACTION&nbsp;t3130a-men_trans.&nbsp;"&nbsp;TRANSACTION<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+ENDMODULE.                             " USER_COMMAND_MAINMENU  INPUT<br />
+   </div>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Module&nbsp;&nbsp;EXIT_MENU&nbsp;&nbsp;INPUT<br />
+*&---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text<br />
+*----------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+MODULE exit_menu INPUT.<br />
+<br />
+&nbsp;&nbsp;DATA:&nbsp;lv_trm_ext_call&nbsp;TYPE&nbsp;flag.<br />
+<br />
+&nbsp;&nbsp;CASE&nbsp;ok_code.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;WHEN&nbsp;fcode_back.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GET&nbsp;PARAMETER&nbsp;ID&nbsp;'TRM_EXT_CALL'&nbsp;FIELD&nbsp;lv_trm_ext_call.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;lv_trm_ext_call&nbsp;=&nbsp;con_x.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LEAVE&nbsp;PROGRAM.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;menu_id&nbsp;=&nbsp;lrf_wkqu-mmenu.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET&nbsp;PARAMETER&nbsp;ID&nbsp;'PREV_MENU'&nbsp;FIELD&nbsp;space.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LEAVE&nbsp;TO&nbsp;TRANSACTION&nbsp;'LM00'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CALL&nbsp;FUNCTION&nbsp;'LAST_STEP'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i_menu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;menu_id<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i_menu_type&nbsp;=&nbsp;'1'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i_lrf_wkqu&nbsp;&nbsp;=&nbsp;lrf_wkqu<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;o_menu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;menu_id<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;o_menu_type&nbsp;=&nbsp;pro_typ.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;pro_typ&nbsp;=&nbsp;'2'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LEAVE&nbsp;TO&nbsp;TRANSACTION&nbsp;menu_id.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;WHEN&nbsp;OTHERS.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXIT.<br />
+<br />
+&nbsp;&nbsp;ENDCASE.<br />
+<br />
+ENDMODULE.                             " EXIT_MENU  INPUT<br />
+   </div>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Form&nbsp;&nbsp;ADD_ZERO_LINE_TO_MENU<br />
+*&---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text<br />
+*----------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&gt;P_T_T3130A&nbsp;&nbsp;text<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&gt;P_PREVIOUS_MMENU&nbsp;&nbsp;text<br />
+*----------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+FORM add_zero_line_to_menu<br />
+&nbsp;&nbsp;&nbsp;TABLES<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p_t_t3130a&nbsp;STRUCTURE&nbsp;t_t3130a<br />
+&nbsp;&nbsp;&nbsp;USING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(p_previous_mmenu)&nbsp;LIKE&nbsp;t3130a-mmenu<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(p_type).<br />
+&nbsp;&nbsp;DATA&nbsp;l_prev_menu&nbsp;LIKE&nbsp;t3130a-mmenu.<br />
+&nbsp;&nbsp;DATA&nbsp;&nbsp;l_t3130a&nbsp;LIKE&nbsp;t3130a.<br />
+&nbsp;&nbsp;DATA:&nbsp;tmp_lgnum&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LIKE&nbsp;&nbsp;lrf_wkqu-lgnum,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tmp_men_trans&nbsp;LIKE&nbsp;t3130a-mmenu.<br />
+&nbsp;&nbsp;READ&nbsp;TABLE&nbsp;p_t_t3130a&nbsp;WITH&nbsp;KEY&nbsp;sequence&nbsp;=&nbsp;0.<br />
+&nbsp;&nbsp;IF&nbsp;sy-subrc&nbsp;EQ&nbsp;0&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;LOOP&nbsp;AT&nbsp;p_t_t3130a&nbsp;WHERE&nbsp;sequence&nbsp;=&nbsp;0.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DELETE&nbsp;p_t_t3130a&nbsp;INDEX&nbsp;sy-tabix.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDLOOP.<br />
+<br />
+&nbsp;&nbsp;ELSE.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CHECK&nbsp;NOT&nbsp;ok_code&nbsp;IS&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;READ&nbsp;TABLE&nbsp;p_t_t3130a&nbsp;WITH&nbsp;KEY&nbsp;sequence&nbsp;=&nbsp;ok_code.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;sy-subrc&nbsp;EQ&nbsp;0.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MOVE-CORRESPONDING&nbsp;p_t_t3130a&nbsp;TO&nbsp;itb_t3130a&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tmp_lgnum&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;p_t_t3130a-lgnum.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tmp_men_trans&nbsp;=&nbsp;p_t_t3130a-mmenu.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ELSE.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;itb_t3130a-lgnum&nbsp;=&nbsp;lrf_wkqu-lgnum.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tmp_lgnum&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;lrf_wkqu-lgnum.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CLEAR&nbsp;&nbsp;tmp_men_trans.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;p_type&nbsp;=&nbsp;'1'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;READ&nbsp;TABLE&nbsp;itb_t3130a&nbsp;INTO&nbsp;l_t3130a<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WITH&nbsp;KEY&nbsp;lgnum&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;tmp_lgnum<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mmenu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;p_previous_mmenu<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sequence&nbsp;&nbsp;=&nbsp;0.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;sy-subrc&nbsp;&lt;&gt;&nbsp;0.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;l_prev_menu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;p_t_t3130a-mmenu.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;itb_t3130a-mmenu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;p_previous_mmenu.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;itb_t3130a-men_trans&nbsp;=&nbsp;tmp_men_trans.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;itb_t3130a-sequence&nbsp;&nbsp;=&nbsp;0.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;itb_t3130a-pro_typ&nbsp;&nbsp;&nbsp;=&nbsp;p_type.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;APPEND&nbsp;itb_t3130a.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ELSE.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;l_prev_menu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;p_t_t3130a-mmenu.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;SET&nbsp;PARAMETER&nbsp;ID&nbsp;'PREV_MENU'&nbsp;FIELD&nbsp;l_prev_menu.<br />
+<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+<br />
+ENDFORM.                               " ADD_ZERO_LINE_TO_MENU<br />
+<br />
+   </div>
+   <div class="codeComment">
+*GUI&nbsp;Texts<br />
+*----------------------------------------------------------<br />
+*&nbsp;0888&nbsp;--&gt;&nbsp;RF&nbsp;Menü<br />
+*&nbsp;2888&nbsp;--&gt;&nbsp;RF&nbsp;Menü<br />
+*&nbsp;0888&nbsp;--&gt;&nbsp;RF&nbsp;menü<br />
+*&nbsp;2888&nbsp;--&gt;&nbsp;RF&nbsp;menü<br />
+*&nbsp;0888&nbsp;--&gt;&nbsp;Menu&nbsp;RF<br />
+*&nbsp;2888&nbsp;--&gt;&nbsp;Menu&nbsp;RF<br />
+*&nbsp;0888&nbsp;--&gt;&nbsp;RF&nbsp;menü<br />
+*&nbsp;2888&nbsp;--&gt;&nbsp;RF&nbsp;menü<br />
+*&nbsp;0888&nbsp;--&gt;&nbsp;Menu&nbsp;RF<br />
+*&nbsp;2888&nbsp;--&gt;&nbsp;Menu&nbsp;RF<br />
+*&nbsp;0888&nbsp;--&gt;&nbsp;Menú&nbsp;RF<br />
+*&nbsp;2888&nbsp;--&gt;&nbsp;Menú&nbsp;RF<br />
+*&nbsp;0888&nbsp;--&gt;&nbsp;Meniu&nbsp;FD<br />
+*&nbsp;2888&nbsp;--&gt;&nbsp;Meniu&nbsp;FD<br />
+*&nbsp;0888&nbsp;--&gt;&nbsp;Menu&nbsp;de&nbsp;radiofréquence<br />
+*&nbsp;2888&nbsp;--&gt;&nbsp;Menu&nbsp;de&nbsp;radiofréquence<br />
+*&nbsp;0888&nbsp;--&gt;&nbsp;Menú&nbsp;RF<br />
+*&nbsp;2888&nbsp;--&gt;&nbsp;Menú&nbsp;RF<br />
+*&nbsp;0888&nbsp;--&gt;&nbsp;RF&nbsp;Menu<br />
+*&nbsp;2888&nbsp;--&gt;&nbsp;RF&nbsp;Menu<br />
+*&nbsp;0888&nbsp;--&gt;&nbsp;Menu&nbsp;RF<br />
+*&nbsp;2888&nbsp;--&gt;&nbsp;Menu&nbsp;RF<br />
+<br />
+*Text&nbsp;elements<br />
+*----------------------------------------------------------<br />
+*&nbsp;002&nbsp;Qty&nbsp;changed<br />
+*&nbsp;003&nbsp;Item&nbsp;found<br />
+*&nbsp;004&nbsp;Already&nbsp;counted<br />
+*&nbsp;005&nbsp;Counted&nbsp;to&nbsp;zero<br />
+*&nbsp;006&nbsp;Mixed&nbsp;SU<br />
+*&nbsp;007&nbsp;Partially&nbsp;counted<br />
+<br />
+<br />
+*Messages<br />
+*----------------------------------------------------------<br />
+*<br />
+*&nbsp;Message&nbsp;class:&nbsp;00<br />
+*172&nbsp;&nbsp;&nbsp;You&nbsp;are&nbsp;not&nbsp;authorized&nbsp;to&nbsp;use&nbsp;transaction&nbsp;&<br />
+*<br />
+*&nbsp;Message&nbsp;class:&nbsp;LF<br />
+*102&nbsp;&nbsp;&nbsp;Transfer&nbsp;order&nbsp;&1&nbsp;does&nbsp;not&nbsp;exist&nbsp;in&nbsp;warehouse&nbsp;&2<br />
+*111&nbsp;&nbsp;&nbsp;An&nbsp;internal&nbsp;error&nbsp;has&nbsp;occurred<br />
+*191&nbsp;&nbsp;&nbsp;Profile&nbsp;for&nbsp;user&nbsp;&1&nbsp;is&nbsp;not&nbsp;active<br />
+*192&nbsp;&nbsp;&nbsp;User&nbsp;&1&nbsp;has&nbsp;no&nbsp;profile&nbsp;definition<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 758</td>
+   </tr>
+</table>
+</body>
+</html>

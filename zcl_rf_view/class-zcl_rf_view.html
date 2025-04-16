@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>ZCL_RF_VIEW</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for class: ZCL_RF_VIEW</h2>
+<h3> Description: Main class for RF views</h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Class attributes.                                                    *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+Instantiation: Protected<br />
+Message class: <br />
+State: Implemented<br />
+Final Indicator: <br />
+R/3 Release: 740<br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Public section of class.                                             *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+CLASS zcl_rf_view DEFINITION<br />
+&nbsp;&nbsp;PUBLIC<br />
+&nbsp;&nbsp;CREATE&nbsp;PROTECTED&nbsp;.<br />
+<br />
+&nbsp;&nbsp;PUBLIC&nbsp;SECTION.<br />
+<br />
+include structure <a href ="zif_rf_view /dictionary-zif_rf_view .html">zif_rf_view </a>.<br />
+<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/is_pbo_init.html">is_pbo_init</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(rv_init)&nbsp;TYPE&nbsp;boolean&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/get_screen_vars.html">get_screen_vars</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(rr_vars)&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;zcl_rf_constants=&gt;gty_screen_vars&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/init_screen_data&nbsp;..html">init_screen_data&nbsp;.</a><br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/get_last_okcode.html">get_last_okcode</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(rv_okcode)&nbsp;TYPE&nbsp;sy-ucomm&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TYPE-POOLS&nbsp;abap&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/get_pbo_ucomm.html">get_pbo_ucomm</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_init&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;boolean&nbsp;DEFAULT&nbsp;abap_false<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUE(rv_ucomm)&nbsp;TYPE&nbsp;sy-ucomm&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="public_methods/display_static_message.html">display_static_message</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_msg&nbsp;TYPE&nbsp;string&nbsp;.<br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Private section of class.                                            *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;PRIVATE&nbsp;SECTION.<br />
+<br />
+<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA:&nbsp;gv_pbo_init&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;boolean,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gv_last_okcode&nbsp;TYPE&nbsp;sy-ucomm,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gv_conf_msg&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;boolean.<br />
+<br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Protected section of class.                                          *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;PROTECTED&nbsp;SECTION.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CLASS-DATA&nbsp;gt_views&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gtty_view&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA&nbsp;gs_cfg&nbsp;TYPE&nbsp;zrf_tcode_cfg&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA&nbsp;gv_error&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gty_validation_id.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA:&nbsp;gv_pbo_ucomm&nbsp;TYPE&nbsp;sy-ucomm.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA&nbsp;gr_screen_vars&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;zcl_rf_constants=&gt;gty_screen_vars&nbsp;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA:&nbsp;gt_validations&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gtty_validation_str.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/:&nbsp;display_message&nbsp;importing&nbsp;iv_msg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type&nbsp;string.html">:&nbsp;display_message&nbsp;IMPORTING&nbsp;iv_msg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;string</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_conf_msg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;boolean&nbsp;DEFAULT&nbsp;abap_false<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_source_pbo_init&nbsp;TYPE&nbsp;boolean&nbsp;DEFAULT&nbsp;abap_false<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_nav_back&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;boolean&nbsp;DEFAULT&nbsp;abap_false.<br />
+<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/screen_data_pbo_scrl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;importing&nbsp;ir_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type&nbsp;ref&nbsp;to&nbsp;data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exporting&nbsp;et_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type&nbsp;table&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;es_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type&nbsp;any&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ev_all_proc&nbsp;type&nbsp;boolean&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ev_txt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type&nbsp;string..html">screen_data_pbo_scrl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING&nbsp;ir_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING&nbsp;et_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;table&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;es_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;any&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ev_all_proc&nbsp;TYPE&nbsp;boolean&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ev_txt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;string.</a><br />
+   </div>
+   <div class="codeComment">
+*                ev_no_more_model_data TYPE boolean<br />
+*                ev_all_proc           TYPE boolean.<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/screen_data_pbo_scrl_exc&nbsp;returning&nbsp;value(rv_rec)&nbsp;type&nbsp;boolean..html">screen_data_pbo_scrl_exc&nbsp;RETURNING&nbsp;VALUE(rv_rec)&nbsp;TYPE&nbsp;boolean.</a><br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/constructor.html">constructor</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is_cfg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;zrf_tcode_cfg<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!ir_screen_vars&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;zcl_rf_constants=&gt;gty_screen_vars&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/validate_pai.html">validate_pai</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_okcode&nbsp;TYPE&nbsp;sy-ucomm<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAISING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zcx_rf_exception&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/process_pai.html">process_pai</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_okcode&nbsp;TYPE&nbsp;sy-ucomm<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAISING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zcx_rf_exception&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/finish_pai.html">finish_pai</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_okcode&nbsp;TYPE&nbsp;sy-ucomm<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAISING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zcx_rf_exception&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/screen_data_pbo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;raising&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zcx_rf_exception&nbsp;..html">screen_data_pbo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAISING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zcx_rf_exception&nbsp;.</a><br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/set_pbo_init.html">set_pbo_init</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_init&nbsp;TYPE&nbsp;boolean&nbsp;.<br />
+&nbsp;&nbsp;METHODS&nbsp;<a&nbsp;href="protected_methods/get_model_data_type&nbsp;exporting&nbsp;et_data&nbsp;type&nbsp;table..html">get_model_data_type&nbsp;EXPORTING&nbsp;et_data&nbsp;TYPE&nbsp;table.</a><br />
+<br />
+&nbsp;&nbsp;METHODS:&nbsp;<a&nbsp;href="protected_methods/has_previous&nbsp;returning&nbsp;value(rv_previous)&nbsp;type&nbsp;boolean,.html">has_previous&nbsp;RETURNING&nbsp;VALUE(rv_previous)&nbsp;TYPE&nbsp;boolean,</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;has_next&nbsp;RETURNING&nbsp;VALUE(rv_next)&nbsp;TYPE&nbsp;boolean,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get_direction&nbsp;RETURNING&nbsp;VALUE(rv_direction)&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gty_idx_set,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set_direction&nbsp;IMPORTING&nbsp;iv_direction&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gty_idx_set.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA:&nbsp;gv_multiple&nbsp;&nbsp;TYPE&nbsp;boolean,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gv_direction&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gty_idx_set.<br />
+&nbsp;&nbsp;METHODS:&nbsp;<a&nbsp;href="protected_methods/set_my_screen_vars..html">set_my_screen_vars.</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA:&nbsp;gt_screen_vars&nbsp;TYPE&nbsp;TABLE&nbsp;OF&nbsp;screen-name.<br />
+&nbsp;&nbsp;METHODS:&nbsp;<a&nbsp;href="protected_methods/get_conf_msg&nbsp;returning&nbsp;value(rv_conf_msg)&nbsp;type&nbsp;boolean..html">get_conf_msg&nbsp;RETURNING&nbsp;VALUE(rv_conf_msg)&nbsp;TYPE&nbsp;boolean.</a><br />
+&nbsp;&nbsp;METHODS:&nbsp;<a&nbsp;href="protected_methods/set_last_okcode&nbsp;importing&nbsp;iv_okcode&nbsp;type&nbsp;sy-ucomm..html">set_last_okcode&nbsp;IMPORTING&nbsp;iv_okcode&nbsp;TYPE&nbsp;sy-ucomm.</a><br />
+&nbsp;&nbsp;METHODS:&nbsp;<a&nbsp;href="protected_methods/set_error&nbsp;importing&nbsp;iv_err&nbsp;type&nbsp;zcl_rf_constants=&gt;gty_validation_id,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;has_error&nbsp;returning&nbsp;value(rv_err)&nbsp;type&nbsp;boolean,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get_error&nbsp;returning&nbsp;value(rv_err)&nbsp;type&nbsp;zcl_rf_constants=&gt;gty_validation_id..html">set_error&nbsp;IMPORTING&nbsp;iv_err&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gty_validation_id,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;has_error&nbsp;RETURNING&nbsp;VALUE(rv_err)&nbsp;TYPE&nbsp;boolean,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get_error&nbsp;RETURNING&nbsp;VALUE(rv_err)&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gty_validation_id.</a><br />
+&nbsp;&nbsp;METHODS:&nbsp;<a&nbsp;href="protected_methods/set_conf_msg&nbsp;importing&nbsp;iv_conf_msg&nbsp;type&nbsp;boolean..html">set_conf_msg&nbsp;IMPORTING&nbsp;iv_conf_msg&nbsp;TYPE&nbsp;boolean.</a><br />
+&nbsp;&nbsp;METHODS:&nbsp;<a&nbsp;href="protected_methods/check_conf_msg_answ..html">check_conf_msg_answ.</a><br />
+&nbsp;&nbsp;METHODS:&nbsp;<a&nbsp;href="protected_methods/set_validation&nbsp;importing&nbsp;iv_all&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type&nbsp;boolean&nbsp;default&nbsp;abap_false.html">set_validation&nbsp;IMPORTING&nbsp;iv_all&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;boolean&nbsp;DEFAULT&nbsp;abap_false</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_validation_id&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gty_validation_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_active&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;boolean,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is_validation_active&nbsp;IMPORTING&nbsp;iv_validation_id&nbsp;TYPE&nbsp;zcl_rf_constants=&gt;gty_validation_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURNING&nbsp;VALUE(rv_active)&nbsp;TYPE&nbsp;boolean,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;init_validation.<br />
+&nbsp;&nbsp;METHODS:&nbsp;<a&nbsp;href="protected_methods/set_pbo_ucomm&nbsp;importing&nbsp;iv_ucomm&nbsp;type&nbsp;sy-ucomm..html">set_pbo_ucomm&nbsp;IMPORTING&nbsp;iv_ucomm&nbsp;TYPE&nbsp;sy-ucomm.</a><br />
+<br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Types section of class.                                              *<br />
+**************************************************************************<br />
+*"* dummy include to reduce generation dependencies between<br />
+*"* class ZCL_RF_VIEW and it's users.<br />
+*"* touched if any type reference has been changed<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 758</td>
+   </tr>
+</table>
+</body>
+</html>

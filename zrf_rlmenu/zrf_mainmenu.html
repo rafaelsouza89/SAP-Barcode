@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>ZRF_MAINMENU</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: ZRF_MAINMENU</h2>
+<h3> Description: Include ZRF_MAINMENU</h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;Include&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZRF_MAINMENU<br />
+*&---------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+FORM zrf_call_screen_menu.<br />
+<br />
+&nbsp;&nbsp;CALL&nbsp;FUNCTION&nbsp;'DETERMINE_SCREEN_NUMBER'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lscrn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;menu_screen<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pscrn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;pscrn<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXCEPTIONS<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;screen_not_found&nbsp;=&nbsp;01.<br />
+<br />
+&nbsp;&nbsp;IF&nbsp;sy-subrc&nbsp;&lt;&gt;&nbsp;0.<br />
+   </div>
+   <div class="codeComment">
+*........Failed&nbsp;to&nbsp;determine&nbsp;screen&nbsp;number..............................<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;message_number&nbsp;=&nbsp;'190'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;PERFORM&nbsp;error_message.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;LEAVE&nbsp;TO&nbsp;TRANSACTION&nbsp;sy-tcode.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;"AMT/RDM&nbsp;-&nbsp;20230111&nbsp;-&nbsp;BEG&nbsp;-&nbsp;SD2<br />
+&nbsp;&nbsp;DATA(lv_iniscr_sd2)&nbsp;=&nbsp;zcl_rf_zrf_device_cfg_dao=&gt;get_entry(&nbsp;iv_tcode&nbsp;=&nbsp;sy-tcode&nbsp;)-init_screen.<br />
+&nbsp;&nbsp;pscrn&nbsp;=&nbsp;COND&nbsp;#(&nbsp;WHEN&nbsp;lv_iniscr_sd2&nbsp;IS&nbsp;NOT&nbsp;INITIAL&nbsp;THEN&nbsp;lv_iniscr_sd2&nbsp;ELSE&nbsp;pscrn&nbsp;).<br />
+&nbsp;&nbsp;"AMT/RDM&nbsp;-&nbsp;20230111&nbsp;-&nbsp;END&nbsp;-&nbsp;SD2<br />
+<br />
+&nbsp;&nbsp;CALL&nbsp;SCREEN&nbsp;pscrn.<br />
+ENDFORM.<br />
+   </div>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Form&nbsp;&nbsp;ZRF_USER_OWN_DATA<br />
+*&---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text<br />
+*----------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;--&gt;&nbsp;&nbsp;p1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text<br />
+*&nbsp;&nbsp;&lt;--&nbsp;&nbsp;p2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text<br />
+*----------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+FORM zrf_user_own_data .<br />
+<br />
+<br />
+<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;Read&nbsp;the&nbsp;user&nbsp;data&nbsp;from&nbsp;table&nbsp;lrf_wkqu&nbsp;(&nbsp;for&nbsp;all&nbsp;the&nbsp;warehouses)<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;CALL&nbsp;FUNCTION&nbsp;'L_USER_DATA_GET'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i_uname&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;sy-uname<br />
+&nbsp;&nbsp;&nbsp;&nbsp;TABLES<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t_xuser&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;xuser<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXCEPTIONS<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no_entry_found&nbsp;=&nbsp;01.<br />
+<br />
+<br />
+<br />
+&nbsp;&nbsp;IF&nbsp;sy-subrc&nbsp;&lt;&gt;&nbsp;0.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;MESSAGE&nbsp;e192&nbsp;WITH&nbsp;sy-uname.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;&nbsp;&nbsp;MESSAGE_NUMBER&nbsp;=&nbsp;'192'.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;MESSAGE_VAR1&nbsp;&nbsp;=&nbsp;SY-UNAME&nbsp;.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;MESSAGE_LANG&nbsp;=&nbsp;SY-LANGU.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;PERFORM&nbsp;ERROR_MESSAGE.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;EXIT.<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;ELSE.<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;read&nbsp;the&nbsp;user&nbsp;record&nbsp;of&nbsp;the&nbsp;active&nbsp;whs<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;READ&nbsp;TABLE&nbsp;xuser&nbsp;WITH&nbsp;KEY&nbsp;statu&nbsp;=&nbsp;con_x.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;sy-subrc&nbsp;&lt;&gt;&nbsp;0.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MESSAGE&nbsp;e191&nbsp;WITH&nbsp;sy-uname.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MESSAGE_NUMBER&nbsp;=&nbsp;'191'.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MESSAGE_VAR1&nbsp;&nbsp;=&nbsp;SY-UNAME&nbsp;.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MESSAGE_LANG&nbsp;=&nbsp;SY-LANGU.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PERFORM&nbsp;ERROR_MESSAGE.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXIT.<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+<br />
+<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;fill&nbsp;user&nbsp;parameters&nbsp;for&nbsp;the&nbsp;session<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;MOVE-CORRESPONDING&nbsp;xuser&nbsp;TO&nbsp;lrf_wkqu.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;whs_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;lrf_wkqu-lgnum.&nbsp;&nbsp;"&nbsp;WAREHOUSE&nbsp;ID<br />
+&nbsp;&nbsp;&nbsp;&nbsp;b_mnu_scr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;lrf_wkqu-mmenu.&nbsp;&nbsp;"&nbsp;BASE&nbsp;MENU&nbsp;SCREEN<br />
+&nbsp;&nbsp;&nbsp;&nbsp;present&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;lrf_wkqu-devty.&nbsp;&nbsp;"&nbsp;PRESENTATION&nbsp;TYPE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;exver&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;lrf_wkqu-exver.&nbsp;&nbsp;"&nbsp;EXIT&nbsp;VERSION<br />
+&nbsp;&nbsp;&nbsp;&nbsp;docnum&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;lrf_wkqu-docnum.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;personal_number&nbsp;=&nbsp;lrf_wkqu-pernr.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;sort_value&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;lrf_wkqu-sorsq.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;user_prf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;lrf_wkqu-queue.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;autho&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;lrf_wkqu-autho.<br />
+<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+<br />
+&nbsp;&nbsp;"AMT/RDM&nbsp;-&nbsp;20230111&nbsp;-&nbsp;SD2&nbsp;-&nbsp;BEG<br />
+<br />
+&nbsp;&nbsp;DATA(ls_device_cfg)&nbsp;=&nbsp;zcl_rf_zrf_device_cfg_dao=&gt;get_entry(&nbsp;iv_tcode&nbsp;=&nbsp;sy-tcode&nbsp;).<br />
+&nbsp;&nbsp;DATA(ls_curr_cfg)&nbsp;=&nbsp;zcl_rf_constants=&gt;get_device_cfg(&nbsp;).<br />
+&nbsp;&nbsp;DATA&nbsp;lv_prev_menu&nbsp;LIKE&nbsp;ls_device_cfg-main_menu.<br />
+&nbsp;&nbsp;DATA&nbsp;lt_str&nbsp;TYPE&nbsp;TABLE&nbsp;OF&nbsp;string.<br />
+&nbsp;&nbsp;GET&nbsp;PARAMETER&nbsp;ID&nbsp;'PREV_MENU'&nbsp;FIELD&nbsp;lv_prev_menu.<br />
+&nbsp;&nbsp;IF&nbsp;ls_device_cfg&nbsp;IS&nbsp;NOT&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;ls_device_cfg&nbsp;NE&nbsp;ls_curr_cfg.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;change&nbsp;in&nbsp;main&nbsp;tcode&nbsp;-&gt;&nbsp;clear&nbsp;lv_prev_menu<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zcl_rf_constants=&gt;set_device_cfg(&nbsp;is_dev_cfg&nbsp;=&nbsp;VALUE&nbsp;#(&nbsp;tcode&nbsp;=&nbsp;sy-tcode&nbsp;)&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;SPLIT&nbsp;lv_prev_menu&nbsp;AT&nbsp;'_'&nbsp;INTO&nbsp;TABLE&nbsp;lt_str.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA(lv_prev_menu_suf)&nbsp;=&nbsp;COND&nbsp;#(&nbsp;WHEN&nbsp;lines(&nbsp;lt_str&nbsp;)&nbsp;=&nbsp;2&nbsp;THEN&nbsp;'_'&nbsp;&&&nbsp;lt_str[&nbsp;2&nbsp;]&nbsp;ELSE&nbsp;VALUE&nbsp;#(&nbsp;)&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;lv_prev_menu_suf&nbsp;NE&nbsp;ls_device_cfg-menu_sufix.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET&nbsp;PARAMETER&nbsp;ID&nbsp;'PREV_MENU'&nbsp;FIELD&nbsp;ls_device_cfg-main_menu.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;b_mnu_scr&nbsp;=&nbsp;lrf_wkqu-mmenu&nbsp;=&nbsp;ls_device_cfg-main_menu.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+<br />
+&nbsp;&nbsp;"AMT/RDM&nbsp;-&nbsp;20230111&nbsp;-&nbsp;SD2&nbsp;-&nbsp;END<br />
+<br />
+ENDFORM.                    " ZRF_USER_OWN_DATA<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 758</td>
+   </tr>
+</table>
+</body>
+</html>

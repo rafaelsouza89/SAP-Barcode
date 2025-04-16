@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>ZCL_RF_SALES_ORDER</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for class: ZCL_RF_SALES_ORDER</h2>
+<h3> Description: RF - Sales Orders</h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Class attributes.                                                    *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+Instantiation: Protected<br />
+Message class: <br />
+State: Implemented<br />
+Final Indicator: X<br />
+R/3 Release: 740<br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Public section of class.                                             *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+class ZCL_RF_SALES_ORDER definition<br />
+&nbsp;&nbsp;public<br />
+&nbsp;&nbsp;final<br />
+&nbsp;&nbsp;create&nbsp;protected&nbsp;.<br />
+<br />
+public section.<br />
+<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/get_instance.html">GET_INSTANCE</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_VBELN&nbsp;type&nbsp;VBAK-VBELN<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RR_REF)&nbsp;type&nbsp;ref&nbsp;to&nbsp;ZCL_RF_SALES_ORDER<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;class&nbsp;ZCL_RF_CONSTANTS&nbsp;definition&nbsp;load&nbsp;.<br />
+&nbsp;&nbsp;type-pools&nbsp;ABAP&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/get_open_backorders.html">GET_OPEN_BACKORDERS</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ITR_MATNR&nbsp;type&nbsp;ZCL_RF_CONSTANTS=&gt;GTR_MATNR<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_WERKS&nbsp;type&nbsp;MARC-WERKS<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_LGORT&nbsp;type&nbsp;MARD-LGORT<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_EXC_PUTAWAY&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_TRUE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_ADAPT_QTYS&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_FALSE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_VBELN&nbsp;type&nbsp;VBAK-VBELN&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_ONLY_OPEN_EXIDV&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_TRUE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;changing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CT_UNKNOWN_USED&nbsp;type&nbsp;ZCL_RF_CONSTANTS=&gt;GTTY_INSTRUCTION&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RT_VBBE)&nbsp;type&nbsp;VBBE_T<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/run_backorder_confirmation.html">RUN_BACKORDER_CONFIRMATION</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IT_INST&nbsp;type&nbsp;ZCL_RF_CONSTANTS=&gt;GTTY_INST_MODEL<br />
+&nbsp;&nbsp;&nbsp;&nbsp;exporting<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ET_ORIG_VBBE&nbsp;type&nbsp;VBBE_T<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ET_FINAL_VBBE&nbsp;type&nbsp;VBBE_T<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/is_so_fully_putaway.html">IS_SO_FULLY_PUTAWAY</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_VBELN&nbsp;type&nbsp;VBAK-VBELN<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IT_INST&nbsp;type&nbsp;ZRF_PUTAWAY_TAB<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RV_FULL)&nbsp;type&nbsp;BOOLEAN&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/get_vbbe_qty.html">GET_VBBE_QTY</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IS_VBBE&nbsp;type&nbsp;VBBE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RV_QTY)&nbsp;type&nbsp;VBBE-OMENG&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/get_deliveries.html">GET_DELIVERIES</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_VBELN&nbsp;type&nbsp;VBAK-VBELN<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_WERKS&nbsp;type&nbsp;WERKS_D&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RT_VBFA)&nbsp;type&nbsp;VBFA_T&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/check_so_with_soi.html">CHECK_SO_WITH_SOI</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IR_VBELN&nbsp;type&nbsp;FIP_T_VBELN_RANGE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(ET_BACKORDER)&nbsp;type&nbsp;ZCL_RF_CONSTANTS=&gt;GTTY_BACKORDER_MAP&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/is_shipping_status_ready.html">IS_SHIPPING_STATUS_READY</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_HEAD_STATUS_ONLY&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_FALSE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RV_READY)&nbsp;type&nbsp;BOOLEAN<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/is_service_order.html">IS_SERVICE_ORDER</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RV_CHECKED)&nbsp;type&nbsp;BOOLEAN&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/get_service_order_info.html">GET_SERVICE_ORDER_INFO</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RS_SERV_ORDER)&nbsp;type&nbsp;ZCL_RF_CONSTANTS=&gt;GTY_SERVICE_ORDER&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/get_orders_for_soi_po.html">GET_ORDERS_FOR_SOI_PO</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_EBELN&nbsp;type&nbsp;EKKO-EBELN<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RT_SOI_INFO)&nbsp;type&nbsp;ZCL_RF_CONSTANTS=&gt;GTTY_SOI_INFO&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/is_soi_excl_active.html">IS_SOI_EXCL_ACTIVE</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_VBELN&nbsp;type&nbsp;VBELN&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_POSNR&nbsp;type&nbsp;POSNR&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_WERKS&nbsp;type&nbsp;WERKS_D<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_AUART&nbsp;type&nbsp;AUART&nbsp;optional<br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RV_IS_ACTIVE)&nbsp;type&nbsp;BOOLEAN&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/is_vv2_running.html">IS_VV2_RUNNING</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RV_IS_RUNNING)&nbsp;type&nbsp;BOOLEAN&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/set_vv2_running.html">SET_VV2_RUNNING</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_RUNNING&nbsp;type&nbsp;BOOLEAN&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/calculate_new_pricing.html">CALCULATE_NEW_PRICING</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_POSNR&nbsp;type&nbsp;POSNR<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_COMMIT&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_FALSE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_CLEAR_MBEW_BUF&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_FALSE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/recalc_pricing.html">RECALC_PRICING</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ITR_VBELN&nbsp;type&nbsp;ZCL_RF_CONSTANTS=&gt;GTR_VBELN<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_COMMIT&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_FALSE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ITR_MATNR&nbsp;type&nbsp;ZCL_RF_CONSTANTS=&gt;GTR_MATNR<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="public_methods/get_incomplete_items.html">GET_INCOMPLETE_ITEMS</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;returning<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value(RT_VBAP)&nbsp;type&nbsp;VBAP_T<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Private section of class.                                            *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;PRIVATE&nbsp;SECTION.<br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Protected section of class.                                          *<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+protected section.<br />
+<br />
+&nbsp;&nbsp;data&nbsp;GV_VBELN&nbsp;type&nbsp;VBAK-VBELN&nbsp;.<br />
+&nbsp;&nbsp;data&nbsp;GS_VBAK&nbsp;type&nbsp;VBAK&nbsp;.<br />
+&nbsp;&nbsp;data&nbsp;GT_VBAP&nbsp;type&nbsp;VBAP_T&nbsp;.<br />
+&nbsp;&nbsp;data&nbsp;GS_VBKD&nbsp;type&nbsp;VBKD&nbsp;.<br />
+&nbsp;&nbsp;data&nbsp;GS_VBUK&nbsp;type&nbsp;VBUK&nbsp;.<br />
+&nbsp;&nbsp;class-data&nbsp;GV_VV2_RUNNING&nbsp;type&nbsp;BOOLEAN&nbsp;.<br />
+&nbsp;&nbsp;data&nbsp;GT_VBUP&nbsp;type&nbsp;VBUP_T&nbsp;.<br />
+&nbsp;&nbsp;data&nbsp;GT_VBUV&nbsp;type&nbsp;VA_VBUV_T&nbsp;.<br />
+<br />
+&nbsp;&nbsp;class&nbsp;ZCL_RF_CONSTANTS&nbsp;definition&nbsp;load&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="protected_methods/run_v_v1.html">RUN_V_V1</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ITR_VBELN&nbsp;type&nbsp;ZCL_RF_CONSTANTS=&gt;GTR_VBELN<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ITR_MATNR&nbsp;type&nbsp;ZCL_RF_CONSTANTS=&gt;GTR_MATNR&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="protected_methods/run_v_v2.html">RUN_V_V2</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_WERKS&nbsp;type&nbsp;MARC-WERKS<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ITR_MATNR&nbsp;type&nbsp;ZCL_RF_CONSTANTS=&gt;GTR_MATNR<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ITR_VBELN&nbsp;type&nbsp;ZCL_RF_CONSTANTS=&gt;GTR_VBELN&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="protected_methods/constructor.html">CONSTRUCTOR</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_VBELN&nbsp;type&nbsp;VBAK-VBELN<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+&nbsp;&nbsp;type-pools&nbsp;ABAP&nbsp;.<br />
+&nbsp;&nbsp;methods&nbsp;<a&nbsp;href="protected_methods/get_data.html">GET_DATA</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;importing<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IV_INIT&nbsp;type&nbsp;BOOLEAN&nbsp;default&nbsp;ABAP_FALSE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;raising<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZCX_RF_EXCEPTION&nbsp;.<br />
+<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+*   Types section of class.                                              *<br />
+**************************************************************************<br />
+*"* dummy include to reduce generation dependencies between<br />
+*"* class ZCL_RF_SALES_ORDER and it's users.<br />
+*"* touched if any type reference has been changed<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 758</td>
+   </tr>
+</table>
+</body>
+</html>

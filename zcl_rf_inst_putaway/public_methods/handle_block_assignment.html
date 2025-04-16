@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>HANDLE_BLOCK_ASSIGNMENT</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: HANDLE_BLOCK_ASSIGNMENT</h2>
+<h3> Description: </h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+**************************************************************************<br />
+*&nbsp;&nbsp;&nbsp;Method&nbsp;attributes.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*<br />
+**************************************************************************<br />
+   </div>
+   <div class="code">
+Instantiation: Public<br />
+   </div>
+   <div class="codeComment">
+**************************************************************************<br />
+<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;METHOD&nbsp;handle_block_assignment.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;FIELD-SYMBOLS:&nbsp;&lt;fs_putaway&gt;&nbsp;TYPE&nbsp;zrf_putaway.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA(lr_data)&nbsp;=&nbsp;me-&gt;get_data(&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CHECK&nbsp;lr_data&nbsp;IS&nbsp;BOUND.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ASSIGN&nbsp;lr_data-&gt;*&nbsp;TO&nbsp;&lt;fs_putaway&gt;.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"DATA(ls_putaway)&nbsp;=&nbsp;me-&gt;get_data_putaway(&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CHECK<br />
+&nbsp;&nbsp;&nbsp;&nbsp;iv_total_block&nbsp;&gt;&nbsp;0&nbsp;AND<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ir_assigned_putaway&nbsp;IS&nbsp;BOUND&nbsp;AND<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;fs_putaway&gt;-type&nbsp;=&nbsp;zcl_rf_constants=&gt;gc_paway_type_block<br />
+&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;iv_current_stock&nbsp;&gt;&nbsp;0<br />
+&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;&lt;fs_putaway&gt;-status&nbsp;NE&nbsp;zcl_rf_constants=&gt;gc_inst_stat_cancelled.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA(ls_assigned_putaway)&nbsp;=&nbsp;ir_assigned_putaway-&gt;get_data_putaway(&nbsp;).<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;must&nbsp;retrieve&nbsp;all&nbsp;other&nbsp;consumed&nbsp;block&nbsp;instructions<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA(lt_blocked_inst)&nbsp;=&nbsp;zcl_rf_inst_putaway=&gt;query_blocked_instr(<br />
+&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;iv_lgnum&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;ls_assigned_putaway-lgnum<br />
+&nbsp;&nbsp;&nbsp;&nbsp;iv_matnr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;ls_assigned_putaway-matnr<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"iv_exidv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;ls_assigned_putaway-exidv<br />
+&nbsp;&nbsp;&nbsp;&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;exclude&nbsp;self&nbsp;and&nbsp;currently&nbsp;created&nbsp;entries<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DELETE&nbsp;lt_blocked_inst&nbsp;WHERE&nbsp;id&nbsp;=&nbsp;&lt;fs_putaway&gt;-id<br />
+&nbsp;&nbsp;&nbsp;&nbsp;OR&nbsp;related_putaway&nbsp;=&nbsp;zcl_rf_constants=&gt;gc_dummy_rel_id.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;RDM&nbsp;-&nbsp;20191217<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;handle&nbsp;SERNR&nbsp;consumption<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA(lv_sernr_enabled)&nbsp;=&nbsp;zcl_rf_matnr=&gt;is_matnr_sernr_enabled(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_matnr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;ls_assigned_putaway-matnr<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_lgnum&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_werks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;fetch&nbsp;read&nbsp;sernr's<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;lv_sernr_enabled&nbsp;=&nbsp;abap_true.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zcl_rf_zrf_hu_sernr_dao=&gt;query_by_exidv(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_exidv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;ls_assigned_putaway-exidv<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_matnr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_transient&nbsp;=&nbsp;ABAP_TRUE<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;et_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;DATA(lt_sernr_read)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"et_transient&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;ZRF_HU_SERNR<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;RDM&nbsp;-&nbsp;20191217<br />
+<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;update&nbsp;qty<br />
+&nbsp;&nbsp;&nbsp;&nbsp;DATA(lv_remain_qty)&nbsp;=&nbsp;iv_current_stock&nbsp;-&nbsp;iv_total_block.&nbsp;"ls_assigned_putaway-menge_frm_blk.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;now&nbsp;fecth&nbsp;missing&nbsp;qty&nbsp;to&nbsp;be&nbsp;assigned&nbsp;from&nbsp;blocked<br />
+&nbsp;&nbsp;&nbsp;&nbsp;LOOP&nbsp;AT&nbsp;lt_blocked_inst&nbsp;INTO&nbsp;DATA(ls_blk)&nbsp;WHERE&nbsp;menge&nbsp;&gt;&nbsp;0<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;related_putaway&nbsp;IS&nbsp;NOT&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lv_remain_qty&nbsp;=&nbsp;lv_remain_qty&nbsp;-&nbsp;ls_blk-menge.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDLOOP.<br />
+<br />
+<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;lv_remain_qty&nbsp;&gt;&nbsp;0.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;must&nbsp;do&nbsp;a&nbsp;split&nbsp;for&nbsp;consumed&nbsp;qty&nbsp;-&gt;&nbsp;it&nbsp;will&nbsp;be&nbsp;later&nbsp;unblocked<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DATA(ls_new_putaway)&nbsp;=&nbsp;&lt;fs_putaway&gt;.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CLEAR:&nbsp;ls_new_putaway-mblnr,&nbsp;ls_new_putaway-mjahr.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ls_new_putaway-menge&nbsp;=&nbsp;lv_remain_qty.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DATA(lr_new_inst)&nbsp;=&nbsp;me-&gt;split(&nbsp;is_dest_data&nbsp;=&nbsp;ls_new_putaway&nbsp;).&nbsp;"&nbsp;split<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAST&nbsp;zcl_rf_inst_putaway(&nbsp;lr_new_inst&nbsp;)-&gt;update_related(&nbsp;iv_related&nbsp;=&nbsp;zcl_rf_constants=&gt;gc_dummy_rel_id&nbsp;iv_save&nbsp;=&nbsp;abap_false&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;APPEND&nbsp;VALUE&nbsp;#(&nbsp;id&nbsp;=&nbsp;lr_new_inst-&gt;get_id(&nbsp;)&nbsp;dref&nbsp;=&nbsp;lr_new_inst&nbsp;)&nbsp;TO&nbsp;rt_inst.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;iv_save_splits&nbsp;=&nbsp;abap_true.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lr_new_inst-&gt;save(&nbsp;iv_save_related&nbsp;=&nbsp;abap_false&nbsp;iv_commit&nbsp;=&nbsp;abap_false&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;RDM&nbsp;-&nbsp;20191217<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;lv_sernr_enabled&nbsp;=&nbsp;abap_true.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;fetch&nbsp;available&nbsp;sernr's<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DATA(lt_available_sernrs)&nbsp;=&nbsp;zcl_rf_inbound=&gt;get_instance(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_vbeln&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;&lt;fs_putaway&gt;-inb_deliv<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_no_hu_error&nbsp;&nbsp;&nbsp;=&nbsp;abap_true<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)-&gt;get_available_sernrs(&nbsp;iv_exc_exidv&nbsp;=&nbsp;ls_assigned_putaway-exidv&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DELETE&nbsp;lt_available_sernrs&nbsp;WHERE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;itm_number&nbsp;&lt;&gt;&nbsp;&lt;fs_putaway&gt;-inb_deliv_item.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DATA(lv_found)&nbsp;=&nbsp;abap_false.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LOOP&nbsp;AT&nbsp;lt_available_sernrs&nbsp;INTO&nbsp;DATA(ls_av_sernr).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHECK&nbsp;line_exists(&nbsp;lt_sernr_read[&nbsp;sernr&nbsp;=&nbsp;ls_av_sernr-serialno&nbsp;]&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lv_found&nbsp;=&nbsp;abap_true.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXIT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDLOOP.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;lv_found&nbsp;=&nbsp;abap_false.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAISE&nbsp;EXCEPTION&nbsp;TYPE&nbsp;zcx_rf_exception_sernr.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;RDM&nbsp;-&nbsp;20191217<br />
+<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;fs_putaway&gt;-related_putaway&nbsp;=&nbsp;ir_assigned_putaway-&gt;get_id(&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;always&nbsp;put&nbsp;qty&nbsp;to&nbsp;0&nbsp;-&gt;&nbsp;mat&nbsp;doc&nbsp;will&nbsp;be&nbsp;fully&nbsp;reversed<br />
+&nbsp;&nbsp;&nbsp;&nbsp;me-&gt;add_qty(<br />
+&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_menge&nbsp;&nbsp;&nbsp;=&nbsp;CONV&nbsp;#(&nbsp;0&nbsp;)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iv_replace&nbsp;=&nbsp;abap_true<br />
+&nbsp;&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;me-&gt;update(&nbsp;&lt;fs_putaway&gt;&nbsp;).<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;iv_save_splits&nbsp;=&nbsp;abap_true.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;me-&gt;save(&nbsp;).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+<br />
+&nbsp;&nbsp;ENDMETHOD.<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 758</td>
+   </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>ZERO_CHECK</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for function ZERO_CHECK</h2>
+<h3> Description: Checks if the bin is empty</h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="code">
+FUNCTION ZERO_CHECK.<br />
+   </div>
+   <div class="codeComment">
+*"----------------------------------------------------------------------<br />
+*"*"Local interface:<br />
+*"  IMPORTING<br />
+*"     VALUE(I_LTAP) LIKE  LTAP STRUCTURE  LTAP<br />
+*"  EXPORTING<br />
+*"     VALUE(O_LTAP) LIKE  LTAP STRUCTURE  LTAP<br />
+*"     VALUE(O_SCREEN_FCODE) LIKE  SY-UCOMM<br />
+*"----------------------------------------------------------------------<br />
+<br />
+
+<div class="codeComment">*       <a href ="global-zero_check.html">Global data declarations</a></div><br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;CLEAR&nbsp;&nbsp;&nbsp;LTAP_ZERO.<br />
+<br />
+&nbsp;&nbsp;MOVE&nbsp;I_LTAP&nbsp;TO&nbsp;LTAP_ZERO.<br />
+<br />
+&nbsp;&nbsp;CALL&nbsp;FUNCTION&nbsp;'CALL_SCREEN_0410'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O_SCREEN_FCODE&nbsp;=&nbsp;SCREEN_FCODE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O_LTAP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;O_LTAP.<br />
+<br />
+&nbsp;&nbsp;CASE&nbsp;SCREEN_FCODE.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;WHEN&nbsp;FCODE_CANC.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MOVE&nbsp;I_LTAP&nbsp;TO&nbsp;O_LTAP.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O_SCREEN_FCODE&nbsp;=&nbsp;SCREEN_FCODE.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;WHEN&nbsp;OTHERS.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MOVE&nbsp;LTAP_ZERO&nbsp;TO&nbsp;O_LTAP.<br />
+<br />
+&nbsp;&nbsp;ENDCASE.<br />
+<br />
+ENDFUNCTION.<br />
+<br />
+<br />
+   </div>
+   <div class="codeComment">
+*Messages<br />
+*----------------------------------------------------------<br />
+*<br />
+* Message class: /CWM/MM<br />
+*028   Entry quantities in base and parallel quantity must exceed zero<br />
+*<br />
+* Message class: LC1<br />
+*001   T340D entry for whse number &1 not found<br />
+*<br />
+* Message class: LF<br />
+*064   A pick-HU should be assigned to transfer order &1<br />
+*100   Transfer order &1 is currently being processed<br />
+*101   Transfer order &1 already confirmed<br />
+*102   Transfer order &1 does not exist in warehouse &2<br />
+*103   Warehouse &1 is incorrect<br />
+*104   One item of transfer order &1 is missing<br />
+*106   No TO items to be confirmed<br />
+*107   More than one transfer order to be confirmed<br />
+*109   Failed to call screen<br />
+*110   Unable to process message ID &1 number &2<br />
+*111   An internal error has occurred<br />
+*114   Storage unit &1 does not exist<br />
+*115   Storage unit &1 is being processed by another user<br />
+*116   Storage type &1 storage bin &2 is already in process by another user<br />
+*117   User has no authorization for warehouse &1<br />
+*118   Cannot find all transfer order items for storage unit &1<br />
+*119   Transfer requirement &1 is being processed by another user<br />
+*120   Posting change document &1 is being processed by another user<br />
+*121   Delivery note &1 is being processed by another user<br />
+*122   Error in calling message screen<br />
+*131   Storage unit &1 does not exist or is being processed by another user<br />
+*132   Transfer order item in storage unit &1 cannot be confirmed<br />
+*133   Error while trying to confirm storage unit &1<br />
+*134   All transfer order items for storage unit &1 already confirmed<br />
+*135   Shipping document &1 for transfer order &2 does not exist<br />
+*136   Error while reading material data<br />
+*137   Error while locking reservation document<br />
+*138   Wrong movement type &1 for warehouse &2<br />
+*140   Cannot retrieve transfer order &1 from warehouse number &2<br />
+*141   Transfer order header table is empty<br />
+*143   One item in transfer order &1 is confirmed<br />
+*144   Transfer order &1 is being processed by subsystem<br />
+*145   One item in transfer order &1 has indicator for zero stock check<br />
+*146   One item in transfer order &1 does not have zero stock check confirmation<br />
+*147   One item in transfer order &1 is from bulk storage type<br />
+*148   One item in transfer order &1 must have SU ID from bulk storage type<br />
+*149   Wrong quantities or indicator data in transfer order &1<br />
+*151   Duplicate lines in transfer order  &1<br />
+*153   Difference must be reported for transfer order &1<br />
+*154   Negative quantities in transfer order &1<br />
+*155   Incorrect zero check report in transfer order &1<br />
+*156   Storage unit not found in transfer order &1<br />
+*157   Storage unit is empty in transfer order &1<br />
+*158   Incorrect storage unit in transfer order &1<br />
+*159   Too many storage units in transfer order &1<br />
+*160   There is nothing to confirm in transfer order  &1<br />
+*161   Measuring unit is missing in transfer order &1<br />
+*162   Incorrect value in indicator field in transfer order &1<br />
+*163   No commit was performed after update in transfer order &1<br />
+*164   Transfer order items table is empty<br />
+*165   The system could not find transfer order for execution<br />
+*190   Failed to determine screen number<br />
+*191   Profile for user &1 is not active<br />
+*192   User &1 has no profile definition<br />
+*198   Confirmation of TO &1 has already began. Use "select by TO" option.<br />
+*322   There is nothing to confirm in delivery &1<br />
+*<br />
+* Message class: SR<br />
+*006   Function not supported<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 758</td>
+   </tr>
+</table>
+</body>
+</html>
